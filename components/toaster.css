@@ -1,0 +1,9 @@
+/** Used to position the icon **/
+.Toastify__toast-icon {
+    @apply h-8 w-8;
+}
+
+/** Classes for the close button. Better use your own closeButton **/
+.Toastify__close-button {
+    @apply align-middle h-6 w-6;
+}
