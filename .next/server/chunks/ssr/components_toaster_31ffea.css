@@ -1,0 +1,13 @@
+/* [project]/unexpected/components/toaster.css [app-ssr] (css) */
+.Toastify__toast-icon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.Toastify__close-button {
+  height: 1.5rem;
+  width: 1.5rem;
+  vertical-align: middle;
+}
+
+/*# sourceMappingURL=components_toaster_31ffea.css.map*/
