@@ -8,7 +8,7 @@ export default function KeMetricsArea() {
 
     return (
         <Area>
-            <AreaHeader title="Key Metrics" icon={<KeyframesMultipleIcon size={32} />} />
+            <AreaHeader title="Key Metrics" icon={<KeyframesMultipleIcon size={24} />} />
             <AreaMain>
                 <MetricsTable categories={projectDex.categories} />
             </AreaMain>

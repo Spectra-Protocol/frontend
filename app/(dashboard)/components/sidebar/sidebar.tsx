@@ -20,17 +20,17 @@ const navItems = [
     {
         label: "Dashboard",
         href: "/dashboard",
-        icon: <Saturn02Icon size={20} />,
+        icon: <Saturn02Icon size={16} />,
     },
     {
         label: "Interface",
         href: "/interface",
-        icon: <KeyboardIcon size={20} />,
+        icon: <KeyboardIcon size={16} />,
     },
     {
         label: "Notifications",
         href: "/notifications",
-        icon: <Notification01Icon size={20} />,
+        icon: <Notification01Icon size={16} />,
         endContent: <Chip color="secondary" radius="full" size="sm">+ 3</Chip>,
     }
 ];
@@ -53,8 +53,8 @@ export default function Sidebar({ className, ...props }: SidebarProps) {
         )}
             aria-label="Sidebar"
         >
-            <div className="flex items-center justify-between gap-2 px-2 w-full">
-                <Favicon size={32} />
+            <div className="flex items-center justify-between px-2 w-full">
+                <Favicon size={24} />
                 <h1 className="font-semibold text-foreground-900 w-full">Unexpected</h1>
             </div>
             <div className="w-full">
@@ -85,10 +85,10 @@ export default function Sidebar({ className, ...props }: SidebarProps) {
                 <p className="text-sm text-default-500">Dark Mode</p>
                 <ThemeSwitch />
             </div>
-            <div className="w-full h-full">
+            <div className="w-full h-fit">
                 <DynamicProfileAccordition />
             </div>
-            <div className="h-full">
+            <div className="h-fit">
                 <DynamicCopyRight />
             </div>
         </aside>

@@ -1,3 +1,7 @@
 {
-  "/(dashboard)/(project)/projects/[address]/dex/page": "app/(dashboard)/(project)/projects/[address]/dex/page.js"
+  "/(landing)/page": "app/(landing)/page.js",
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/(dashboard)/(project)/projects/[address]/page": "app/(dashboard)/(project)/projects/[address]/page.js",
+  "/(dashboard)/(profiler)/profiles/[id]/page": "app/(dashboard)/(profiler)/profiles/[id]/page.js"
 }

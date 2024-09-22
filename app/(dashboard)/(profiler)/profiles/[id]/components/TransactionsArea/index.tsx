@@ -7,7 +7,7 @@ const DynamicTransactionsTable = dynamic(() => import('./TransactionsTable'), { 
 export default function TransactionArea() {
     return (
         <Area>
-            <AreaHeader title="Transactions" icon={<TransactionIcon size={32} />} subtitle="All transaction with details"/>
+            <AreaHeader title="Transactions" icon={<TransactionIcon size={24} />} subtitle="All transaction with details"/>
             <AreaMain>
                 <DynamicTransactionsTable />
             </AreaMain>

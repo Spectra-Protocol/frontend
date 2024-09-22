@@ -7,7 +7,7 @@ const DynamicPortfolioTable = dynamic(() => import('./PortfolioTable'), { ssr: f
 export default function PortfolioArea() {
     return (
         <Area>
-            <AreaHeader title="Portfolio" icon={<BitcoinMailIcon size={32} />}/>
+            <AreaHeader title="Portfolio" icon={<BitcoinMailIcon size={24} />}/>
             <AreaMain>
                 <DynamicPortfolioTable />
             </AreaMain>

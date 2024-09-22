@@ -7,7 +7,7 @@ const DynamicMetricChart = dynamic(() => import("./MetricChart"), { ssr: false }
 export default function MetricChartArea() {
     return (
         <Area>
-            <AreaHeader title="Metric Chart" icon={<AnalyticsUpIcon size={32}/>}/>
+            <AreaHeader title="Metric Chart" icon={<AnalyticsUpIcon size={24}/>}/>
             <AreaMain>
                 <DynamicMetricChart />
             </AreaMain>

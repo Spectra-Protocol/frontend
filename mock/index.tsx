@@ -165,7 +165,7 @@ export const mockProfiler = {
     address: faker.finance.ethereumAddress(),
     avatar: faker.image.avatar(),
     tag: Math.random() > 0.2 ? ProfilerTagType.Whale : (Math.random() > 0.2 ? ProfilerTagType.Fund : ProfilerTagType.Anonymous),
-    portifolio: Array.from({ length: 2}, () => ({
+    portifolio: Array.from({ length: 20}, () => ({
         id: faker.string.uuid(),
         asset: {
             id: faker.string.uuid(),

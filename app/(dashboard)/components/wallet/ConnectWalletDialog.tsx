@@ -1,8 +1,8 @@
 import { Logo } from "@/components/icons";
 import { WalletSortingOptions, useWallet, groupAndSortWallets, AboutAptosConnect, AptosPrivacyPolicy, AnyAptosWallet, WalletItem, isInstallRequired, AboutAptosConnectEducationScreen } from "@aptos-labs/wallet-adapter-react";
 import { Button } from "@nextui-org/button";
-import { ModalContent, ModalHeader, ModalBody, Tooltip, Modal } from "@nextui-org/react";
-import { MultiplicationSignIcon } from "hugeicons-react";
+import { ModalContent, ModalHeader, ModalBody, Tooltip, Modal, useDisclosure } from "@nextui-org/react";
+import { MultiplicationSignIcon, Wallet01Icon } from "hugeicons-react";
 import React from "react";
 
 interface ConnectWalletDialogProps extends WalletSortingOptions {
@@ -13,7 +13,8 @@ function ConnectWalletDialog({
     close,
     ...walletSortingOptions
 }: ConnectWalletDialogProps) {
-    const { wallets = [] } = useWallet();
+    const { wallets = [], connected, account, isLoading, disconnect } = useWallet();
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
     const { aptosConnectWallets, availableWallets, installableWallets } =
         groupAndSortWallets(wallets, walletSortingOptions);
@@ -26,15 +27,17 @@ function ConnectWalletDialog({
                 <Logo className="h-8 w-8" />
                 <h6>Connect Wallet</h6>
                 <Button
-                    isIconOnly
-                    radius="full"
-                    size="sm"
-                    variant="light"
-                    className="text-default-500 data-[hover=true]:bg-default-100"
-                    onClick={close}
-                >
-                    <MultiplicationSignIcon size={24} />
-                </Button>
+                fullWidth
+                variant={'solid'}
+                size={'md'}
+                radius="full"
+                className="bg-foreground-900 text-foreground-100 font-semibold"
+                isLoading={isLoading}
+                onClick={onOpen}
+                startContent={<Wallet01Icon size={16} />}
+            >
+                Connect Wallet
+            </Button>
             </ModalHeader>
             <ModalBody className="overflow-auto rounded-[32px]">
                 <AboutAptosConnect renderEducationScreen={renderEducationScreen}>

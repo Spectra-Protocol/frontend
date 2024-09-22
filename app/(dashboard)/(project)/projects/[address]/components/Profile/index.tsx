@@ -22,7 +22,7 @@ export default function ProfileHeader() {
                     title="TVL"
                     description="Total Value Locked"
                     value={project?.tvl}
-                    icon={<LockedIcon size={32} />}
+                    icon={<LockedIcon size={24} />}
                 />
             </div>
         </header>
