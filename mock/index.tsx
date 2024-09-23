@@ -1,19 +1,20 @@
-import { KeyMetric, MetricCategory, Portifolio, Profiler, ProfilerTagType, Token, Transaction, TransactionTagType } from "@/types";
+import { KeyMetric, MetricCategory, Portifolio, Profiler, ProfilerTagType, Project, Token, Transaction, TransactionTagType } from "@/types";
 import { faker } from "@faker-js/faker";
 
 
 export const mockProject = {
-    name: faker.company.name(),
-    address: faker.finance.ethereumAddress(),
-    floorPrice: faker.finance.amount({
-        symbol: "$",
-        autoFormat: true,
-    }),
-    avatar: faker.image.avatar(),
-    tvl: faker.finance.amount({
-        symbol: "ETH",
-    }),
-};
+    id: faker.number.int(),
+    category: 'dex',
+    code_commits: faker.number.int(),
+    contract_address: faker.finance.ethereumAddress(),
+    core_developers: faker.number.int(),
+    created_at: faker.date.past().toString(),
+    num_chains: faker.number.int(),
+    token: faker.finance.currencyName(),
+    token_max_supply: faker.number.int(),
+    total_value_locked: faker.number.float(),
+    updated_at  : faker.date.recent().toString(),
+} satisfies Project;
 
 export const mockProjectsTransactions = Array.from({ length: 10 }, () => ({
     id: faker.string.uuid(),// Add unique identifier

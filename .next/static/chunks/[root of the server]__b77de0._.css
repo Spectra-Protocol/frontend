@@ -2302,6 +2302,11 @@ img, video {
   background-color: hsl(var(--color-primary) / var(--color-primary-opacity, var(--tw-bg-opacity)));
 }
 
+.bg-primary-100 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--color-primary-100) / var(--color-primary-100-opacity, var(--tw-bg-opacity)));
+}
+
 .bg-primary-50 {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--color-primary-50) / var(--color-primary-50-opacity, var(--tw-bg-opacity)));
@@ -2991,6 +2996,11 @@ img, video {
 .text-primary {
   --tw-text-opacity: 1;
   color: hsl(var(--color-primary) / var(--color-primary-opacity, var(--tw-text-opacity)));
+}
+
+.text-primary-200 {
+  --tw-text-opacity: 1;
+  color: hsl(var(--color-primary-200) / var(--color-primary-200-opacity, var(--tw-text-opacity)));
 }
 
 .text-primary-300 {
