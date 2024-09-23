@@ -100,3 +100,155 @@ export interface KeyMetric {
   value: number | string;
   unit: string;
 }
+
+// NewAccount
+export interface NewAccount {
+  address: string;
+  entity_id?: number;
+}
+
+// AccountResponse
+export interface AccountResponse {
+  id: number;
+  address: string;
+  entity_id?: number;
+  created_at: string;
+  updated_at: string;
+}
+
+// UpdateAccount
+export interface UpdateAccount {
+  entity_id?: number;
+}
+
+// CreateEntityInfo
+export interface CreateEntityInfo {
+  name: string;
+}
+
+// EntityResponse
+export interface EntityResponse {
+  id: number;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}
+
+// Message
+export interface Message {
+  message: string;
+}
+
+// NewProject
+export interface NewProject {
+  token: string;
+  name: string;
+  category: string;
+  contract_address?: string;
+}
+
+// UpdateProject
+export interface UpdateProject {
+  name?: string;
+  token?: string;
+  category?: string;
+  contract_address?: string;
+  num_chains?: number;
+  core_developers?: number;
+  code_commits?: number;
+  total_value_locked?: number;
+  token_max_supply?: number;
+}
+
+// ProjectResponse
+export interface ProjectResponse {
+  id: number;
+  name: string;
+  token: string;
+  category: string;
+  contract_address?: string;
+  num_chains?: number;
+  core_developers?: number;
+  code_commits?: number;
+  total_value_locked?: number;
+  token_max_supply?: number;
+  created_at: string;
+  updated_at: string;
+}
+
+// Profile
+export interface Profile {
+  name: string;
+  email: string;
+  role: string;
+  created_at: string;
+  updated_at: string;
+}
+
+// TokenResponse
+export interface TokenResponse {
+  token: string;
+}
+
+// LoginInfo
+export interface LoginInfo {
+  email: string;
+  password: string;
+}
+
+// RegisterInfo
+export interface RegisterInfo {
+  name: string;
+  email: string;
+  password: string;
+}
+
+// DexDataResponse
+export interface DexDataResponse {
+  id: number;
+  name: string;
+  token: string;
+  category: string;
+  contract_address?: string;
+  num_chains?: number;
+  core_developers?: number;
+  code_commits?: number;
+  total_value_locked?: number;
+  token_max_supply?: number;
+  created_at: string;
+  updated_at: string;
+  ath: string;
+  ath_last: string;
+  atl: string;
+  atl_last: string;
+  revenue_30d: string;
+  revenue_annualized: string;
+  expenses_30d: string;
+  earnings_30d: string;
+  fees_30d: string;
+  fees_annualized: string;
+  token_incentives_30d: string;
+  monthly_active_users: string;
+  afpu: string;
+  arpu: string;
+  token_trading_volume_30d: string;
+  market_cap_fully_diluted: number;
+  market_cap_normal: number;
+  transactions: SwapTransaction[];
+  token_supply: number;
+  num_token_holders: number;
+  trading_volume: number;
+  daily_active_users: number;
+  weekly_active_users: number;
+  daily_fees: number;
+}
+
+// SwapTransaction
+export interface SwapTransaction {
+  version: number;
+  sender: string;
+  token_sold: string;
+  token_sold_amount: number;
+  token_bought: string;
+  token_bought_amount: number;
+}
