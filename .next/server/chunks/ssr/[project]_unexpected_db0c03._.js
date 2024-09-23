@@ -411,21 +411,21 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2
 ;
 ;
 ;
-const DynamicProfileAccordition = (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_require__("[project]/unexpected/app/(dashboard)/components/sidebar/ProfileAccordition.tsx [app-ssr] (ecmascript, async loader)")(__turbopack_import__), {
+const ProfileAccordition = (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_require__("[project]/unexpected/app/(dashboard)/components/sidebar/ProfileAccordition.tsx [app-ssr] (ecmascript, async loader)")(__turbopack_import__), {
     loadableGenerated: {
         modules: [
             "unexpected/app/(dashboard)/components/sidebar/sidebar.tsx -> " + "./ProfileAccordition"
         ]
     }
 });
-const DynamicExtraCard = (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_require__("[project]/unexpected/app/(dashboard)/components/sidebar/ExtraCard.tsx [app-ssr] (ecmascript, async loader)")(__turbopack_import__), {
+const ExtraCard = (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_require__("[project]/unexpected/app/(dashboard)/components/sidebar/ExtraCard.tsx [app-ssr] (ecmascript, async loader)")(__turbopack_import__), {
     loadableGenerated: {
         modules: [
             "unexpected/app/(dashboard)/components/sidebar/sidebar.tsx -> " + "./ExtraCard"
         ]
     }
 });
-const DynamicCopyRight = (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_require__("[project]/unexpected/app/(dashboard)/components/sidebar/Copyright.tsx [app-ssr] (ecmascript, async loader)")(__turbopack_import__), {
+const CopyRight = (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_require__("[project]/unexpected/app/(dashboard)/components/sidebar/Copyright.tsx [app-ssr] (ecmascript, async loader)")(__turbopack_import__), {
     loadableGenerated: {
         modules: [
             "unexpected/app/(dashboard)/components/sidebar/sidebar.tsx -> " + "./Copyright"
@@ -505,7 +505,7 @@ function Sidebar({ className, ...props }) {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                         className: "font-semibold text-foreground-900 w-full",
-                        children: "Unexpected"
+                        children: "Spectra"
                     }, void 0, false, {
                         fileName: "[project]/unexpected/app/(dashboard)/components/sidebar/sidebar.tsx",
                         lineNumber: 58,
@@ -549,7 +549,7 @@ function Sidebar({ className, ...props }) {
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "h-full",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(DynamicExtraCard, {}, void 0, false, {
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ExtraCard, {}, void 0, false, {
                     fileName: "[project]/unexpected/app/(dashboard)/components/sidebar/sidebar.tsx",
                     lineNumber: 82,
                     columnNumber: 17
@@ -583,7 +583,7 @@ function Sidebar({ className, ...props }) {
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "w-full h-fit",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(DynamicProfileAccordition, {}, void 0, false, {
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ProfileAccordition, {}, void 0, false, {
                     fileName: "[project]/unexpected/app/(dashboard)/components/sidebar/sidebar.tsx",
                     lineNumber: 89,
                     columnNumber: 17
@@ -595,7 +595,7 @@ function Sidebar({ className, ...props }) {
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "h-fit",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(DynamicCopyRight, {}, void 0, false, {
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(CopyRight, {}, void 0, false, {
                     fileName: "[project]/unexpected/app/(dashboard)/components/sidebar/sidebar.tsx",
                     lineNumber: 92,
                     columnNumber: 17
@@ -872,7 +872,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$app$2f28$dashb
 ;
 ;
 ;
-const DynamicProfileAccorditionCard = (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_require__("[project]/unexpected/app/(dashboard)/components/top-navbar/ProfileAccorditionCard.tsx [app-ssr] (ecmascript, async loader)")(__turbopack_import__), {
+const ProfileAccorditionCard = (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_require__("[project]/unexpected/app/(dashboard)/components/top-navbar/ProfileAccorditionCard.tsx [app-ssr] (ecmascript, async loader)")(__turbopack_import__), {
     loadableGenerated: {
         modules: [
             "unexpected/app/(dashboard)/components/top-navbar/top-navbar.tsx -> " + "./ProfileAccorditionCard"
@@ -942,7 +942,7 @@ function TopNavbar({ className }) {
                         lineNumber: 34,
                         columnNumber: 17
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(DynamicProfileAccorditionCard, {}, void 0, false, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ProfileAccorditionCard, {}, void 0, false, {
                         fileName: "[project]/unexpected/app/(dashboard)/components/top-navbar/top-navbar.tsx",
                         lineNumber: 35,
                         columnNumber: 17

@@ -3,9 +3,9 @@ import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Providers } from "./providers";
 
-const DynamicSidebar = dynamic(() => import("./components/sidebar/sidebar"), { ssr: false });
-const DynamicBottomNavbar = dynamic(() => import("./components/bottom-navbar/bottom-navbar"), { ssr: false });
-const DynamicTopNavbar = dynamic(() => import("./components/top-navbar/top-navbar"), { ssr: false });
+const Sidebar = dynamic(() => import("./components/sidebar/sidebar"), { ssr: false });
+const BottomNavbar = dynamic(() => import("./components/bottom-navbar/bottom-navbar"), { ssr: false });
+const TopNavbar = dynamic(() => import("./components/top-navbar/top-navbar"), { ssr: false });
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -27,10 +27,10 @@ export default function DashboardLayout({ children }: LayoutProps) {
         <Providers>
             <div className="max-h-screen w-screen h-screen flex flex-col md:flex-row p-4 overflow-hidden">
                 <div className="md:hidden overflow-visible z-10">
-                    <DynamicBottomNavbar />
-                    {/* <DynamicTopNavbar /> */}
+                    <BottomNavbar />
+                    {/* <TopNavbar /> */}
                 </div>
-                <DynamicSidebar className="hidden md:flex" />
+                <Sidebar className="hidden md:flex" />
                 <main className="flex-1 w-full overflow-y-scroll">{children}</main>
             </div>
         </Providers>

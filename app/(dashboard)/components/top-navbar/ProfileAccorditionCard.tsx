@@ -8,12 +8,12 @@ import { toast } from "react-toastify";
 
 import { MyToastContent } from "@/components/toaster";
 
-const DynamicWalletSelector = dynamic(() => import('../wallet/WalletSelector'), { ssr: false });
+const WalletSelector = dynamic(() => import('../wallet/WalletSelector'), { ssr: false });
 
 export default function ProfileAccorditionCard() {
     const { connected, account, wallet, disconnect, isLoading } = useWallet();
     if (isLoading) return <Skeleton className='w-full h-16 rounded-lg' />;
-    if (!connected) return <DynamicWalletSelector />
+    if (!connected) return <WalletSelector />
 
     const handleDisconnet = React.useCallback(() => {
         try {

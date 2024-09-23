@@ -93,14 +93,14 @@ var _s = __turbopack_refresh__.signature();
 ;
 ;
 ;
-const DynamicConnectWalletDialog = (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_require__("[project]/unexpected/app/(dashboard)/components/wallet/ConnectWalletDialog.tsx [app-client] (ecmascript, async loader)")(__turbopack_import__), {
+const ConnectWalletDialog = (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_require__("[project]/unexpected/app/(dashboard)/components/wallet/ConnectWalletDialog.tsx [app-client] (ecmascript, async loader)")(__turbopack_import__), {
     loadableGenerated: {
         modules: [
             "unexpected/app/(dashboard)/components/wallet/WalletSelector.tsx -> " + "./ConnectWalletDialog"
         ]
     }
 });
-_c = DynamicConnectWalletDialog;
+_c = ConnectWalletDialog;
 function WalletSelector(walletSortingOptions) {
     _s();
     const { isOpen, onOpenChange, onClose, onOpen } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f40$nextui$2d$org$2f$use$2d$disclosure$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useDisclosure"])();
@@ -140,7 +140,7 @@ function WalletSelector(walletSortingOptions) {
                 classNames: {
                     wrapper: "bg-primary/5 w-fit h-fit left-1/2 top-1/2 !-translate-x-1/2 !-translate-y-1/2 backdrop-blur-sm rounded-[32px] p-6 border-t border-primary/50"
                 },
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DynamicConnectWalletDialog, {
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$unexpected$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ConnectWalletDialog, {
                     close: onClose,
                     ...walletSortingOptions
                 }, void 0, false, {
@@ -165,7 +165,7 @@ _s(WalletSelector, "mEPem/eeQ6TxTQXGujEK2Qbl7wI=", false, function() {
 _c1 = WalletSelector;
 const __TURBOPACK__default__export__ = WalletSelector;
 var _c, _c1;
-__turbopack_refresh__.register(_c, "DynamicConnectWalletDialog");
+__turbopack_refresh__.register(_c, "ConnectWalletDialog");
 __turbopack_refresh__.register(_c1, "WalletSelector");
 
 })()),

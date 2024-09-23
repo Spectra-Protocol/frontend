@@ -2,6 +2,6 @@
   "version": 3,
   "sources": [],
   "sections": [
-    {"offset": {"line": 5, "column": 0}, "map": {"version":3,"sources":["/turbopack/[project]/unexpected/app/(dashboard)/components/sidebar/Copyright.tsx"],"sourcesContent":["export default function Copyright() {\n    return (\n        <div className='flex flex-row gap-2 items-center w-full'>\n            <p className='text-xs text-default-500'>\n                &copy; Copyright by Unexpected - 2024\n            </p>\n        </div>\n    )\n}"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACpB,qBACI,2MAAC;QAAI,WAAU;kBACX,cAAA,2MAAC;YAAE,WAAU;sBAA2B;;;;;;;;;;;AAKpD;KARwB"}},
+    {"offset": {"line": 5, "column": 0}, "map": {"version":3,"sources":["/turbopack/[project]/unexpected/app/(dashboard)/components/sidebar/Copyright.tsx"],"sourcesContent":["export default function Copyright() {\n    return (\n        <div className='flex flex-row gap-2 items-center w-full'>\n            <p className='text-xs text-default-500'>\n                &copy; Copyright by Spectra - 2024\n            </p>\n        </div>\n    )\n}"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACpB,qBACI,2MAAC;QAAI,WAAU;kBACX,cAAA,2MAAC;YAAE,WAAU;sBAA2B;;;;;;;;;;;AAKpD;KARwB"}},
     {"offset": {"line": 31, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
 }

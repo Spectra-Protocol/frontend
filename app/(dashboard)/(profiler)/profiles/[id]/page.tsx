@@ -2,8 +2,8 @@ import dynamic from "next/dynamic";
 import Providers from "./providers";
 import { mockProfiler } from "@/mock";
 
-const DynamicProfileHeader = dynamic(() => import("./components/Profile"), { ssr: false });
-const DynamicPortfolioArea = dynamic(() => import("./components/PortfolioArea"), { ssr: false });
+const ProfileHeader = dynamic(() => import("./components/Profile"), { ssr: false });
+const PortfolioArea = dynamic(() => import("./components/PortfolioArea"), { ssr: false });
 
 interface PageProps {
     params: {
@@ -16,8 +16,8 @@ export default function Page({ params: { address } }: PageProps) {
     return (
         <Providers Profiler={profiler}>
             <div className="w-full flex flex-col gap-8">
-                <DynamicProfileHeader />
-                <DynamicPortfolioArea />
+                <ProfileHeader />
+                <PortfolioArea />
             </div>
         </Providers>
     )

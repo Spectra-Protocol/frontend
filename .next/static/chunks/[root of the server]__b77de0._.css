@@ -2950,6 +2950,11 @@ img, video {
   color: hsl(var(--color-foreground) / var(--color-foreground-opacity, var(--tw-text-opacity)));
 }
 
+.text-foreground-100 {
+  --tw-text-opacity: 1;
+  color: hsl(var(--color-foreground-100) / var(--color-foreground-100-opacity, var(--tw-text-opacity)));
+}
+
 .text-foreground-400 {
   --tw-text-opacity: 1;
   color: hsl(var(--color-foreground-400) / var(--color-foreground-400-opacity, var(--tw-text-opacity)));

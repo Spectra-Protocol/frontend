@@ -16,7 +16,7 @@ export default function ExtraCard() {
                 Decentralized
             </h6>
             <p className="text-xs text-center">
-                Unexpected is a decentralized application
+                Spectra is a decentralized application
             </p>
             <Button radius="md" fullWidth>
                 Explore

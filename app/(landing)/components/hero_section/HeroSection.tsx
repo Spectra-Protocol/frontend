@@ -15,7 +15,7 @@ export default function HeroSection() {
             <div className="flex flex-col gap-8 items-start justify-center sm:max-w-screen-sm h-full">
                 <div>
                     <Chip color="default" variant="bordered">
-                        <span className="text-primary font-semibold">Unexpected</span> | On the Aptos Blockchain
+                        <span className="text-primary font-semibold">Spectra</span> | On the Aptos Blockchain
                     </Chip>
                 </div>
                 <div className="w-full">
@@ -23,7 +23,7 @@ export default function HeroSection() {
                         Decentralized Indexer for a Super Data Warehouse
                     </h1>
                     <p className="text-base text-default-500 w-full max-w-[95%] sm:max-w-[75%] mt-4">
-                        Unexpected is a decentralized indexer for the Aptos blockchain. Allowing you to query data from the Aptos blockchain in a decentralized way.
+                        Spectra is a decentralized indexer for the Aptos blockchain. Allowing you to query data from the Aptos blockchain in a decentralized way.
                     </p>
                 </div>
                 <div>

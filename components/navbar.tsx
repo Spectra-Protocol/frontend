@@ -19,7 +19,7 @@ import {
   Logo,
 } from "@/components/icons";
 
-const DynamicGetStartedButton = dynamic(() => import('./GetStartedButton'), { ssr: false });
+const GetStartedButton = dynamic(() => import('./GetStartedButton'), { ssr: false });
 
 export const Navbar = () => {
   return (
@@ -59,7 +59,7 @@ export const Navbar = () => {
       >
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
-          <DynamicGetStartedButton />
+          <GetStartedButton />
         </NavbarItem>
       </NavbarContent>
 

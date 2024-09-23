@@ -34,11 +34,17 @@ export interface Transaction {
 
 // Project
 export interface Project {
-  address: string;
-  name: string;
-  description: string;
-
-  [key: string]: any;
+  category: string;
+  code_commits: number;
+  contract_address: string;
+  core_developers: number;
+  created_at: string;
+  id: number;
+  num_chains: number;
+  token: string;
+  token_max_supply: number;
+  total_value_locked: number;
+  updated_at: string;
 }
 
 // Profiler

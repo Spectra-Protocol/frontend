@@ -7,7 +7,7 @@ import { ThemeSwitch } from '@/components/theme-switch';
 import { Favicon } from '@/components/icons';
 import { AreaHeader, AreaWrapper } from '../area';
 
-const DynamicProfileAccorditionCard = dynamic(() => import('./ProfileAccorditionCard'), { ssr: false });
+const ProfileAccorditionCard = dynamic(() => import('./ProfileAccorditionCard'), { ssr: false });
 
 interface TopNavbarProps extends React.HTMLAttributes<HTMLElement> {
 }
@@ -32,7 +32,7 @@ export default function TopNavbar({ className }: TopNavbarProps) {
             </div>
             <AreaWrapper>
                 <AreaHeader title='Wallet' subtitle={''} icon={undefined} />
-                <DynamicProfileAccorditionCard />
+                <ProfileAccorditionCard />
             </AreaWrapper>
         </header>
     )

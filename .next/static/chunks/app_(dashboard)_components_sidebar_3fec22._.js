@@ -5,7 +5,7 @@
 __turbopack_export_value__((__turbopack_import__) => {
     return Promise.all([
   "static/chunks/node_modules_d0b482._.js",
-  "static/chunks/node_modules_axios_b3875a._.js",
+  "static/chunks/node_modules_525afc._.js",
   "static/chunks/node_modules_aptos_dist_index_mjs_f71b16._.js",
   "static/chunks/node_modules_@aptos-labs_ts-sdk_dist_esm_db8809._.js",
   "static/chunks/90e2f_@aptos-labs_ts-sdk_dist_esm_a72f01._.js",
@@ -31,8 +31,8 @@ __turbopack_export_value__((__turbopack_import__) => {
       "static/chunks/node_modules_react-toastify_dist_ReactToastify_b52d8e.css"
     ]
   },
-  "static/chunks/[project]_unexpected_d97d47._.js",
-  "static/chunks/app_(dashboard)_components_sidebar_ProfileAccordition_tsx_dfdc86._.js"
+  "static/chunks/[project]_unexpected_6f44d9._.js",
+  "static/chunks/app_(dashboard)_components_sidebar_ProfileAccordition_tsx_e46ad9._.js"
 ].map((chunk) => __turbopack_load__(chunk))).then(() => {
         return __turbopack_import__("[project]/unexpected/app/(dashboard)/components/sidebar/ProfileAccordition.tsx [app-client] (ecmascript)");
     });

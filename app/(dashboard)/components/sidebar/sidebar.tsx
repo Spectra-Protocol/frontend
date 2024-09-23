@@ -10,9 +10,9 @@ import { usePathname } from "next/navigation";
 import { Chip } from "@nextui-org/react";
 import { Saturn02Icon, KeyboardIcon, Notification01Icon } from "hugeicons-react";
 
-const DynamicProfileAccordition = dynamic(() => import("./ProfileAccordition"));
-const DynamicExtraCard = dynamic(() => import("./ExtraCard"));
-const DynamicCopyRight = dynamic(() => import("./Copyright"));
+const ProfileAccordition = dynamic(() => import("./ProfileAccordition"));
+const ExtraCard = dynamic(() => import("./ExtraCard"));
+const CopyRight = dynamic(() => import("./Copyright"));
 
 interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
 }
@@ -55,7 +55,7 @@ export default function Sidebar({ className, ...props }: SidebarProps) {
         >
             <div className="flex items-center justify-between px-2 w-full">
                 <Favicon size={24} />
-                <h1 className="font-semibold text-foreground-900 w-full">Unexpected</h1>
+                <h1 className="font-semibold text-foreground-900 w-full">Spectra</h1>
             </div>
             <div className="w-full">
                 <Search />
@@ -79,17 +79,17 @@ export default function Sidebar({ className, ...props }: SidebarProps) {
                 }
             </Listbox>
             <div className="h-full">
-                <DynamicExtraCard />
+                <ExtraCard />
             </div>
             <div className="flex flex-row gap-4 justify-between w-full h-fit items-center">
                 <p className="text-sm text-default-500">Dark Mode</p>
                 <ThemeSwitch />
             </div>
             <div className="w-full h-fit">
-                <DynamicProfileAccordition />
+                <ProfileAccordition />
             </div>
             <div className="h-fit">
-                <DynamicCopyRight />
+                <CopyRight />
             </div>
         </aside>
     )
