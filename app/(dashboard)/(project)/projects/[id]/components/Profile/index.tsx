@@ -3,7 +3,7 @@
 import numeral from "numeral";
 
 import { mockProject } from "@/mock"
-import { Agreement02Icon, LockedIcon, SourceCodeIcon } from "hugeicons-react";
+import { Agreement02Icon, Blockchain04Icon, LockedIcon, SourceCodeIcon } from "hugeicons-react";
 import { DetailCard } from "@/components/dashboard";
 import { Profile } from "@/components/dashboard/profile";
 
@@ -14,6 +14,7 @@ export default function ProfileHeader() {
     return (
         <header className="w-full flex flex-col md:flex-row gap-4 my-4">
             <Profile
+                name={project.name}
                 avatar={""}
                 address={project.contract_address}
             />
@@ -46,6 +47,14 @@ export default function ProfileHeader() {
                     icon={<Agreement02Icon size={24} />}
                     value={
                         numeral(project.code_commits).format("0,000a")
+                    }
+                />
+                <DetailCard
+                    title="Chains"
+                    description="Number of Chains"
+                    icon={<Blockchain04Icon size={24} />}
+                    value={
+                        numeral(project.num_chains).format("0,000a")
                     }
                 />
             </div>

@@ -33,18 +33,7 @@ export interface Transaction {
 }
 
 // Project
-export interface Project {
-  category: string;
-  code_commits: number;
-  contract_address: string;
-  core_developers: number;
-  created_at: string;
-  id: number;
-  num_chains: number;
-  token: string;
-  token_max_supply: number;
-  total_value_locked: number;
-  updated_at: string;
+export interface Project extends ProjectResponse {
 }
 
 // Profiler
@@ -87,7 +76,6 @@ export interface Token {
   icon?: string;
 }
 
-
 // Key Metric
 export interface MetricCategory {
   id: string | number;
@@ -97,9 +85,14 @@ export interface MetricCategory {
 export interface KeyMetric {
   id: string | number;
   name: string;
-  value: number | string;
+  value: any;
   unit: string;
 }
+
+
+// ==============================
+// ========= SDK Types ==========
+// ==============================
 
 // NewAccount
 export interface NewAccount {

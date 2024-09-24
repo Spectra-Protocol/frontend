@@ -1,9 +1,10 @@
-import { KeyMetric, MetricCategory, Portifolio, Profiler, ProfilerTagType, Project, Token, Transaction, TransactionTagType } from "@/types";
+import { DexDataResponse, KeyMetric, MetricCategory, Portifolio, Profiler, ProfilerTagType, Project, SwapTransaction, Token, Transaction, TransactionTagType } from "@/types";
 import { faker } from "@faker-js/faker";
 
 
 export const mockProject = {
     id: faker.number.int(),
+    name: faker.company.name(),
     category: 'dex',
     code_commits: faker.number.int(),
     contract_address: faker.finance.ethereumAddress(),
@@ -13,7 +14,7 @@ export const mockProject = {
     token: faker.finance.currencyName(),
     token_max_supply: faker.number.int(),
     total_value_locked: faker.number.float(),
-    updated_at  : faker.date.recent().toString(),
+    updated_at: faker.date.recent().toString(),
 } satisfies Project;
 
 export const mockProjectsTransactions = Array.from({ length: 10 }, () => ({
@@ -161,12 +162,58 @@ export const mockProjectDex = {
     ] satisfies MetricCategory[]
 }
 
+export const mockDexDataResponse = {
+    id: faker.number.int(),
+    name: faker.company.name(),
+    token: faker.finance.currencyName(),
+    category: 'dex',
+    contract_address: faker.finance.ethereumAddress(),
+    num_chains: faker.number.int(),
+    core_developers: faker.number.int(),
+    code_commits: faker.number.int(),
+    total_value_locked: faker.number.float(),
+    token_max_supply: faker.number.int(),
+    created_at: faker.date.past().toString(),
+    updated_at: faker.date.recent().toString(),
+    ath: faker.finance.amount(),
+    ath_last: faker.finance.amount(),
+    atl: faker.finance.amount(),
+    atl_last: faker.finance.amount(),
+    revenue_30d: faker.finance.amount(),
+    revenue_annualized: faker.finance.amount(),
+    expenses_30d: faker.finance.amount(),
+    earnings_30d: faker.finance.amount(),
+    fees_30d: faker.finance.amount(),
+    fees_annualized: faker.finance.amount(),
+    token_incentives_30d: faker.finance.amount(),
+    monthly_active_users: faker.finance.amount(),
+    afpu: faker.finance.amount(),
+    arpu: faker.finance.amount(),
+    token_trading_volume_30d: faker.finance.amount(),
+    market_cap_fully_diluted: faker.number.float(),
+    market_cap_normal: faker.number.float(),
+    transactions: Array.from({ length: 10 }, () => ({
+        version: faker.number.int(),
+        sender: faker.finance.ethereumAddress(),
+        token_sold: faker.finance.currencyName(),
+        token_sold_amount: faker.number.float(),
+        token_bought: faker.finance.currencyName(),
+        token_bought_amount: faker.number.float(),
+    } satisfies SwapTransaction)),
+    token_supply: faker.number.float(),
+    num_token_holders: faker.number.int(),
+    trading_volume: faker.number.float(),
+    daily_active_users: faker.number.int(),
+    weekly_active_users: faker.number.int(),
+    daily_fees: faker.number.float(),
+} satisfies DexDataResponse;
+
 export const mockProfiler = {
     name: faker.person.fullName(),
     address: faker.finance.ethereumAddress(),
     avatar: faker.image.avatar(),
     tag: Math.random() > 0.2 ? ProfilerTagType.Whale : (Math.random() > 0.2 ? ProfilerTagType.Fund : ProfilerTagType.Anonymous),
-    portifolio: Array.from({ length: 20}, () => ({
+    portifolio: Array.from({ length: 20 }, () => ({
         id: faker.string.uuid(),
         asset: {
             id: faker.string.uuid(),

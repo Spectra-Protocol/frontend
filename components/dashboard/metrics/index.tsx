@@ -59,7 +59,7 @@ export const MetricsTable: React.FC<MetricsTableProps> = (props) => {
                                             color="primary"
                                             placement="top"
                                         >
-                                            {Number(metric.value).toFixed(2)}
+                                            {metric.value || "-"}
                                         </Tooltip>
                                     </span>
                                 </div>

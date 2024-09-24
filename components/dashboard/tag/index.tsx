@@ -2,11 +2,12 @@
 
 import { Chip } from "@nextui-org/react";
 import { Tag } from "./type";
-import { AnonymousIcon, Building06Icon, GroupLayersIcon } from "hugeicons-react";
+import { AnonymousIcon, BitcoinGraphIcon, Building06Icon } from "hugeicons-react";
 import { GiWhaleTail } from "react-icons/gi";
 
 
 import { ProfilerTagType } from "@/types";
+import clsx from "clsx";
 
 type TagStyle = {
     color: string;
@@ -19,7 +20,7 @@ const getTagStyle = (tag: Tag): TagStyle | null => {
             return {
                 color: "#936316",
                 backgroundColor: "#F5A524",
-                icon: <GroupLayersIcon size={16} color="#312107" />
+                icon: <BitcoinGraphIcon size={16} color="#F5A524" filter="drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1))" />   
             };
         case ProfilerTagType.Whale.toString():
             return {
@@ -49,10 +50,14 @@ export default function TagCard({ tag }: { tag: Tag }) {
     return (
         <Chip
             radius="sm"
-            className="shadow-sm font-medium"
-            style={{
-                color: tagStyle?.color,
-                backgroundColor: tagStyle?.backgroundColor
+            className={clsx(
+                "capitalize" ,
+                "shadow-[inset_0px_-2px_1px_0px_rgba(0,0,0,0.1),0px_2px_2px_0px_rgba(0,0,0,0.1)]",
+                "bg-foreground-50 text-foreground-800",
+                "p-2 h-fit rounded-xl"
+            )}
+            classNames={{
+                content: "font-medium text-xs   "
             }}
             startContent={tagStyle?.icon}
         >

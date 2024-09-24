@@ -12,6 +12,16 @@ export async function getProject(id: string) {
         throw new Error('Error fetching project')
     }
 }
+export async function getDexDataReponse(name: string) {
+    try {
+        const dexData = await axios.get(`${API_URL}/dex/${name}`);
+        if (!dexData) throw new Error('Dex data not found')
+
+        return dexData.data;
+    } catch (error) {
+        throw new Error('Error fetching dex data')
+    }
+}
 
 export function getTransactions(id: string) {
     try {

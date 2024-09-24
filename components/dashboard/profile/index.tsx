@@ -2,9 +2,7 @@
 
 import { Avatar, Chip, Image } from "@nextui-org/react";
 
-import { mockProject } from "@/mock"
 import { Copy02Icon, LockedIcon } from "hugeicons-react";
-import { DetailCard } from "@/components/dashboard";
 import { Tag } from "../tag/type";
 import TagCard from "../tag";
 
@@ -20,7 +18,7 @@ export const Profile: React.FC<ProfileProps> = (props) => {
 
     return (
         <div className="w-full flex flex-row items-center gap-4">
-            <div className="h-full aspect-square max-h-16">
+            <div className="h-full aspect-square max-h-16">N
                 {typeof avatar === "string" ? (
                     <Avatar
                         src={avatar}
@@ -35,7 +33,7 @@ export const Profile: React.FC<ProfileProps> = (props) => {
             </div>
 
             <div className="w-full h-fit flex flex-col gap-2 justify-between">
-                <h1 className="w-full text-lg lg:text-3xl font-semibold text-foreground">{name}</h1>
+                <h1 className="w-full text-2xl font-semibold text-foreground">{name}</h1>
                 <div className="flex flex-row gap-2 flex-wrap items-center">
                     <Chip
                         radius="sm"

@@ -53,9 +53,9 @@ export default function Sidebar({ className, ...props }: SidebarProps) {
         )}
             aria-label="Sidebar"
         >
-            <div className="flex items-center justify-between px-2 w-full">
+            <div className="flex items-center justify-between px-2 gap-4 w-full">
                 <Favicon size={24} />
-                <h1 className="font-semibold text-foreground-900 w-full">Spectra</h1>
+                <h1 className="font-semibold text-2xl text-foreground-900 w-full">Spectra</h1>
             </div>
             <div className="w-full">
                 <Search />

@@ -26,18 +26,18 @@ function ConnectWalletDialog({
             <ModalHeader className="flex flex-row justify-between items-center">
                 <Logo className="h-8 w-8" />
                 <h6>Connect Wallet</h6>
-                <Button
-                fullWidth
-                variant={'solid'}
-                size={'md'}
-                radius="full"
-                className="bg-foreground-900 text-foreground-100 font-semibold"
-                isLoading={isLoading}
-                onClick={onOpen}
-                startContent={<Wallet01Icon size={16} />}
-            >
-                Connect Wallet
-            </Button>
+                {/* <Button
+                    fullWidth
+                    variant={'solid'}
+                    size={'md'}
+                    radius="full"
+                    className="bg-foreground-900 text-foreground-100 font-semibold"
+                    isLoading={isLoading}
+                    onClick={onOpen}
+                    startContent={<Wallet01Icon size={16} />}
+                >
+                    Connect Wallet
+                </Button> */}
             </ModalHeader>
             <ModalBody className="overflow-auto rounded-[32px]">
                 <AboutAptosConnect renderEducationScreen={renderEducationScreen}>
