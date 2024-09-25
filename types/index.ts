@@ -204,6 +204,7 @@ export interface BasicProjectResponse {
 
 // DexProjectResponse
 export interface DexProjectResponse extends BasicProjectResponse {
+  avatar_url?: string;
   num_chains?: number;
   core_developers?: number;
   code_commits?: number;
