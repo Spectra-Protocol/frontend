@@ -11,7 +11,7 @@
 		"type-check": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@aptos-labs/wallet-adapter-react": "^3.6.0",
+		"@aptos-labs/wallet-adapter-react": "^3.6.2",
 		"@eslint/config-array": "^0.18.0",
 		"@eslint/object-schema": "^2.1.4",
 		"@faker-js/faker": "^8.4.1",
