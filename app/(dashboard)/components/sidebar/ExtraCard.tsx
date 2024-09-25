@@ -10,7 +10,7 @@ export default function ExtraCard() {
         )}
         >
             <Chip color="secondary" radius="full">
-                What 's new ?
+                What is new ?
             </Chip>
             <h6 className="text-base font-bold"> 
                 Decentralized

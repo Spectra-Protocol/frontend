@@ -15,14 +15,14 @@ export default function ProfileAccorditionCard() {
     if (isLoading) return <Skeleton className='w-full h-16 rounded-lg' />;
     if (!connected) return <WalletSelector />
 
-    const handleDisconnet = React.useCallback(() => {
+    const handleDisconnet = () => {
         try {
             disconnect();
             toast.success('Disconnected successfully');
         } catch (error) {
             toast.error(<MyToastContent title='Error' message={"Failed to disconnect"} />);
         }
-    }, [disconnect]);
+    }
 
     return (
         <div className='flex flex-row gap-2 items-end w-full rounded-[32px] bg-foreground-50 border-t-1 border-default/50 py-4 px-5'>

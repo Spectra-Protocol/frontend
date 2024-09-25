@@ -1,9 +1,8 @@
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
 import Providers from "./providers";
 import React from "react";
 import { getProject } from "@/fetch-functions/project";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { USING_MOCK } from "@/config";
 import { mockProject } from "@/mock";
 import { Project } from "@/types";
@@ -19,18 +18,21 @@ interface PageProps {
 }
 
 export default async function Page({ params: { id } }: PageProps) {
-    const router = useRouter();
     let project: Project | null = null;
 
     try {
-        USING_MOCK ? project = mockProject : project = await getProject(id);
-        if (project.category === 'dex') {
-            router.push(`/project/dex/${project.name}`);
-        }
+        false ? project = mockProject : project = await getProject(id);
+        console.log(project)
+
     } catch (error) {
         console.error(error);
+    } finally {
+        if (!project) return notFound();
+        if (project.category.toLowerCase() === 'dex') {
+            redirect(`/projects/dex/${project.name}`);
+        }
     }
-    if (!project) return notFound();
+
 
     return (
         <Providers project={project}>

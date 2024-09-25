@@ -1,7 +1,5 @@
 import api from '@/utils/api';
-import { API_URL } from '../config'
 import { Project } from '../types'
-import axios from 'axios'
 
 export async function getProject(id: string) {
     try {

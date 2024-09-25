@@ -13,8 +13,6 @@ const WalletSelector = dynamic(() => import('../wallet/WalletSelector'), { ssr: 
 
 export default function ProfileAccordition() {
     const { connected, account, wallet, disconnect, isLoading } = useWallet();
-    if (isLoading) return <Skeleton className='w-full h-16 rounded-lg' />;
-    if (!connected) return <WalletSelector />
      
     const handleDisconnet = React.useCallback(() => {
         try {
@@ -24,6 +22,9 @@ export default function ProfileAccordition() {
             toast.error(<MyToastContent title='Error' message={"Failed to disconnect"} />);
         }
     }, [disconnect]);
+
+    if (isLoading) return <Skeleton className='w-full h-16 rounded-lg' />;
+    if (!connected) return <WalletSelector />
 
     return (
         <div className='flex flex-row gap-2 items-center w-full h-fit rounded-[16px] px-4 py-3 bg-foreground-50'>

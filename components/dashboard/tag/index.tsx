@@ -20,7 +20,7 @@ const getTagStyle = (tag: Tag): TagStyle | null => {
             return {
                 color: "#936316",
                 backgroundColor: "#F5A524",
-                icon: <BitcoinGraphIcon size={16} color="#F5A524" filter="drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1))" />   
+                icon: <BitcoinGraphIcon size={16} color="#F5A524" filter="drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1))" />
             };
         case ProfilerTagType.Whale.toString():
             return {
@@ -44,14 +44,18 @@ const getTagStyle = (tag: Tag): TagStyle | null => {
             return null;
     }
 }
-export default function TagCard({ tag }: { tag: Tag }) {
+interface TagCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    tag: Tag;
+}
+export default function TagCard({ tag }: TagCardProps) {
     const tagStyle = getTagStyle(tag);
 
     return (
         <Chip
+            key={tag}
             radius="sm"
             className={clsx(
-                "capitalize" ,
+                "capitalize",
                 "shadow-[inset_0px_-2px_1px_0px_rgba(0,0,0,0.1),0px_2px_2px_0px_rgba(0,0,0,0.1)]",
                 "bg-foreground-50 text-foreground-800",
                 "p-2 h-fit rounded-xl"

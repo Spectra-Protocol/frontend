@@ -11,13 +11,21 @@ import { SwapTransaction } from "@/types";
 import { Copy02Icon } from "hugeicons-react";
 import { formatTime, truncateAddress } from "@/lib";
 import { useProjectDexAggregator } from "../../context";
+import numeral from "numeral";
+
+function getTokenName(tokenIdentifier: string): string {
+    if (!tokenIdentifier) {
+        return '';
+    }
+    const parts = tokenIdentifier.split('::');
+    return parts[parts.length - 1];
+}
 
 export default function TransactionsTable() {
     const project = useProjectDexAggregator();
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [hasMore, setHasMore] = React.useState(false);
-
 
     let list = useAsyncList<SwapTransaction>({
         async load({ signal, cursor }) {
@@ -29,6 +37,27 @@ export default function TransactionsTable() {
                 items: project.transactions || [],
             };
         },
+        async sort({ items, sortDescriptor }) {
+            return {
+                items: items.sort((a, b) => {
+                    const first = getKeyValue(a, sortDescriptor.column!.toString());
+                    const second = getKeyValue(b, sortDescriptor.column!.toString());
+
+                    let cmp = 0;
+                    if (first > second) {
+                        cmp = 1;
+                    } else if (first < second) {
+                        cmp = -1;
+                    }
+
+                    if (sortDescriptor.direction === "descending") {
+                        cmp *= -1;
+                    }
+
+                    return cmp;
+                }),
+            };
+        }
     });
     const [loaderRef, scrollerRef] = useInfiniteScroll({ hasMore, onLoadMore: list.loadMore });
 
@@ -37,7 +66,7 @@ export default function TransactionsTable() {
         const cellValue = getKeyValue(item, columnKey.toString());
 
         switch (columnKey) {
-            case "time":
+            case "version":
 
                 return (
                     <p className="text-sm w-fit text-nowrap">
@@ -47,41 +76,46 @@ export default function TransactionsTable() {
             case "sender":
                 const convertedSender = cellValue as string;
 
-                return "";
-            // return (
-            //     <Chip
-            //         size="lg"
-            //         radius="md"
-            //         className="shadow bg-foreground-50 dark:bg-foreground-100 text-foreground-900 text-sm gap-2"
-            //         startContent={
-            //             <Avatar
-            //                 src={convertedFrom.avatar}
-            //                 alt={convertedFrom.name}
-            //                 color="primary"
-            //                 size="sm"
-            //                 className="w-4 h-4"
-            //                 radius="full"
-            //                 showFallback
-            //             />
-            //         }
-            //         endContent={
-            //             <Copy02Icon size={16} className="text-foreground-400" />
-            //         }
-            //     >
-            //         {truncateAddress(convertedFrom.address, "start")}
-            //     </Chip>
-            // )
-            case "token-sold":
-                const convertedToken = cellValue as string;
-
                 return (
                     <Chip
-                        variant="light"
                         size="lg"
-
+                        radius="md"
+                        className="bg-transparent"
+                        classNames={{
+                            content: "text-foreground-900",
+                        }}
+                        endContent={
+                            <Copy02Icon size={16} className="text-foreground-400" />
+                        }
                     >
-                        {convertedToken}
+                        {truncateAddress(convertedSender, "start")}
                     </Chip>
+                )
+            case "token_sold":
+                return (
+                    <p className="uppercase text-foreground-900 font-semibold">
+                        {getTokenName(item.token_sold)}
+                    </p>
+                )
+            case "token_sold_amount":
+                return (
+                    <p
+                    >
+                        {numeral(item.token_sold_amount).format("0,0.00a")}
+                    </p>
+                )
+            case "token_bought":
+                return (
+                    <p className="uppercase text-foreground-900 font-semibold">
+                        {getTokenName(item.token_bought)}
+                    </p>
+                )
+            case "token_bought_amount":
+                return (
+                    <p
+                    >
+                        {numeral(item.token_bought_amount).format("0,0.00a")}
+                    </p>
                 )
             default:
                 return <p className="w-full overflow-clip">{""}</p>;
@@ -102,10 +136,12 @@ export default function TransactionsTable() {
                 ) : null
             }
             classNames={{
-                base: "max-h-[520px] overflow-scroll bg-transparent",
+                base: "max-h-[520px] overflow-scroll bg-transparent text-foreground-900",
                 table: "min-h-[400px]",
-                wrapper: "w-full bg-foreground-50",
+                wrapper: "w-full bg-foreground-100",
             }}
+            onSortChange={(sortDescriptor) => list.sort(sortDescriptor)}
+            sortDescriptor={list.sortDescriptor}
         >
             <TableHeader columns={columns} className="bg-transparent">
                 {(column) => (

@@ -9,7 +9,7 @@ const TransactionsTable = dynamic(() => import("./TransactionsTable"), { ssr: fa
 export function LoadingTransactionArea() {
     return (
         <Area>
-            <AreaHeader title="Transactions" icon={<TransactionIcon size={24} />} subtitle="All transaction with details"/>
+            <Skeleton className="rounded-2xl w-32 h-8"/>
             <AreaMain>
                 <Skeleton className="rounded-3xl w-full aspect-[1/2]" />
             </AreaMain>

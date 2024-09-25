@@ -6,8 +6,10 @@ import { notFound } from "next/navigation";
 import Providers from "./providers";
 
 const TransactionArea = dynamic(() => import("./components/transactions-area"), { ssr: false });
-const ProfileHeader = dynamic(() => import("./components/Profile"), { ssr: false });
-const KeyMetricsArea = dynamic(() => import("./components/KeyMetricsArea"), { ssr: false });
+const ProfileHeader = dynamic(() => import("./components/profile"), { ssr: false });
+const KeyMetricsArea = dynamic(() => import("./components/key-metric-area"), { ssr: false });
+
+export const revalidate = 60;
 
 interface PageProps {
     params: {
@@ -30,7 +32,7 @@ export default async function Page({ params: { name } }: PageProps) {
         <Providers project={project}>
             <div className="w-full flex flex-col gap-8">
                 <ProfileHeader />
-                <div className="flex flex-row gap-4 w-full">
+                <div className="flex flex-col-reverse lg:flex-row gap-4 w-full">
                     <div className="flex-grow-[3]">
                         <TransactionArea />
                     </div>

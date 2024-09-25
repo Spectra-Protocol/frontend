@@ -121,6 +121,8 @@ function WalletRow({ wallet, onConnect }: WalletRowProps) {
             >
                 <div
                     className="rounded-[20px] hover:bg-foreground-100 p-4 w-fit aspect-square"
+                    role="button"
+                    tabIndex={0}    
                     onClick={handleWalletItemClick}
                 >
 

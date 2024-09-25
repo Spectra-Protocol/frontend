@@ -1,7 +1,11 @@
+import { Button, Popover, PopoverContent, PopoverTrigger, Tooltip } from "@nextui-org/react";
 import clsx from "clsx";
+import { InformationCircleIcon } from "hugeicons-react";
 
 interface MetricFieldrops extends React.HTMLAttributes<HTMLDivElement> {
     title?: string;
+    description?: string;
+    useTooltip?: boolean;
     value?: any;
     icon?: React.ReactNode;
     classNames?: {
@@ -10,7 +14,8 @@ interface MetricFieldrops extends React.HTMLAttributes<HTMLDivElement> {
         value?: string;
     }
 }
-export function MetricField01({ title, value, icon, ...props }: MetricFieldrops) {
+export function MetricField01({ ...props }: MetricFieldrops) {
+    const { title, value, icon, useTooltip = false } = props;
     return (
         <div
             className={clsx(
@@ -19,17 +24,29 @@ export function MetricField01({ title, value, icon, ...props }: MetricFieldrops)
             )}
         >
             <h6 className={clsx(
-                "text-base font-semibold text-foreground-500",
+                "text-sm lg:text-base font-semibold text-foreground-500 flex flex-row items-center cursor-pointer",
                 props.classNames?.title
             )}>
                 {title}
-                <span className="ml-2">
-                    {icon}
-                </span>
+                <Popover
+                    color="primary"
+                >
+                    <PopoverTrigger>
+                        <Button radius="full" isIconOnly variant="light" size="sm" className="text-foreground-500">
+                            {icon
+                                ? icon
+                                : <InformationCircleIcon size={16} />
+                            }
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                        {props.description}
+                    </PopoverContent>
+                </Popover>
             </h6>
             <p
                 className={clsx(
-                    "text-2xl font-semibold text-foreground-900",
+                    "text-lg lg:text-2xl font-semibold text-foreground-900",
                     props.classNames?.value
                 )}
             >
@@ -48,7 +65,7 @@ export default function MetricField02({ title, value, icon, ...props }: MetricFi
             )}
         >
             <h6 className={clsx(
-                "text-base font-semibold text-foreground-500",
+                "text-base text-foreground-500",
                 props.classNames?.title
             )}>
                 <span className="ml-2">
@@ -58,7 +75,7 @@ export default function MetricField02({ title, value, icon, ...props }: MetricFi
             </h6>
             <p
                 className={clsx(
-                    "text-2xl font-semibold text-foreground-900",
+                    "text-base text-foreground-900",
                     props.classNames?.value
                 )}
             >

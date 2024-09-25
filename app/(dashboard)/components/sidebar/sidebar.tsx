@@ -22,21 +22,9 @@ const navItems = [
         href: "/dashboard",
         icon: <Saturn02Icon size={16} />,
     },
-    {
-        label: "Interface",
-        href: "/interface",
-        icon: <KeyboardIcon size={16} />,
-    },
-    {
-        label: "Notifications",
-        href: "/notifications",
-        icon: <Notification01Icon size={16} />,
-        endContent: <Chip color="secondary" radius="full" size="sm">+ 3</Chip>,
-    }
 ];
 
 export default function Sidebar({ className, ...props }: SidebarProps) {
-
     const pathname = usePathname();
 
     const Search = () => {
@@ -71,7 +59,6 @@ export default function Sidebar({ className, ...props }: SidebarProps) {
                                 pathname === item.href ? "bg-foreground-100 text-foreground-900 font-bold border border-default/5" : ""
                             )}
                             startContent={item.icon}
-                            endContent={item.endContent}
                         >
                             {item.label}
                         </ListboxItem>

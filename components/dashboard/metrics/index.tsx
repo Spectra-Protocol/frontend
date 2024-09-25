@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { MetricCategory } from "@/types";
 import { Tooltip } from "@nextui-org/react";

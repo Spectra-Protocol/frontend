@@ -37,8 +37,8 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
       color="primary"
       thumbIcon={theme === "dark" ? <Moon01Icon size={20} /> : <Sun01Icon size={20} />}
       onChange={onChange}
-      >
-        <p></p>
-      </Switch>
+      className={className}
+      classNames={classNames}
+     />
   );
 };

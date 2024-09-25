@@ -1,5 +1,5 @@
-import { LoadingKeyMetricsArea } from "./components/KeyMetricsArea";
-import { LoadingProfileHeader } from "./components/Profile";
+import { LoadingKeyMetricsArea } from "./components/key-metric-area";
+import { LoadingProfileHeader } from "./components/profile";
 import { LoadingTransactionArea } from "./components/transactions-area";
 
 export default function Loading() {

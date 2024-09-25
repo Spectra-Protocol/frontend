@@ -1,4 +1,4 @@
-import { DexDataResponse, KeyMetric, MetricCategory, Portifolio, Profiler, ProfilerTagType, Project, SwapTransaction, Token, Transaction, TransactionTagType } from "@/types";
+import { DexProjectResponse, KeyMetric, MetricCategory, Portifolio, Profiler, ProfilerTagType, Project, SwapTransaction, Token, Transaction, TransactionTagType } from "@/types";
 import { faker } from "@faker-js/faker";
 
 
@@ -6,14 +6,9 @@ export const mockProject = {
     id: faker.number.int(),
     name: faker.company.name(),
     category: 'dex',
-    code_commits: faker.number.int(),
     contract_address: faker.finance.ethereumAddress(),
-    core_developers: faker.number.int(),
     created_at: faker.date.past().toString(),
-    num_chains: faker.number.int(),
     token: faker.finance.currencyName(),
-    token_max_supply: faker.number.int(),
-    total_value_locked: faker.number.float(),
     updated_at: faker.date.recent().toString(),
 } satisfies Project;
 
@@ -191,7 +186,7 @@ export const mockDexDataResponse = {
     arpu: faker.finance.amount(),
     token_trading_volume_30d: faker.finance.amount(),
     market_cap_fully_diluted: faker.number.float(),
-    market_cap_normal: faker.number.float(),
+    market_cap_circulating: faker.number.float(),
     transactions: Array.from({ length: 10 }, () => ({
         version: faker.number.int(),
         sender: faker.finance.ethereumAddress(),
@@ -206,7 +201,7 @@ export const mockDexDataResponse = {
     daily_active_users: faker.number.int(),
     weekly_active_users: faker.number.int(),
     daily_fees: faker.number.float(),
-} satisfies DexDataResponse;
+} satisfies DexProjectResponse;
 
 export const mockProfiler = {
     name: faker.person.fullName(),

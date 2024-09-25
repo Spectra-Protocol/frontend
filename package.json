@@ -7,7 +7,8 @@
 		"dev:production": "set NODE_ENV=production && next dev --turbo",
 		"build": "next build",
 		"start": "next start",
-		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
+		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix",
+		"type-check": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@aptos-labs/wallet-adapter-react": "^3.6.0",

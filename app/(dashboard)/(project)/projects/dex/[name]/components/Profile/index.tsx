@@ -20,27 +20,31 @@ export function LoadingProfileHeader() {
 export default function ProfileHeader() {
     const project = useProjectDexAggregator();
 
+
     return (
-        <header className="w-full flex flex-col md:flex-row gap-8 my-4">
+        <header className="w-full flex flex-col lg:flex-row gap-8 my-4">
             <Profile
                 name={project.name}
-                avatar=""
+                avatar={project.avatar_url}
                 address={project.contract_address}
+                className="lg:flex-col"
                 tags={["dex-aggregator"]}
-            />
-            <div className="w-full grid grid-cols-2 lg:flex lg:w-fit h-full flex-row items-center justify-start md:justify-end gap-4">
-                <DetailCard
+            >
+                {/* <DetailCard
                     title="Market Cap"
                     description="Circulating"
                     value={
                         numeral(project.market_cap_fully_diluted).format("$0,0.00a")
                     }
                     classNames={{
-                        wrapper: "bg-transparent shadow-none w-full lg:w-fit justify-between",
-                        value: "text-foreground lg:text-4xl font-semibold",
+                        wrapper: "bg-transparent shadow-none w-fit justify-between col-span-2",
+                        value: "text-foreground lg:text-2xl 2xl:text-4xl font-semibold",
                         icon: "bg-primary-100"
                     }}
-                />
+                /> */}
+            </Profile>
+            <div className="w-full grid grid-cols-2 lg:flex lg:w-fit h-full flex-row items-center justify-start md:justify-end gap-4">
+
                 <DetailCard
                     title="TVL"
                     description="Total Value Locked"

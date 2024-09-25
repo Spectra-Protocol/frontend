@@ -6,7 +6,7 @@ type Column = {
 export const columns: Column[] = [
     {
         name: "Time",
-        uid: "time",
+        uid: "version",
         sortable: true,
     },
     {
@@ -16,22 +16,22 @@ export const columns: Column[] = [
     },
     {
         name: "Token Sold",
-        uid: "token-sold",
+        uid: "token_sold",
         sortable: true,
     },
     {
-        name: "Sold Price",
-        uid: "sold-price",
+        name: "Sold Amount",
+        uid: "token_sold_amount",
         sortable: true,
     },
     {
         name: "Token Bought",
-        uid: "token-bought",
+        uid: "token_bought",
         sortable: true,
     },
     {
-        name: "Bought Price",
-        uid: "bought-price",
+        name: "Bought Amount",
+        uid: "token_bought_amount",
         sortable: true,
     },
 ];
