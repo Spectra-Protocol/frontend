@@ -5,7 +5,8 @@ import { getDexDataReponse } from "@/fetch-functions/project";
 import { notFound } from "next/navigation";
 import Providers from "./providers";
 
-const ProfileHeader = dynamic(() => import("./components/Profile"), { ssr: false });   
+const TransactionArea = dynamic(() => import("./components/transactions-area"), { ssr: false });
+const ProfileHeader = dynamic(() => import("./components/Profile"), { ssr: false });
 const KeyMetricsArea = dynamic(() => import("./components/KeyMetricsArea"), { ssr: false });
 
 interface PageProps {
@@ -15,9 +16,11 @@ interface PageProps {
 }
 export default async function Page({ params: { name } }: PageProps) {
     let project = null;
-    
     try {
-        USING_MOCK ? project = mockDexDataResponse : project = await getDexDataReponse(name);
+        USING_MOCK ?
+            project = mockDexDataResponse
+            :
+            project = await getDexDataReponse(name);
     } catch (error) {
         console.error(error);
     }
@@ -27,7 +30,14 @@ export default async function Page({ params: { name } }: PageProps) {
         <Providers project={project}>
             <div className="w-full flex flex-col gap-8">
                 <ProfileHeader />
-                <KeyMetricsArea />
+                <div className="flex flex-row gap-4 w-full">
+                    <div className="flex-grow-[3]">
+                        <TransactionArea />
+                    </div>
+                    <div className="flex-grow-[1]">
+                        <KeyMetricsArea />
+                    </div>
+                </div>
             </div>
         </Providers>
     )

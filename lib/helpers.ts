@@ -16,7 +16,7 @@ export function formatTime(inputTime: Date): string {
       return `${diffInDays} day${diffInDays !== 1 ? 's' : ''} ago`;
     }
   } else {
-    return format(inputTime, 'HH:mm/dd/MM/yyyy');
+    return format(inputTime, 'MMM dd, yyyy hh:mm a');
   }
 }
 

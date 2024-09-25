@@ -1,10 +1,11 @@
+import api from '@/utils/api';
 import { API_URL } from '../config'
 import { Project } from '../types'
 import axios from 'axios'
 
 export async function getProject(id: string) {
     try {
-        const project = await axios.get(`${API_URL}/projects/${id}`);
+        const project = await api.get(`/project/${id}`);
         if (!project) throw new Error('Project not found')
 
         return project.data as Project;
@@ -14,11 +15,12 @@ export async function getProject(id: string) {
 }
 export async function getDexDataReponse(name: string) {
     try {
-        const dexData = await axios.get(`${API_URL}/dex/${name}`);
+        const dexData = await api.get(`/project/name/${name}`);
         if (!dexData) throw new Error('Dex data not found')
 
         return dexData.data;
     } catch (error) {
+        console.error(error);
         throw new Error('Error fetching dex data')
     }
 }

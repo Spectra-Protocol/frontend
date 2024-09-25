@@ -4,11 +4,19 @@ import { mockProject } from "@/mock"
 import { Agreement02Icon, Blockchain04Icon, LockedIcon, SourceCodeIcon } from "hugeicons-react";
 import { DetailCard } from "@/components/dashboard";
 import { Profile } from "@/components/dashboard/profile";
-import { useProject } from "../../../context";
 import numeral from "numeral";
 import { useProjectDexAggregator } from "../../context";
+import { Skeleton } from "@nextui-org/react";
 
 
+export function LoadingProfileHeader() {
+    return (
+        <header className="w-full flex flex-col md:flex-row gap-8 my-4">
+            <Skeleton className="h-24 flex-grow-[2] rounded-3xl" />
+            <Skeleton className="h-24  flex-grow-[1] rounded-3xl" />
+        </header>
+    )
+}
 export default function ProfileHeader() {
     const project = useProjectDexAggregator();
 
@@ -21,6 +29,18 @@ export default function ProfileHeader() {
                 tags={["dex-aggregator"]}
             />
             <div className="w-full grid grid-cols-2 lg:flex lg:w-fit h-full flex-row items-center justify-start md:justify-end gap-4">
+                <DetailCard
+                    title="Market Cap"
+                    description="Circulating"
+                    value={
+                        numeral(project.market_cap_fully_diluted).format("$0,0.00a")
+                    }
+                    classNames={{
+                        wrapper: "bg-transparent shadow-none w-full lg:w-fit justify-between",
+                        value: "text-foreground lg:text-4xl font-semibold",
+                        icon: "bg-primary-100"
+                    }}
+                />
                 <DetailCard
                     title="TVL"
                     description="Total Value Locked"

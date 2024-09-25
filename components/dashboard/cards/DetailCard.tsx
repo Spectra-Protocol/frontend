@@ -1,3 +1,4 @@
+import { Tooltip } from "@nextui-org/react";
 import clsx from "clsx";
 
 interface DetailCardProps extends React.PropsWithChildren<{}> {
@@ -31,12 +32,15 @@ export function DetailCard(props: DetailCardProps) {
                 }>
                     {value}
                 </p>
-                <h6 className={clsx(
-                    "text-sm font-medium text-foreground-500 w-fit text-nowrap",
-                    props.classNames?.title
-                )}>
-                    {title}
-                </h6>
+                <Tooltip content={props.description} placement="top" color="primary">
+                    <h6 className={clsx(
+                        "text-sm font-medium text-foreground-500 w-fit text-nowrap",
+                        "cursor-pointer",
+                        props.classNames?.title
+                    )}>
+                        {title}
+                    </h6>
+                </Tooltip>
             </div>
             {icon && <div className={clsx(
                 "rounded-[12px] bg-foreground-200 text-foreground-500 p-2 w-fit h-fit",

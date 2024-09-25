@@ -38,7 +38,13 @@ interface AreaMainProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const AreaMain: React.FC<AreaMainProps> = ({ ...props }) => {
     return (
-        <div className="w-full" {...props}>
+        <div
+            {...props}
+            className={clsx(
+                "w-full",
+                props.className
+            )}
+        >
             {props.children}
         </div>
     );

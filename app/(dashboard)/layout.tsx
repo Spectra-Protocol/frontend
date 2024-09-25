@@ -2,10 +2,9 @@ import { siteConfig } from "@/config/site";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Providers } from "./providers";
+import BottomNavbar from "./components/bottom-navbar/bottom-navbar";
+import Sidebar from "./components/sidebar/sidebar";
 
-const Sidebar = dynamic(() => import("./components/sidebar/sidebar"), { ssr: false });
-const BottomNavbar = dynamic(() => import("./components/bottom-navbar/bottom-navbar"), { ssr: false });
-const TopNavbar = dynamic(() => import("./components/top-navbar/top-navbar"), { ssr: false });
 
 interface LayoutProps {
     children: React.ReactNode;

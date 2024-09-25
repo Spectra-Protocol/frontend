@@ -33,7 +33,7 @@ export interface Transaction {
 }
 
 // Project
-export interface Project extends ProjectResponse {
+export interface Project extends BasicProjectResponse {
 }
 
 // Profiler
