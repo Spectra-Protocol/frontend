@@ -1,6 +1,5 @@
 'use client';
 
-import { mockProject } from "@/mock"
 import { Agreement02Icon, Blockchain04Icon, LockedIcon, SourceCodeIcon } from "hugeicons-react";
 import { DetailCard } from "@/components/dashboard";
 import { Profile } from "@/components/dashboard/profile";
