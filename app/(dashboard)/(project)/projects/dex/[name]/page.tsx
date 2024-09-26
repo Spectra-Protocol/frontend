@@ -9,8 +9,6 @@ const TransactionArea = dynamic(() => import("./components/transactions-area"), 
 const ProfileHeader = dynamic(() => import("./components/profile"), { ssr: false });
 const KeyMetricsArea = dynamic(() => import("./components/key-metric-area"), { ssr: false });
 
-export const revalidate = 60;
-
 interface PageProps {
     params: {
         name: string;
