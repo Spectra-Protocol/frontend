@@ -1,4 +1,4 @@
-import { DexProjectResponse, KeyMetric, MetricCategory, Portifolio, Profiler, ProfilerTagType, Project, SwapTransaction, Token, Transaction, TransactionTagType } from "@/types";
+import { Collection, DexProjectResponse, KeyMetric, MetricCategory, Portifolio, Profiler, ProfilerTagType, Project, SwapTransaction, Token, Transaction, TransactionTagType } from "@/types";
 import { faker } from "@faker-js/faker";
 
 
@@ -33,7 +33,7 @@ export const mockProjectsTransactions = Array.from({ length: 10 }, () => ({
         name: faker.finance.currencyName(),
         symbol: faker.finance.currencySymbol(),
         address: faker.finance.ethereumAddress(),
-        icon: faker.image.url(),
+        image: faker.image.url(),
     },
     tags: [Math.random() > 0.5 ? TransactionTagType.Buy : TransactionTagType.Sell],
 } satisfies Transaction));
@@ -215,10 +215,39 @@ export const mockProfiler = {
             name: faker.finance.currencyName(),
             symbol: faker.finance.currencySymbol(),
             address: faker.finance.ethereumAddress(),
-            icon: faker.image.url(),
+            image: faker.image.url(),
         } satisfies Token,
         price: faker.finance.amount(),
         holding: faker.finance.amount(),
         value: faker.finance.amount(),
     } satisfies Portifolio)),
 } satisfies Profiler;
+
+export const generateMockToken = () => ({
+    id: faker.string.uuid(),
+    name: faker.finance.currencyName(),
+    symbol: faker.finance.currencySymbol(),
+    address: faker.finance.ethereumAddress(),
+    image: faker.image.url(),
+    lastPrice: faker.number.float({ min: 0, max: 100 }),
+} satisfies Token);
+
+export const generateMockCollection = () => ({
+    name: faker.finance.currencyName(),
+    avatar_url: faker.image.avatar(),
+    contract_address: faker.finance.ethereumAddress(),
+    supply: faker.number.int({ min: 10, max: 10e3 }),
+    total_volume: faker.number.float({ min: 10, max: 10e3 }),
+    description: faker.lorem.sentence({min: 50, max:150}),
+    owner_address: faker.finance.ethereumAddress(),
+    tokens: Array.from({ length: faker.number.int({ min: 1, max: 10e3 }) }, generateMockToken),
+    chain: faker.finance.currencyName(),
+    floor_price: faker.number.float({ min: 0, max: 1000 }),
+    created_at: faker.date.past(),
+}) satisfies Collection;
+
+export const mockCollections = Array.from({ length: 
+    faker.number.int({ min: 1, max: 100 })
+ }, generateMockCollection);
+
+ export const mockCollection = generateMockCollection();

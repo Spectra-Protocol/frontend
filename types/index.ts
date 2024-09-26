@@ -21,7 +21,7 @@ export enum TransactionTagType {
   Withdraw = "Withdraw",
   Swap = "Swap",
   Other = "Other",
-  
+
 }
 export interface Transaction {
   id: string;
@@ -74,9 +74,26 @@ export interface Token {
   value?: number;
   symbol?: string;
   address: string;
-  icon?: string;
+  lastPrice?: number;
+  image?: string;
+  traits?: [key: string, value: string][];
 }
-
+/**
+ * Collection
+ */
+export interface Collection {
+  name: string;
+  description: string;
+  avatar_url?: string;
+  contract_address: string;
+  owner_address: string;
+  supply?: number;
+  floor_price?: number;
+  total_volume?: number;
+  tokens?: Token[];
+  created_at?: Date | number;
+  chain: string;
+}
 // Key Metric
 export interface MetricCategory {
   id: string | number;

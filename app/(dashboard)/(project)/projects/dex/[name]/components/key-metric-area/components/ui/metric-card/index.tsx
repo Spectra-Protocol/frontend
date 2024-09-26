@@ -10,17 +10,14 @@ export function MetricCard({ ...props }: MetricCardProps) {
     return (
         <div
             className={clsx(
-                "flex flex-col gap-8 shadow",
+                "flex flex-col gap-4 shadow",
                 props.classNames?.wrapper
             )}
         >
-            {props.title || props.description ?
-                <div className="w-fit h-fit">
-                    <h6 className="text-lg text-foreground-900 font-semibold">{props.title}</h6>
-                    <p className="text-sm text-foreground-500">{props.description}</p>
-                </div>
-                : null
-            }
+            <div className="w-fit h-fit">
+                {props.title ? <h6 className="text-lg text-foreground-900 font-semibold">{props.title}</h6> : null}
+                <p className="text-sm text-foreground-500">{props.description}</p>
+            </div>
             <div
                 className={clsx(
                     props.className

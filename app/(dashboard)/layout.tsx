@@ -30,7 +30,7 @@ export default function DashboardLayout({ children }: LayoutProps) {
                     {/* <TopNavbar /> */}
                 </div>
                 <Sidebar className="hidden md:flex" />
-                <main className="flex-1 w-full overflow-y-scroll">{children}</main>
+                <main className="flex-1 w-full overflow-y-auto">{children}</main>
             </div>
         </Providers>
     );

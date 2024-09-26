@@ -1,6 +1,6 @@
 'use client';
 
-import {Chip, User } from "@nextui-org/react";
+import { Chip, User } from "@nextui-org/react";
 
 import { Copy02Icon, LockedIcon } from "hugeicons-react";
 import { Tag } from "../tag/type";
@@ -9,6 +9,7 @@ import clsx from "clsx";
 
 interface ProfileProps extends React.HTMLAttributes<HTMLDivElement> {
     name?: string | React.ReactNode;
+    description?: string | React.ReactNode;
     address?: string;
     avatar?: string | React.ReactNode;
     tags?: Tag[];
@@ -20,7 +21,7 @@ interface ProfileProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Profile: React.FC<ProfileProps> = (props) => {
-    const { name, avatar, address, tags } = props;
+    const { name, avatar, address, tags, description } = props;
 
     return (
         <div className={clsx(
@@ -41,7 +42,7 @@ export const Profile: React.FC<ProfileProps> = (props) => {
                             {address?.slice(0, 5) || "-"}
                         </Chip>
                         {tags && tags.map((tag) => (
-                            <TagCard tag={tag} key={tag}/>
+                            <TagCard tag={tag} key={tag} />
                         ))}
                     </div>
                 }

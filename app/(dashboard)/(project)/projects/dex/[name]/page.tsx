@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import Providers from "./providers";
 
 const TransactionArea = dynamic(() => import("./components/transactions-area"), { ssr: false });
-const ProfileHeader = dynamic(() => import("./components/P"), { ssr: false });
+const ProfileHeader = dynamic(() => import("./components/profile"), { ssr: false });
 const KeyMetricsArea = dynamic(() => import("./components/key-metric-area"), { ssr: false });
 
 interface PageProps {
