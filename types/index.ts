@@ -21,6 +21,7 @@ export enum TransactionTagType {
   Withdraw = "Withdraw",
   Swap = "Swap",
   Other = "Other",
+  
 }
 export interface Transaction {
   id: string;
