@@ -45,6 +45,8 @@ export default function DetailsArea() {
                         {displayedDescription}
                         {isLongDescription && (
                             <span
+                                role="button"
+                                tabIndex={0}
                                 onClick={handleSeeMoreToggle}
                                 className="text-primary cursor-pointer ml-2"
                             >
@@ -54,7 +56,7 @@ export default function DetailsArea() {
                     </p>
                     <div className="flex flex-row gap-4">
                         {extraItems.map((item, index) => (
-                            <div className="flex flex-row gap-2 items-center">
+                            <div className="flex flex-row gap-2 items-center" key={index}>
                                 {item.icon}
                                 <div className="flex flex-row gap-1 items-center">
                                     <p className="text-sm text-foreground-500">{item.title}</p>

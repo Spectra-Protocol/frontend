@@ -45,8 +45,7 @@ export default function ProfileHeader() {
                 address={collection.contract_address}
                 description={collection.description}
                 className="lg:flex-col"
-            >
-            </Profile>
+             />
             <div className="w-full grid grid-cols-2 lg:flex lg:w-fit h-full flex-row items-center justify-start md:justify-end gap-4">
                 <DetailCard
                     key={"Floor Price"}
