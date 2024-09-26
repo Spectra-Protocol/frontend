@@ -32,6 +32,7 @@ export default function DetailsArea() {
             icon: <Calendar03Icon size={16} className="text-foreground-300" />,
         },
     ]
+    
     return (
         <Area>
             <AreaHeader title="Details" />
