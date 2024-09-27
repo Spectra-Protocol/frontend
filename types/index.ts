@@ -241,3 +241,27 @@ export interface DexProjectResponse extends BasicProjectResponse {
   weekly_active_users?: number;
   transactions: SwapTransaction[];
 }
+
+export interface AccountDetailsResponse {
+  name?: string;
+  category: string;
+  transactions: Transaction[];
+  coins: Coin[];
+}
+
+export interface Transaction {
+  version: number;
+  timestamp: string;
+  sender: string; 
+  receiver: string;
+  function: string;
+  amount: number;
+  gas_amount: number;
+}
+
+export interface Coin {
+  asset_type: string;
+  name: string;
+  symbol: string;
+  amount: number;
+}
