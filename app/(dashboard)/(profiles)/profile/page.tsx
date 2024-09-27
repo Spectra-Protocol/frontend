@@ -1,37 +1,25 @@
+"use client";
+
 import { Metadata } from "next";
-import { getAccount } from "@/fetch-functions/profile"
+import { notFound, useRouter } from "next/navigation";
 
-import { USING_MOCK } from "@/config";
-import { mockProfiler } from "@/mock";
-import ProfileHeader from "../components/Profile";
-import PortfolioArea from "../components/PortfolioArea";
-import Providers from "./providers";
+import { useWallet } from "@aptos-labs/wallet-adapter-react";
 
-const getProfile = async (address: string) => {
-    if (USING_MOCK) {
-        return mockProfiler;
-    }
-    try {
-        const profile = await getAccount(address);
-        return profile.data;
-    } catch (error) {
-        console.error(error);
-        throw new Error("Failed to fetch profile");
-    }
-}
 export const metadata: Metadata = {
     title: "Profile",
     description: "Explore the profile of a user",
 }
 
 export default async function Page() {
+    const { account, } = useWallet();
+    const router = useRouter();
 
+    if (account) {
+        router.push("../profiles/" + account.address);
+    } else {
+        notFound();
+    }
     return (
-        <Providers>
-            <div className="w-full flex flex-col gap-8">
-                <ProfileHeader />
-                <PortfolioArea />
-            </div>
-        </Providers>
+        <></>
     )
 };

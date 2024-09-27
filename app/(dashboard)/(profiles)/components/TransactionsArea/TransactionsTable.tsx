@@ -4,13 +4,15 @@ import React from "react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Spinner, getKeyValue, Tab, Chip, Avatar } from "@nextui-org/react";
 import { useInfiniteScroll } from "@nextui-org/use-infinite-scroll";
 import { useAsyncList } from "@react-stately/data";
+import copy from "copy-to-clipboard";
 
 import { columns } from "./data";
-import { Profiler, Token, Transaction, TransactionTagType } from "@/types";
+import {Transaction} from "@/types";
 import { Copy02Icon } from "hugeicons-react";
 import { formatTime, getPartOfFunction, truncateAddress } from "@/lib";
 import { useProfiler } from "../../context";
 import numeral from "numeral";
+import { toast } from "react-toastify";
 
 
 export default function TransactionsTable() {
@@ -75,55 +77,53 @@ export default function TransactionsTable() {
                     </p>
                 );
             case "sender":
-                const convertedSender = cellValue;
+                const sender = cellValue;
 
                 return (
                     <Chip
                         size="lg"
                         radius="md"
-                        className="shadow bg-foreground-50 dark:bg-foreground-100 text-foreground-900 text-sm gap-2"
+                        className="bg-transparent text-foreground-900 text-sm gap-2"
                         endContent={
-                            <Copy02Icon size={16} className="text-foreground-400" />
-                        }
-                    >
-                        {truncateAddress(convertedSender, "start")}
-                    </Chip>
-                )
-            case "receiver":
-                const convertedReceiver = cellValue;
-
-                return (
-                    <Chip
-                        size="lg"
-                        radius="md"
-                        className="shadow bg-foreground-50 dark:bg-foreground-100 text-foreground-900 text-sm gap-2"
-                        endContent={
-                            <Copy02Icon size={16} className="text-foreground-400" />
-                        }
-                    >
-                        {truncateAddress(convertedReceiver, "start")}
-                    </Chip>
-                )
-            case "token":
-                const convertedToken = cellValue as Token;
-
-                return (
-                    <Chip
-                        variant="light"
-                        size="lg"
-                        startContent={
-                            <Avatar
-                                src={convertedToken.image}
-                                alt={convertedToken.name}
-                                color="primary"
-                                size="sm"
-                                className="w-4 h-4"
-                                radius="full"
-                                showFallback
+                            <Copy02Icon size={16} className="text-foreground-400" 
+                                onClick={()=>{
+                                    try {
+                                        if(!sender) return;
+                                        copy(sender);
+                                        toast.success("Address copied to clipboard");
+                                    } catch (error) {
+                                        toast.error("Failed to copy address");
+                                    }
+                                }}
                             />
                         }
                     >
-                        {convertedToken.symbol}
+                        {truncateAddress(sender, "start")}
+                    </Chip>
+                )
+            case "receiver":
+                const receiver = cellValue;
+
+                return (
+                    <Chip
+                        size="lg"
+                        radius="md"
+                        className="bg-transparent text-foreground-900 text-sm gap-2"
+                        endContent={
+                            <Copy02Icon size={16} className="text-foreground-400"
+                                onClick={()=>{
+                                    try {
+                                        if(!receiver) return;
+                                        copy(receiver);
+                                        toast.success("Address copied to clipboard");
+                                    } catch (error) {
+                                        toast.error("Failed to copy address");
+                                    }
+                                }}
+                             />
+                        }
+                    >
+                        {truncateAddress(receiver, "start")}
                     </Chip>
                 )
             case "function":
@@ -131,21 +131,17 @@ export default function TransactionsTable() {
                 const parts = getPartOfFunction(convertedFunction);
 
                 return (
-                    <div className="flex gap-2">
                         <Chip
                             className="text-xs"
-                            // color={
-                            // tag === TransactionTagType.Buy ? "success" :
-                            // tag === TransactionTagType.Sell ? "danger" :
-                            // tag === TransactionTagType.Transfer ? "warning" : "default"
-                            // }
-                            radius="md"
+                            classNames={{
+                                content: "text-foreground-200",
+                                base: "bg-foreground-700 shadow",
+                            }}
+                            radius="sm"
                             variant="flat"
                         >
-                            {parts[2]}
+                            {parts[1]}::{parts[2]}
                         </Chip>
-
-                    </div>
                 )
             case "amount":
                 const convertedAmount = cellValue as number;

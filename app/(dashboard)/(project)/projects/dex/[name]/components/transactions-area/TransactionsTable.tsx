@@ -70,7 +70,7 @@ export default function TransactionsTable() {
 
                 return (
                     <p className="text-sm w-fit text-nowrap">
-                        {formatTime(new Date(item.version * 1000))}
+                        {cellValue}
                     </p>
                 );
             case "sender":

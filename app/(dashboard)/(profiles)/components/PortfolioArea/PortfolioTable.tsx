@@ -5,12 +5,14 @@ import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinne
 import { useInfiniteScroll } from "@nextui-org/use-infinite-scroll";
 import { useAsyncList } from "@react-stately/data";
 
-import { Coin, Portifolio, Token } from "@/types";
+import { Coin } from "@/types";
 import { columns } from "./data";
 import { useProfiler } from "../../context";
 import { formatValue, getPartOfFunction, truncateAddress } from "@/lib";
-import { truncate } from "fs";
 import numeral from "numeral";
+import copy from "copy-to-clipboard";
+import { toast } from "react-toastify";
+import { getPrice } from "@/fetch-functions/coin";
 
 export default function TransactionsTable() {
     const profiler = useProfiler();
@@ -64,7 +66,7 @@ export default function TransactionsTable() {
 
     const [loaderRef, scrollerRef] = useInfiniteScroll({ hasMore, onLoadMore: list.loadMore });
 
-    const renderCell = React.useCallback((item: Coin, columnKey: React.Key) => {
+    const renderCell = React.useCallback(async (item: Coin, columnKey: React.Key) => {
         const cellValue = getKeyValue(item, columnKey.toString());
 
         switch (columnKey) {
@@ -79,6 +81,16 @@ export default function TransactionsTable() {
                         classNames={{
                             content: "text-foreground"
                         }}
+                        className="cursor-pointer"
+                        onClick={() => {
+                            try {
+                                if (!assetType) return;
+                                copy(assetType);
+                                toast.success("Copied to clipboard");
+                            } catch (error) {
+                                toast.error("Failed to copy to clipboard");
+                            }
+                        }}
                     >
                         {truncateAddress(parse[0], "start")}::{parse[1]}::{parse[2]}
                     </Chip>
@@ -91,8 +103,17 @@ export default function TransactionsTable() {
                         variant="light"
                         size="lg"
                         classNames={{
-                            content: "text-foreground"
+                            content: "text-foreground font-semibold"
                         }}
+                        endContent={
+                            <Chip
+                                size="sm"
+                                color="primary"
+                                radius="sm"
+                            >
+                                {item.symbol.toUpperCase()}
+                            </Chip>
+                        }
                     >
                         {name}
                     </Chip>
@@ -107,11 +128,24 @@ export default function TransactionsTable() {
                 </Chip>
             case "amount":
                 const amount = cellValue;
-
+                let price;
+                try {
+                    price = await getPrice(item.asset_type);
+                } catch (error) {
+                    console.error(error);
+                    price = null;
+                }
                 return (
-                    <p className="w-full overflow-clip">
-                        {numeral(amount).format("0,0.000")}
-                    </p>
+                    <div className="flex flex-col">
+                        <p className="w-full overflow-clip">
+                            {numeral(amount).format("0,0.000")}
+                        </p>
+                        {price && (
+                            <p className="text-foreground-500">
+                                {formatValue(price.price, price.decimals)} APT
+                            </p>
+                        )}
+                    </div>
                 )
             default:
                 return <p className="text-foreground-500">-</p>;

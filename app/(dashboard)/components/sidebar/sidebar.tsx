@@ -7,7 +7,8 @@ import clsx from "clsx";
 import ThemeSwitch from "@/components/theme-switch";
 import { Favicon } from "@/components/icons";
 import { usePathname } from "next/navigation";
-import { Saturn02Icon } from "hugeicons-react";
+import { DashboardCircleIcon } from "hugeicons-react";
+import { APP_VERSION } from "@/config";
 
 const ProfileAccordition = dynamic(() => import("./ProfileAccordition"));
 const ExtraCard = dynamic(() => import("./ExtraCard"));
@@ -19,7 +20,7 @@ const navItems = [
     {
         label: "Dashboard",
         href: "/dashboard",
-        icon: <Saturn02Icon size={16} />,
+        icon: <DashboardCircleIcon size={16} />,
     },
 ];
 
@@ -40,9 +41,12 @@ export default function Sidebar({ className, ...props }: SidebarProps) {
         )}
             aria-label="Sidebar"
         >
-            <div className="flex items-center justify-between px-2 gap-4 w-full">
-                <Favicon size={24} />
-                <h1 className="font-semibold text-2xl text-foreground-900 w-full">Spectra</h1>
+            <div className="flex flex-row items-center rrpx-2 gap-4 w-full">
+                <Favicon size={32} />
+                <div className="flex flex-col gap-0">
+                    <h1 className="font-semibold text-2xl text-foreground-900 w-full">Spectra</h1>
+                    <p className="text-xs text-foreground-500">•Version {APP_VERSION}</p>
+                </div>
             </div>
             <div className="w-full">
                 <Search />

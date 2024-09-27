@@ -6,6 +6,8 @@ import { Copy02Icon, LockedIcon } from "hugeicons-react";
 import { Tag } from "../tag/type";
 import TagCard from "../tag";
 import clsx from "clsx";
+import copy from "copy-to-clipboard";
+import { toast } from "react-toastify";
 
 interface ProfileProps extends React.HTMLAttributes<HTMLDivElement> {
     name?: string | React.ReactNode;
@@ -43,7 +45,19 @@ export const Profile: React.FC<ProfileProps> = (props) => {
                         <Chip
                             radius="sm"
                             className="bg-foreground-50 text-foreground-500 font-medium shadow-sm"
-                            endContent={<Copy02Icon size={16} />}
+                            endContent={
+                            <Copy02Icon size={16}
+                                onClick={()=>{
+                                    try{
+                                        if(!address) return;
+                                        copy(address);
+                                        toast.success("Address copied to clipboard");
+                                    } catch (error) {
+                                        toast.error("Failed to copy address");
+                                    }
+                                }}
+                             />
+                        }
                         >
                             {address?.slice(0, 5) || "-"}
                         </Chip>

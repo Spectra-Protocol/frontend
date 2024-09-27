@@ -9,7 +9,7 @@ interface AreaWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const AreaWrapper: React.FC<AreaWrapperProps> = ({ className, ...props }) => {
     return (
-        <div className={clsx("flex flex-col gap-4 rounded-[32px] items-start", className)} {...props}>
+        <div className={clsx("flex flex-col gap-4 items-start", className)} {...props}>
             {props.children}
         </div>
     );

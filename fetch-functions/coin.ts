@@ -9,7 +9,7 @@ export async function getPrice(coin_type: string): Promise<{
         if (!coin_type) {
             throw new Error("Coin type is required");
         }
-        const data = await api.get(`api/utils/price?coin_type=${coin_type}`);
+        const data = await api.get(`/utils/price?coin_type=${coin_type}`);
 
         return data.data;
     } catch (error) {

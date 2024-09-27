@@ -31,7 +31,6 @@ export default async function Page({ params: { address } }: PageProps) {
     let profiler = null;
     try {
         profiler = await getProfile(address);
-        console.log("profiler", profiler);
     } catch (error) {
         console.error(error);
     }

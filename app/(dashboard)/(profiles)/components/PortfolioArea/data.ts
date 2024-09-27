@@ -12,11 +12,6 @@ export const columns: Column[] = [
         sortable: true,
     },
     {
-        name: "Symbol",
-        uid: "symbol",
-        sortable: true,
-    },
-    {
         name: "Amount",
         uid: "amount",
         sortable: true,

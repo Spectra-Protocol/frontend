@@ -24,8 +24,8 @@ export function MyToastContent({
 }) {
     return (
         <div className="flex flex-col items-start justify-center">
-            <h6 className="text-sm text-foreground-900 font-semibold">{title}</h6>
-            <p className="text-xs text-foreground-900">{message}</p>
+            <h6 className="text-sm text-foreground font-semibold">{title}</h6>
+            <p className="text-xs text-foreground">{message}</p>
         </div>
     )
 }

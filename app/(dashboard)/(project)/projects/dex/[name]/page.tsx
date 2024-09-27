@@ -4,16 +4,21 @@ import { mockDexDataResponse } from "@/mock";
 import { getDexDataReponse } from "@/fetch-functions/project";
 import { notFound } from "next/navigation";
 import Providers from "./providers";
+// import Mobile from "./components/responsive/mobile";
+// import Desktop from "./components/responsive/desktop";
 
 const TransactionArea = dynamic(() => import("./components/transactions-area"), { ssr: false });
 const ProfileHeader = dynamic(() => import("./components/profile"), { ssr: false });
 const KeyMetricsArea = dynamic(() => import("./components/key-metric-area"), { ssr: false });
+const Mobile = dynamic(() => import("./components/responsive/mobile"), { ssr: false });
+const Desktop = dynamic(() => import("./components/responsive/desktop"), { ssr: false });
 
 interface PageProps {
     params: {
         name: string;
     }
 }
+
 export default async function Page({ params: { name } }: PageProps) {
     let project = null;
     try {
@@ -28,16 +33,18 @@ export default async function Page({ params: { name } }: PageProps) {
 
     return (
         <Providers project={project}>
-            <div className="w-full flex flex-col gap-8">
+            <div className="w-full flex flex-col gap-8 h-screen overflow-hidden">
                 <ProfileHeader />
-                <div className="flex flex-col-reverse lg:flex-row gap-4 w-full">
-                    <div className="flex-grow-[3]">
+                {/* <div className="hidden lg:flex flex-col-reverse lg:flex-row gap-4 w-full h-full overflow-y-scroll">
+                    <div className="flex-grow-[3] h-full overflow-y-scroll">
                         <TransactionArea />
                     </div>
-                    <div className="flex-grow-[1]">
+                    <div className="flex-grow-[1] h-full overflow-y-scroll">
                         <KeyMetricsArea />
                     </div>
-                </div>
+                </div> */}
+                <Mobile />
+                <Desktop />
             </div>
         </Providers>
     )
