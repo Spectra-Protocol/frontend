@@ -4,11 +4,10 @@ import { Input } from "@nextui-org/input";
 import { Listbox, ListboxItem } from "@nextui-org/listbox";
 import dynamic from "next/dynamic";
 import clsx from "clsx";
-import { ThemeSwitch } from "@/components/theme-switch";
+import ThemeSwitch from "@/components/theme-switch";
 import { Favicon } from "@/components/icons";
 import { usePathname } from "next/navigation";
-import { Chip } from "@nextui-org/react";
-import { Saturn02Icon, KeyboardIcon, Notification01Icon } from "hugeicons-react";
+import { Saturn02Icon } from "hugeicons-react";
 
 const ProfileAccordition = dynamic(() => import("./ProfileAccordition"));
 const ExtraCard = dynamic(() => import("./ExtraCard"));
@@ -48,7 +47,7 @@ export default function Sidebar({ className, ...props }: SidebarProps) {
             <div className="w-full">
                 <Search />
             </div>
-            <Listbox className="h-full w-full">
+            <Listbox className="h-full w-full" aria-label="Navigation">
                 {
                     navItems.map((item) => (
                         <ListboxItem

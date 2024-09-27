@@ -14,7 +14,7 @@ import clsx from "clsx";
 import dynamic from "next/dynamic";
 
 import { siteConfig } from "@/config/site";
-import { ThemeSwitch } from "@/components/theme-switch";
+import ThemeSwitch from "@/components/theme-switch";
 import {
   Logo,
 } from "@/components/icons";

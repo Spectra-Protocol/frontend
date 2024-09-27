@@ -71,13 +71,27 @@ export interface Profiler {
 export interface Token {
   id: string | number;
   name: string;
+  description?: string;
   value?: number;
   symbol?: string;
   address: string;
   lastPrice?: number;
   image?: string;
-  traits?: [key: string, value: string][];
+  traits?: any;
+  transactions?: TokenEventTransaction[];
 }
+/**
+ * Token Event Transaction
+ */
+export interface TokenEventTransaction {
+  event: string;
+  version: Date | number;
+  token: Token;
+  from_address: string;
+  to_address: string;
+  value: number;
+}
+
 /**
  * Collection
  */

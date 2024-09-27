@@ -5,6 +5,7 @@ import { SwitchProps, useSwitch, Switch } from "@nextui-org/switch";
 import { useTheme } from "next-themes";
 import { useIsSSR } from "@react-aria/ssr";
 import { Moon01Icon, Sun01Icon } from "hugeicons-react";
+import dynamic from "next/dynamic";
 
 
 export interface ThemeSwitchProps {
@@ -12,7 +13,7 @@ export interface ThemeSwitchProps {
   classNames?: SwitchProps["classNames"];
 }
 
-export const ThemeSwitch: FC<ThemeSwitchProps> = ({
+const ThemeSwitch: FC<ThemeSwitchProps> = ({
   className,
   classNames,
 }) => {
@@ -39,6 +40,10 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
       onChange={onChange}
       className={className}
       classNames={classNames}
-     />
+    />
   );
 };
+
+export default dynamic(() => Promise.resolve(ThemeSwitch), {
+  ssr: false,
+});

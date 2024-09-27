@@ -3,6 +3,7 @@ import ProfileHeader from "./components/profile";
 import { mockCollection } from "@/mock";
 import Providers from "./providers";
 import { notFound } from "next/navigation";
+
 import DetailsArea from "./components/details-area";
 import NFTsArea from "./components/nfts-area";
 
@@ -26,7 +27,7 @@ export default async function Page({ params: { id } }: PageProps) {
 
     return (
         <Providers collection={collection}>
-            <div className="grid grid-cols-1 lg:grid-cols-3 row-auto gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 row-auto gap-8">
                 <div className="row-start-1 col-span-full">
                     <ProfileHeader />
                 </div>
