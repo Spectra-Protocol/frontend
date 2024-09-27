@@ -1,4 +1,5 @@
 {
-  "/(dashboard)/(project)/projects/[id]/page": "app/(dashboard)/(project)/projects/[id]/page.js",
-  "/_not-found/page": "app/_not-found/page.js"
+  "/(dashboard)/(profiles)/profiles/[id]/page": "app/(dashboard)/(profiles)/profiles/[id]/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/(dashboard)/(profiler)/profiles/[id]/page": "app/(dashboard)/(profiler)/profiles/[id]/page.js"
 }
