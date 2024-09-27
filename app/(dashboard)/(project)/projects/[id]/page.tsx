@@ -22,7 +22,6 @@ export default async function Page({ params: { id } }: PageProps) {
 
     try {
         false ? project = mockProject : project = await getProject(id);
-        console.log(project)
 
     } catch (error) {
         console.error(error);

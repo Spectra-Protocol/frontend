@@ -15,7 +15,7 @@ export function LoadingProfileHeader() {
             <Skeleton className="h-24 flex-grow-[2] rounded-3xl" />
             <Skeleton className="h-24  flex-grow-[1] rounded-3xl" />
         </header>
-    )
+    ) 
 }
 export default function ProfileHeader() {
     const collection = useCollection();

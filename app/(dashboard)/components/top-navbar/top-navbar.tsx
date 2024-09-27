@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
-import { ThemeSwitch } from '@/components/theme-switch';
+import ThemeSwitch  from '@/components/theme-switch';
 import { Favicon } from '@/components/icons';
 import { AreaHeader, AreaWrapper } from '../area';
 

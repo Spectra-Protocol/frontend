@@ -13,10 +13,13 @@ interface ProfileProps extends React.HTMLAttributes<HTMLDivElement> {
     address?: string;
     avatar?: string | React.ReactNode;
     tags?: Tag[];
+    showFallbackAvatar?: boolean;
     classNames?: {
         wrapper?: string;
         header?: string;
         main?: string;
+        avatar?: string;
+        title?: string;
     };
 }
 
@@ -30,7 +33,10 @@ export const Profile: React.FC<ProfileProps> = (props) => {
         )}>
             <User
                 name={
-                    <h1 className="w-full text-2xl font-semibold text-foreground capitalize">{name}</h1>
+                    <h1 className={clsx(
+                        "w-full text-2xl font-semibold text-foreground capitalize",
+                        props.classNames?.title
+                    )}>{name}</h1>
                 }
                 description={
                     <div className="flex flex-row gap-2 flex-wrap items-center">
@@ -49,7 +55,11 @@ export const Profile: React.FC<ProfileProps> = (props) => {
                 avatarProps={{
                     src: avatar as string,
                     size: "lg",
-                    className: "rounded-[12px] shadow"
+                    className: clsx(
+                        "rounded-[12px] shadow",
+                        props.classNames?.avatar
+                    ),
+                    showFallback: props.showFallbackAvatar,
                 }}
             />
             {props.children}

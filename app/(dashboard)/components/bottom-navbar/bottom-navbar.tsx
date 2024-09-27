@@ -9,7 +9,7 @@ import React from "react";
 import { PropsWithChildren } from "react";
 import Wallet from "./Wallet";
 import { m, motion } from "framer-motion";
-import { ThemeSwitch } from "@/components/theme-switch";
+import ThemeSwitch from "@/components/theme-switch";
 
 const navItems = [
     {
@@ -78,7 +78,7 @@ export default function BottomNavbar({ className, ...props }: BottomNavbarProps)
                             <Button
                                 as={Link}
                                 variant="light"
-                                key={item.href}
+                                key={item.label}
                                 href={item.href || ""}
                                 radius="md"
                                 size="md"

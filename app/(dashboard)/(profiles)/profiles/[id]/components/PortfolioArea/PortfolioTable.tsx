@@ -56,7 +56,7 @@ export default function TransactionsTable() {
                         }}
                         startContent={
                             <Avatar
-                                src={convertedToken.icon}
+                                src={convertedToken.image}
                                 alt={convertedToken.name}
                                 color="primary"
                                 size="sm"

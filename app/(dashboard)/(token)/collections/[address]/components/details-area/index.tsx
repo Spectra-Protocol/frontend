@@ -1,10 +1,11 @@
 "use client";
 
+import React from "react";
+
 import { format } from "date-fns";
 import { MetricCard } from "@/app/(dashboard)/(project)/projects/dex/[name]/components/key-metric-area/components/ui/metric-card";
 import { Area, AreaHeader, AreaMain } from "@/app/(dashboard)/components/area";
 import { useCollection } from "../../context";
-import React from "react";
 import { Blockchain01Icon, Calendar03Icon } from "hugeicons-react";
 
 export default function DetailsArea() {
@@ -31,6 +32,7 @@ export default function DetailsArea() {
             icon: <Calendar03Icon size={16} className="text-foreground-300" />,
         },
     ]
+    
     return (
         <Area>
             <AreaHeader title="Details" />
