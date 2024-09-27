@@ -1,4 +1,13 @@
 import { format, differenceInMinutes, differenceInHours, differenceInDays } from 'date-fns';
+import numeral from 'numeral';
+
+// String Helper
+export function capitalizeFirstLetter(input: string): string {
+  return input.charAt(0).toUpperCase() + input.slice(1);
+}
+export function capitalizeAllWords(input: string): string {
+  return input.replace(/\b\w/g, (char) => char.toUpperCase());
+}
 
 // Time Helper
 export function formatTime(inputTime: Date): string {
@@ -30,4 +39,15 @@ export function truncateAddress(address: string, type: TruncateAddressType = "st
   } else {
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   }
+}
+
+
+// Smart Contract Helper
+export function getPartOfFunction(input: string): string[] {
+  return input.split('::');
+}
+
+// Coin Helper
+export function formatValue(value: number, decimals: number = 2): string {
+  return numeral(value).format(`0,0.${'0'.repeat(decimals)}`);
 }

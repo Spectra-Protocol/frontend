@@ -5,9 +5,12 @@ import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinne
 import { useInfiniteScroll } from "@nextui-org/use-infinite-scroll";
 import { useAsyncList } from "@react-stately/data";
 
-import { Portifolio, Token } from "@/types";
+import { Coin, Portifolio, Token } from "@/types";
 import { columns } from "./data";
 import { useProfiler } from "../../context";
+import { formatValue, getPartOfFunction, truncateAddress } from "@/lib";
+import { truncate } from "fs";
+import numeral from "numeral";
 
 export default function TransactionsTable() {
     const profiler = useProfiler();
@@ -15,9 +18,9 @@ export default function TransactionsTable() {
     const [isLoading, setIsLoading] = React.useState(false);
     const [hasMore, setHasMore] = React.useState(false);
 
-    let list = useAsyncList<Portifolio>({
+    let list = useAsyncList<Coin>({
         async load({ signal, cursor }) {
-            if (!profiler.portifolio) return { items: [] };
+            if (!profiler.coins) return { items: [] };
 
             setIsLoading(true);
 
@@ -25,8 +28,8 @@ export default function TransactionsTable() {
             const itemsPerPage = 10;
             const end = start + itemsPerPage;
 
-            const items = profiler.portifolio.slice(start, end);
-            const hasMore = end < profiler.portifolio.length;
+            const items = profiler.coins.slice(start, end);
+            const hasMore = end < profiler.coins.length;
 
             setHasMore(hasMore);
             setIsLoading(false);
@@ -36,16 +39,38 @@ export default function TransactionsTable() {
                 cursor: end.toString()
             };
         },
+        async sort({ items, sortDescriptor }) {
+            return {
+                items: items.sort((a, b) => {
+                    const first = getKeyValue(a, sortDescriptor.column!.toString());
+                    const second = getKeyValue(b, sortDescriptor.column!.toString());
+
+                    let cmp = 0;
+                    if (first > second) {
+                        cmp = 1;
+                    } else if (first < second) {
+                        cmp = -1;
+                    }
+
+                    if (sortDescriptor.direction === "descending") {
+                        cmp *= -1;
+                    }
+
+                    return cmp;
+                }),
+            };
+        }
     });
 
     const [loaderRef, scrollerRef] = useInfiniteScroll({ hasMore, onLoadMore: list.loadMore });
 
-    const renderCell = React.useCallback((item: Portifolio, columnKey: React.Key) => {
+    const renderCell = React.useCallback((item: Coin, columnKey: React.Key) => {
         const cellValue = getKeyValue(item, columnKey.toString());
 
         switch (columnKey) {
-            case "asset":
-                const convertedToken = cellValue as Token;
+            case "asset_type":
+                const assetType = cellValue;
+                const parse = getPartOfFunction(assetType);
 
                 return (
                     <Chip
@@ -54,41 +79,42 @@ export default function TransactionsTable() {
                         classNames={{
                             content: "text-foreground"
                         }}
-                        startContent={
-                            <Avatar
-                                src={convertedToken.image}
-                                alt={convertedToken.name}
-                                color="primary"
-                                size="sm"
-                                className="w-4 h-4"
-                                radius="full"
-                                showFallback
-                            />
-                        }
                     >
-                        {convertedToken.symbol}
+                        {truncateAddress(parse[0], "start")}::{parse[1]}::{parse[2]}
                     </Chip>
                 )
-            case "price":
-                const convertedPrice = cellValue as any;
+            case "name":
+                const name = cellValue;
 
                 return (
-                    <p className="w-full overflow-clip">{convertedPrice.toString()}</p>
+                    <Chip
+                        variant="light"
+                        size="lg"
+                        classNames={{
+                            content: "text-foreground"
+                        }}
+                    >
+                        {name}
+                    </Chip>
                 )
-            case "holding":
-                const convertedHolding = cellValue as any;
+            case "symbol":
+                const symbol = cellValue;
+                <Chip
+                    variant="light"
+                    size="lg"
+                >
+                    {symbol}
+                </Chip>
+            case "amount":
+                const amount = cellValue;
 
                 return (
-                    <p className="w-full overflow-clip">{convertedHolding.toString()}</p>
-                )
-            case "value":
-                const convertedValue = cellValue as any;
-
-                return (
-                    <p className="w-full overflow-clip">{convertedValue.toString()}</p>
+                    <p className="w-full overflow-clip">
+                        {numeral(amount).format("0,0.000")}
+                    </p>
                 )
             default:
-                return null;
+                return <p className="text-foreground-500">-</p>;
         }
     }, []);
 
@@ -127,8 +153,8 @@ export default function TransactionsTable() {
                 loadingContent={<Spinner color="white" />}
                 emptyContent="No data found"
             >
-                {(item: Portifolio) => (
-                    <TableRow key={item.id} className="w-full hover:bg-foreground-100">
+                {(item: Coin) => (
+                    <TableRow key={item.asset_type} className="w-full hover:bg-foreground-100">
                         {(columnKey) =>
                             <TableCell>
                                 {renderCell(item, columnKey)}

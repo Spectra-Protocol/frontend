@@ -2,23 +2,23 @@ import { Column } from "@/components/dashboard/table";
 
 export const columns: Column[] = [
     {
-        name: "Asset",
-        uid: "asset",
+        name: "Asset Type",
+        uid: "asset_type",
         sortable: false,
     },
     {
-        name: "Price",
-        uid: "price",
+        name: "Name",
+        uid: "name",
         sortable: true,
     },
     {
-        name: "Holding",
-        uid: "holding",
+        name: "Symbol",
+        uid: "symbol",
         sortable: true,
     },
     {
-        name: "Value",
-        uid: "value",
+        name: "Amount",
+        uid: "amount",
         sortable: true,
     }
 ];

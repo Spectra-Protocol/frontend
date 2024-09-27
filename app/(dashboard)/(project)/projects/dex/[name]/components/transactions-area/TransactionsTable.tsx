@@ -112,8 +112,7 @@ export default function TransactionsTable() {
                 )
             case "token_bought_amount":
                 return (
-                    <p
-                    >
+                    <p>
                         {numeral(item.token_bought_amount).format("0,0.00a")}
                     </p>
                 )

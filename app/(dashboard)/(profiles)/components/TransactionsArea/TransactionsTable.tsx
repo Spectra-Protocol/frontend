@@ -7,11 +7,15 @@ import { useAsyncList } from "@react-stately/data";
 
 import { columns } from "./data";
 import { Profiler, Token, Transaction, TransactionTagType } from "@/types";
-import { mockProjectsTransactions } from "@/mock";
 import { Copy02Icon } from "hugeicons-react";
-import { formatTime, truncateAddress } from "@/lib";
+import { formatTime, getPartOfFunction, truncateAddress } from "@/lib";
+import { useProfiler } from "../../context";
+import numeral from "numeral";
+
 
 export default function TransactionsTable() {
+    const profile = useProfiler();
+
     const [isLoading, setIsLoading] = React.useState(false);
     const [hasMore, setHasMore] = React.useState(false);
 
@@ -22,9 +26,30 @@ export default function TransactionsTable() {
             }
 
             return {
-                items: mockProjectsTransactions,
+                items: profile.transactions || [],
             };
         },
+        async sort({ items, sortDescriptor }) {
+            return {
+                items: items.sort((a, b) => {
+                    const first = getKeyValue(a, sortDescriptor.column!.toString());
+                    const second = getKeyValue(b, sortDescriptor.column!.toString());
+
+                    let cmp = 0;
+                    if (first > second) {
+                        cmp = 1;
+                    } else if (first < second) {
+                        cmp = -1;
+                    }
+
+                    if (sortDescriptor.direction === "descending") {
+                        cmp *= -1;
+                    }
+
+                    return cmp;
+                }),
+            };
+        }
     });
 
     const [loaderRef, scrollerRef] = useInfiniteScroll({ hasMore, onLoadMore: list.loadMore });
@@ -33,7 +58,15 @@ export default function TransactionsTable() {
         const cellValue = getKeyValue(item, columnKey.toString());
 
         switch (columnKey) {
-            case "time":
+            case "version":
+                const convertedVersion = cellValue as number;
+
+                return (
+                    <p className="text-sm w-fit text-nowrap">
+                        {convertedVersion}
+                    </p>
+                );
+            case "timestamp":
                 const convertedTime = new Date(cellValue);
 
                 return (
@@ -41,56 +74,34 @@ export default function TransactionsTable() {
                         {formatTime(convertedTime)}
                     </p>
                 );
-            case "from":
-                const convertedFrom = cellValue as Profiler;
+            case "sender":
+                const convertedSender = cellValue;
 
                 return (
                     <Chip
                         size="lg"
                         radius="md"
                         className="shadow bg-foreground-50 dark:bg-foreground-100 text-foreground-900 text-sm gap-2"
-                        startContent={
-                            <Avatar
-                                src={convertedFrom.avatar}
-                                alt={convertedFrom.name}
-                                color="primary"
-                                size="sm"
-                                className="w-4 h-4"
-                                radius="full"
-                                showFallback
-                            />
-                        }
                         endContent={
                             <Copy02Icon size={16} className="text-foreground-400" />
                         }
                     >
-                        {truncateAddress(convertedFrom.address, "start")}
+                        {truncateAddress(convertedSender, "start")}
                     </Chip>
                 )
-            case "to":
-                const convertedTo = cellValue as Profiler;
+            case "receiver":
+                const convertedReceiver = cellValue;
 
                 return (
                     <Chip
                         size="lg"
                         radius="md"
                         className="shadow bg-foreground-50 dark:bg-foreground-100 text-foreground-900 text-sm gap-2"
-                        startContent={
-                            <Avatar
-                                src={convertedTo.avatar}
-                                alt={convertedTo.name}
-                                color="primary"
-                                size="sm"
-                                className="w-4 h-4"
-                                radius="full"
-                                showFallback
-                            />
-                        }
                         endContent={
                             <Copy02Icon size={16} className="text-foreground-400" />
                         }
                     >
-                        {truncateAddress(convertedTo.address, "start")}
+                        {truncateAddress(convertedReceiver, "start")}
                     </Chip>
                 )
             case "token":
@@ -115,31 +126,45 @@ export default function TransactionsTable() {
                         {convertedToken.symbol}
                     </Chip>
                 )
-            case "tags":
-                const convertedTags = cellValue as string[];
+            case "function":
+                const convertedFunction = cellValue as string;
+                const parts = getPartOfFunction(convertedFunction);
 
                 return (
                     <div className="flex gap-2">
-                        {convertedTags.map((tag, index) => (
-                            <Chip key={index}
-                                className="text-xs"
-                                color= {
-                                    tag === TransactionTagType.Buy ? "success" :
-                                    tag === TransactionTagType.Sell ? "danger" :
-                                    tag === TransactionTagType.Transfer ? "warning" : "default"
-                                }
-                                radius="md"
-                                variant="flat"
-                            >
-                                {tag}
-                            </Chip>
-                        ))}
+                        <Chip
+                            className="text-xs"
+                            // color={
+                            // tag === TransactionTagType.Buy ? "success" :
+                            // tag === TransactionTagType.Sell ? "danger" :
+                            // tag === TransactionTagType.Transfer ? "warning" : "default"
+                            // }
+                            radius="md"
+                            variant="flat"
+                        >
+                            {parts[2]}
+                        </Chip>
+
                     </div>
                 )
+            case "amount":
+                const convertedAmount = cellValue as number;
 
+                return (
+                    <p>
+                        {numeral(convertedAmount/10e8).format("0,0.000000")} APT
+                    </p>
+                )
+            case "gas_amount":
+                const convertedGasAmount = cellValue as number;
 
+                return (
+                    <p>
+                        {numeral(convertedGasAmount/10e8).format("0,0.000000")} APT
+                    </p>
+                )
             default:
-                return <p className="w-full overflow-clip">{cellValue.toString()}</p>;
+                return <p className="w-full overflow-clip">-</p>;
         }
     }, []);
 
@@ -161,6 +186,8 @@ export default function TransactionsTable() {
                 table: "min-h-[400px]",
                 wrapper: "w-full bg-foreground-50",
             }}
+            onSortChange={(sortDescriptor) => list.sort(sortDescriptor)}
+            sortDescriptor={list.sortDescriptor}
         >
             <TableHeader columns={columns}>
                 {(column) => (
@@ -179,7 +206,7 @@ export default function TransactionsTable() {
                 emptyContent="No data found"
             >
                 {(item: Transaction) => (
-                    <TableRow key={item.id} className="w-full">
+                    <TableRow key={item.version} className="w-full">
                         {(columnKey) =>
                             <TableCell>
                                 {renderCell(item, columnKey)}

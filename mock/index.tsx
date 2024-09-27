@@ -15,29 +15,13 @@ const generateMockProject = () => ({
 export const mockProject = generateMockProject();
 
 export const mockProjectsTransactions = Array.from({ length: 10 }, () => ({
-    id: faker.string.uuid(),// Add unique identifier
-    time: faker.date.recent(),
-    from: {
-        name: faker.person.suffix(),
-        address: faker.finance.ethereumAddress(),
-        avatar: faker.image.avatar(),
-    },
-    to: {
-        name: faker.person.suffix(),
-        address: faker.finance.ethereumAddress(),
-        avatar: faker.image.avatar(),
-    },
-    value: faker.finance.amount({
-        symbol: "ETH",
-    }),
-    token: {
-        id: faker.string.uuid(),
-        name: faker.finance.currencyName(),
-        symbol: faker.finance.currencySymbol(),
-        address: faker.finance.ethereumAddress(),
-        image: faker.image.url(),
-    },
-    tags: [Math.random() > 0.5 ? TransactionTagType.Buy : TransactionTagType.Sell],
+    version: faker.date.recent().getMilliseconds(),
+    sender: faker.finance.ethereumAddress(),
+    receiver: faker.finance.ethereumAddress(),
+    amount: faker.number.float({min: 0, max: 100}),
+    timestamp: faker.date.recent().toString(),
+    function: Math.random() > 0.5 ? "mint" : "transfer",
+    gas_amount: faker.number.float({min: 0, max: 100})
 } satisfies Transaction));
 
 export const mockProjectDex = {

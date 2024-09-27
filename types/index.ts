@@ -23,15 +23,15 @@ export enum TransactionTagType {
   Other = "Other",
 
 }
-export interface Transaction {
-  id: string;
-  time: Date;
-  from: Profiler;
-  to: Profiler;
-  value: number | string;
-  token: Token;
-  tags: TransactionTagType[];
-}
+// export interface Transaction {
+//   id: string;
+//   time: Date;
+//   from: Profiler;
+//   to: Profiler;
+//   value: number | string;
+//   token: Token;
+//   tags: TransactionTagType[];
+// }
 
 // Project
 export interface Project extends BasicProjectResponse {
@@ -50,7 +50,7 @@ export type Portifolio = {
   holding: number | string;
   value: number | string;
 }
-export interface Profiler {
+export interface Profiler extends AccountDetailsResponse {
   name?: string;
   address: string;
   avatar?: string;
@@ -269,6 +269,13 @@ export interface DexProjectResponse extends BasicProjectResponse {
   transactions: SwapTransaction[];
 }
 
+/**
+ * AccountDetailsResponse
+ * @param name Account name
+ * @param category Account category
+ * @param transactions Account transactions
+ * @param coins Account coins
+ */
 export interface AccountDetailsResponse {
   name?: string;
   category: string;
@@ -276,16 +283,33 @@ export interface AccountDetailsResponse {
   coins: Coin[];
 }
 
+/**
+ * Transaction
+ * @param version Transaction version
+ * @param timestamp Transaction timestamp
+ * @param sender Transaction sender
+ * @param receiver Transaction receiver
+ * @param function Transaction function
+ * @param amount Transaction amount
+ * @param gas_amount Transaction gas amount
+ */
 export interface Transaction {
   version: number;
   timestamp: string;
-  sender: string; 
+  sender: string;
   receiver: string;
   function: string;
   amount: number;
   gas_amount: number;
 }
 
+/**
+ * Coin
+ * @param asset_type Coin asset type
+ * @param name Coin name
+ * @param symbol Coin symbol
+ * @param amount Coin amount
+ */
 export interface Coin {
   asset_type: string;
   name: string;
