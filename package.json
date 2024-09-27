@@ -39,6 +39,7 @@
 		"@types/numeral": "^2.0.5",
 		"axios": "^1.7.7",
 		"clsx": "2.1.1",
+		"colorthief": "^2.4.0",
 		"date-fns": "^3.6.0",
 		"framer-motion": "~11.1.1",
 		"glob": "^11.0.0",
