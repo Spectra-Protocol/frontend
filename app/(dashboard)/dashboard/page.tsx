@@ -1,11 +1,12 @@
 
-import dynamic from 'next/dynamic';
-const TestArea = dynamic(() => import('./areas/test-area/TestArea'), { ssr: false });
+import Header from './components/header';
+import Toolbar from './components/toolbar';
 
 export default function Home() {
     return (
-        <div>
-            <TestArea />
+        <div className='w-full h-full flex flex-col gap-8'>
+            <Header />
+            <Toolbar />
         </div>
     )
 }

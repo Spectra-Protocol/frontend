@@ -2,13 +2,13 @@
 
 import { Button, Chip } from "@nextui-org/react";
 import clsx from "clsx";
-import { Saturn02Icon, KeyboardIcon, Notification01Icon, Wallet01Icon } from "hugeicons-react";
+import { Saturn02Icon, KeyboardIcon, Notification01Icon, Wallet01Icon, DashboardCircleIcon } from "hugeicons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { PropsWithChildren } from "react";
 import Wallet from "./Wallet";
-import { m, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import ThemeSwitch from "@/components/theme-switch";
 
 const navItems = [
@@ -20,7 +20,7 @@ const navItems = [
     {
         label: "Dashboard",
         href: "/dashboard",
-        icon: <Saturn02Icon size={20} filter="drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15))" />,
+        icon: <DashboardCircleIcon size={20} filter="drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15))" />,
     },
 
 ];
@@ -108,7 +108,7 @@ export default function BottomNavbar({ className, ...props }: BottomNavbarProps)
                     }
                     <ThemeSwitch classNames={{
                         wrapper: "bg-foreground-400 shadow",
-                    }}/>
+                    }} />
                 </nav>
             </motion.div>
         </BottomNavbarWrapper>

@@ -33,7 +33,7 @@ export default async function Page({ params: { name } }: PageProps) {
 
     return (
         <Providers project={project}>
-            <div className="w-full flex flex-col gap-8 h-screen overflow-hidden">
+            <div className="w-full h-full flex flex-col gap-8 lg:h-screen lg:overflow-hidden">
                 <ProfileHeader />
                 {/* <div className="hidden lg:flex flex-col-reverse lg:flex-row gap-4 w-full h-full overflow-y-scroll">
                     <div className="flex-grow-[3] h-full overflow-y-scroll">
@@ -44,7 +44,7 @@ export default async function Page({ params: { name } }: PageProps) {
                     </div>
                 </div> */}
                 <Mobile />
-                <Desktop />
+                {/* <Desktop /> */}
             </div>
         </Providers>
     )

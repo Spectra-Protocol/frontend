@@ -46,6 +46,9 @@ const config: Config = {
       dark: {
         extend: "dark",
         colors:{
+          primary: {
+            DEFAULT: colors.blue[400],
+          },
           background: '#0F0F0F',
         }
       }

@@ -1,0 +1,18 @@
+"use client";
+
+import { TabsProps } from "@nextui-org/react";
+import TabsEngine from "./tabs";
+import SearchEngine from "./search";
+
+interface ToolbarProps extends React.HTMLAttributes<HTMLElement> {
+    tabsProps?: TabsProps;
+} 
+
+export default function Toolbar(props: ToolbarProps) {
+    return (
+       <div className='w-full flex flex-col lg:flex-row items-start justify-between gap-8'>
+            <TabsEngine />
+            <SearchEngine />
+       </div>
+    )
+}

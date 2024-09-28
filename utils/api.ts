@@ -19,4 +19,11 @@ api.interceptors.response.use(
     }
 )
 
+const openseaApi = axios.create({
+    baseURL: OPENSEA_API_KEY,
+    headers: {
+        'X-API-KEY': process.env.NEXT_PUBLIC_OPENSEA_API_KEY
+    }
+})
+
 export default api
