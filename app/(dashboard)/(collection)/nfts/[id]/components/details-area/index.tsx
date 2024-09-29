@@ -3,6 +3,8 @@
 import { Area, AreaHeader, AreaMain } from "@/app/(dashboard)/components/area";
 import { LabelIcon } from "hugeicons-react";
 import { useNFT } from "../../context";
+import { getMetadata } from "@/lib";
+import React from "react";
 
 function TraitCard({ keyName, value }: { keyName: string, value: string }) {
     return (
@@ -15,19 +17,23 @@ function TraitCard({ keyName, value }: { keyName: string, value: string }) {
 
 export function TraitsArea() {
     const nft = useNFT();
-    const traits = nft.traits;
+    const [traits, setTraits] = React.useState<any>();
+    
+    React.useEffect(() => {
+        const fetchTraits = async () => {
+            const metadata = await getMetadata(nft.token_uri);
+            setTraits(metadata?.attributes);
+        }
+        fetchTraits();
+    }, [nft.token_uri]);
 
     return (
         <div>
             <Area>
                 <AreaHeader title="Traits" icon={<LabelIcon size={16} />} />
                 <AreaMain className="flex flex-row gap-4 flex-wrap">
-                    {traits && Object.entries(traits).map(([key, val]) => (
-                        <TraitCard
-                            key={key}
-                            keyName={key}
-                            value={val as string}
-                        />
+                    {traits && traits.map((trait: any, index: any) => (
+                        <TraitCard key={index} keyName={trait.trait_type} value={trait.value} />
                     ))}
                 </AreaMain>
             </Area>

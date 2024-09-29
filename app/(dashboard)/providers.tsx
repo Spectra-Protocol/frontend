@@ -6,6 +6,7 @@ import {
 import { WalletProvider } from "./components/wallet/WalletProvider";
 import { SearchParamProvider } from '@/components/dashboard/search/context';
 
+
 const queryClient = new QueryClient()
 
 export function Providers({ children }: React.PropsWithChildren) {

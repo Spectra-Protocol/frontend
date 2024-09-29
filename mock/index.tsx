@@ -240,18 +240,18 @@ export const generateMockToken = () => ({
 export const mockTokens = Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, generateMockToken);
 export const mockToken = generateMockToken();
 
-export const generateMockCollection = () => ({
-    name: faker.finance.currencyName(),
-    avatar_url: faker.image.avatar(),
-    contract_address: faker.finance.ethereumAddress(),
-    supply: faker.number.int({ min: 10, max: 10e3 }),
-    total_volume: faker.number.float({ min: 10, max: 10e3 }),
-    description: faker.lorem.sentence({ min: 50, max: 150 }),
-    owner_address: faker.finance.ethereumAddress(),
-    tokens: Array.from({ length: faker.number.int({ min: 1, max: 10}) }, generateMockToken),
-    chain: faker.finance.currencyName(),
-    floor_price: faker.number.float({ min: 0, max: 1000 }),
-    created_at: faker.date.past(),
+export const generateMockCollection = (): Collection => ({
+    collection_name:faker.finance.currencyName(),
+    collection_id:faker.finance.ethereumAddress(),
+    max_supply:faker.number.int(),
+    mutable_description: true,
+    mutable_uri:true,
+    creator_address:faker.finance.ethereumAddress(),
+    collection_properties: null,
+    table_handle_v1:faker.internet.url(),
+    total_minted_v2:faker.number.int(),
+    description:faker.lorem.sentence(),
+    current_supply:faker.number.int(),
 }) satisfies Collection;
 
 export const mockCollections = Array.from({

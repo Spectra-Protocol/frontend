@@ -8,13 +8,13 @@ import TransactionArea from "./components/transactions-area";
 import Profile from "./components/profile";
 import DetailsArea from "./components/details-area";
 import { Token } from '@/types';
+import { USING_MOCK } from "@/config";
 
 interface PageProps {
     params: {
         id: string;
     };
 }
-const USING_MOCK = true;
 
 // const getToken = async (id: string): Promise<Token> => {
 //     if (USING_MOCK) {
@@ -47,9 +47,11 @@ export default async function Page(props: PageProps) {
     const { id } = props.params;
 
     let nft = null;
-
     try {
-        nft = mockToken;
+        USING_MOCK ?
+            nft = {} as Token
+            :
+            nft = await fetchToken(id);
     } catch (error) {
         console.error(error);
     }

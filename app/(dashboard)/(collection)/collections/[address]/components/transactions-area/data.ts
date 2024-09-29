@@ -5,6 +5,11 @@ type Column = {
 }
 export const columns: Column[] = [
     {
+        name: "NFT",
+        uid: "current_token_data",
+        sortable: false,
+    },
+    {
         name: "Version",
         uid: "transaction_version",
         sortable: true,

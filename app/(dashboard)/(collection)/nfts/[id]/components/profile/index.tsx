@@ -9,8 +9,8 @@ export default function Index() {
     return (
         <div className="flex flex-col gap-4">
             <Profile
-                name={nft.name}
-                address={nft.address}
+                name={nft.token_name}
+                address={nft.token_data_id}
                 classNames={{
                     avatar: "hidden",
                     title: "lg:text-3xl"

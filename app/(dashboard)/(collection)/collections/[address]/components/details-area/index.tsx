@@ -23,13 +23,8 @@ export default function DetailsArea() {
     const extraItems = [
         {
             title: "Chain",
-            value: collection.chain,
+            value: "Aptos",
             icon: <Blockchain01Icon size={16} className="text-foreground-300" />,
-        },
-        {
-            title: "Created At",
-            value: collection.created_at ? format(new Date(collection.created_at), "MMM, yyyy") : "-",
-            icon: <Calendar03Icon size={16} className="text-foreground-300" />,
         },
     ]
     

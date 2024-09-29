@@ -9,9 +9,8 @@ import { Copy02Icon } from "hugeicons-react";
 import { columns } from "./data";
 import { TokenActivity } from "@/types";
 import { formatTime, getPartOfFunction, truncateAddress } from "@/lib";
-import numeral from "numeral";
-import { useNFT } from "../../context";
-import { getTokenActivities } from "@/fetch-functions/token";
+import { useCollection } from "../../context";
+import { getCollectionActivities } from "@/fetch-functions/collection";
 
 function getTokenName(tokenIdentifier: string): string {
     if (!tokenIdentifier) {
@@ -22,8 +21,7 @@ function getTokenName(tokenIdentifier: string): string {
 }
 
 export default function TransactionsTable() {
-    const nft = useNFT();
-
+    const collection = useCollection();
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [hasMore, setHasMore] = React.useState(false);
@@ -33,7 +31,7 @@ export default function TransactionsTable() {
             if (cursor) {
                 setIsLoading(false);
             }
-            const data = await getTokenActivities(nft.token_data_id);
+            const data = await getCollectionActivities(collection.collection_id);
 
             return {
                 items: data as TokenActivity[],
@@ -68,6 +66,8 @@ export default function TransactionsTable() {
         const cellValue = getKeyValue(item, columnKey.toString());
 
         switch (columnKey) {
+            case "current_token_data":
+
             case "transaction_timestamp":
                 return (
                     <p className="text-sm w-fit text-nowrap">

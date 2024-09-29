@@ -1,3 +1,4 @@
+import { formatTime, getMetadata } from "@/lib";
 import { Token } from "@/types";
 import { Image } from "@nextui-org/react";
 import clsx from "clsx";
@@ -11,6 +12,20 @@ interface NFTCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function NFTCard(props: NFTCardProps) {
     const { nft } = props;
+    const [metadata, setMetadata] = React.useState<any>(null);
+    const fetchMetadata = React.useCallback(async () => {
+        try {
+            const data = await getMetadata(nft.token_uri);
+            setMetadata(data);
+        } catch (error) {
+            console.error(error);
+        }
+    }, [nft.token_uri]);
+
+    React.useEffect(() => {
+        fetchMetadata();
+    }, [fetchMetadata]);
+
     const { ref, inView } = useInView({
         triggerOnce: true,
         rootMargin: "0px",
@@ -28,18 +43,21 @@ export function NFTCard(props: NFTCardProps) {
         >
             <Image
                 ref={ref}
-                src={inView ? nft.image : ""}
-                alt={nft.name}
+                src={inView ? metadata?.image : ""}
+                alt={nft.token_name}
                 width={"100%"}
                 height={"auto"}
                 className="rounded-[16px] aspect-[360/270]"
+                classNames={{
+                    img: "object-cover"
+                }}
                 loading="lazy"
             />
             <div className="flex flex-col gap-2 w-full">
-                <h6 className="text-base font-bold text-foreground-700">{nft.name}</h6>
+                <h6 className="text-base font-bold text-foreground-700">{nft.token_name}</h6>
                 <div className="flex flex-row justify-between w-full">
-                    <h6 className="text-xs text-foreground-500">Last sale</h6>
-                    <p className="text-xs text-foreground-500">{numeral(nft.lastPrice).format("$0,0.00")}</p>
+                    <h6 className="text-xs text-foreground-500">Last tx</h6>
+                    <p className="text-xs text-foreground-500">{formatTime(nft.last_transaction_timestamp)}</p>
                 </div>
             </div>
         </div>

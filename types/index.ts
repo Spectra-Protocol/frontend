@@ -69,16 +69,26 @@ export interface Profiler extends AccountDetailsResponse {
  * @param icon Token icon
  */
 export interface Token {
-  id: string | number;
-  name: string;
-  description?: string;
-  value?: number;
-  symbol?: string;
-  address: string;
-  lastPrice?: number;
-  image?: string;
-  traits?: any;
-  transactions?: TokenEventTransaction[];
+  collection_id: string;
+  cdn_asset_uris: {
+    cdn_image_uri: string;
+  };
+  token_name: string;
+  token_data_id: string;
+  token_uri: string;
+  decimals: number;
+  token_properties: Record<string, unknown>;
+  last_transaction_version: number;
+  last_transaction_timestamp: Date;
+}
+export interface TokenActivity {
+  transaction_version: number;
+  transaction_timestamp: Date;
+  from_address: string;
+  to_address: string;
+  entry_function_id_str: string;
+  token_amount: number;
+  current_token_data?: Token;
 }
 /**
  * Token Event Transaction
@@ -92,21 +102,37 @@ export interface TokenEventTransaction {
   value: number;
 }
 
+
 /**
  * Collection
+ * @param collection_name Collection name
+ * @param collection_id Collection id
+ * @param max_supply Collection max supply
+ * @param mutable_description Collection mutable description
+ * @param mutable_uri Collection mutable uri
+ * @param table_handle_v1 Collection table handle v1
+ * @param total_minted_v2 Collection total minted v2
+ * @param description Collection description
+ * @param current_supply Collection current supply
+ * @param creator_address Collection creator address
+ * @param collection_properties Collection properties
  */
 export interface Collection {
-  name: string;
+  collection_name: string;
+  collection_id: string;
+  max_supply: number;
+  mutable_description: boolean;
+  mutable_uri: boolean;
+  table_handle_v1: string;
+  total_minted_v2: number | null;
   description: string;
-  avatar_url?: string;
-  contract_address: string;
-  owner_address: string;
-  supply?: number;
-  floor_price?: number;
-  total_volume?: number;
-  tokens?: Token[];
-  created_at?: Date | number;
-  chain: string;
+  current_supply: number;
+  creator_address: string;
+  collection_properties?: any;
+  uri?: string;
+  cdn_asset_uris?: {
+    cdn_image_uri?: string;
+  }
 }
 // Key Metric
 export interface MetricCategory {

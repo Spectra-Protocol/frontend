@@ -10,23 +10,24 @@ export default function ImageArea() {
     const [color, setColor] = React.useState<string | null>(null);
 
     React.useEffect(() => {
-        getPopularColor(nft.image || "")
+        getPopularColor(nft.cdn_asset_uris.cdn_image_uri || "")
             .then((color) => {
                 // decrease the opacity of the color
-                color = color.replace("rgb", "rgba").replace(")", ", 0.25)");
+                color = color.replace("rgb", "rgba").replace(")", ", 0.5)");
+                console.log("color", color);
                 setColor(color);
             }, (error) => {
                 console.error("Failed to get popular color", error);
             })
-    }, [nft.image]);
+    }, [nft.cdn_asset_uris.cdn_image_uri]);
 
     return (
         <Image
-            src={nft.image}
-            alt={nft.name}
+            src={nft.cdn_asset_uris.cdn_image_uri}
+            alt={nft.token_name}
             width="100%"
             classNames={{
-                img: "aspect-video rounded-[32px]",
+                img: "aspect-video rounded-[32px] object-cover",
             }}
             style={{
                 boxShadow: `0px 0px 128px ${color || "rgba(0, 0, 0, 0.15)"}`,

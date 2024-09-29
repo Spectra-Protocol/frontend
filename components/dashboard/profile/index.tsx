@@ -44,20 +44,25 @@ export const Profile: React.FC<ProfileProps> = (props) => {
                     <div className="flex flex-row gap-2 flex-wrap items-center">
                         <Chip
                             radius="sm"
-                            className="bg-foreground-50 text-foreground-500 font-medium shadow-sm"
+                            className={clsx(
+                                "bg-foreground-50 text-foreground-500 font-medium shadow-sm",
+                                "hover:scale-110 transition-transform cursor-pointer",
+                                "hover:text-foreground-800"
+                            )}
                             endContent={
-                            <Copy02Icon size={16}
-                                onClick={()=>{
-                                    try{
-                                        if(!address) return;
-                                        copy(address);
-                                        toast.success("Address copied to clipboard");
-                                    } catch (error) {
-                                        toast.error("Failed to copy address");
-                                    }
-                                }}
-                             />
-                        }
+                                <Copy02Icon
+                                    size={16}
+                                    onClick={() => {
+                                        try {
+                                            if (!address) return;
+                                            copy(address);
+                                            toast.success("Address copied to clipboard");
+                                        } catch (error) {
+                                            toast.error("Failed to copy address");
+                                        }
+                                    }}
+                                />
+                            }
                         >
                             {address?.slice(0, 5) || "-"}
                         </Chip>
