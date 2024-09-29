@@ -1,9 +1,7 @@
 'use client';
 
 import React from "react";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner, getKeyValue, Chip } from "@nextui-org/react";
-import { useInfiniteScroll } from "@nextui-org/use-infinite-scroll";
-import { useAsyncList } from "@react-stately/data";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner, getKeyValue, Chip, Pagination, SortDescriptor, Button } from "@nextui-org/react";
 import { Copy02Icon } from "hugeicons-react";
 
 import { columns } from "./data";
@@ -22,44 +20,70 @@ function getTokenName(tokenIdentifier: string): string {
 
 export default function TransactionsTable() {
     const collection = useCollection();
-
+    const [data, setData] = React.useState<TokenActivity[]>([]);
+    const [cursor, setCursor] = React.useState<number | null>(null);
     const [isLoading, setIsLoading] = React.useState(false);
-    const [hasMore, setHasMore] = React.useState(false);
+    const [page, setPage] = React.useState(1);
+    const [pages, setPages] = React.useState(1);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    let list = useAsyncList<TokenActivity>({
-        async load({ signal, cursor }) {
-            if (cursor) {
-                setIsLoading(false);
-            }
-            const data = await getCollectionActivities(collection.collection_id);
-
-            return {
-                items: data as TokenActivity[],
-            };
-        },
-        async sort({ items, sortDescriptor }) {
-            return {
-                items: items.sort((a, b) => {
-                    const first = getKeyValue(a, sortDescriptor.column!.toString());
-                    const second = getKeyValue(b, sortDescriptor.column!.toString());
-
-                    let cmp = 0;
-                    if (first > second) {
-                        cmp = 1;
-                    } else if (first < second) {
-                        cmp = -1;
-                    }
-
-                    if (sortDescriptor.direction === "descending") {
-                        cmp *= -1;
-                    }
-
-                    return cmp;
-                }),
-            };
-        }
+    const [sortDescriptor, setSortDescriptor] = React.useState<SortDescriptor>({
+        column: "transaction_timestamp",
+        direction: "descending",
     });
-    const [loaderRef, scrollerRef] = useInfiniteScroll({ hasMore, onLoadMore: list.loadMore });
+    const fetchData = async (cursor: number | null) => {
+        setIsLoading(true);
+        const newData = await getCollectionActivities(collection.collection_id, 99999);
+        setPages(Math.ceil(newData.length / rowsPerPage));
+        setData(newData);
+        setIsLoading(false);
+    };
+
+    React.useEffect(() => {
+        fetchData(cursor);
+    }, []);
+
+
+    const onNextPage = React.useCallback(() => {
+        if (page < pages) {
+            setPage(page + 1);
+        }
+    }, [page, pages]);
+
+    const onPreviousPage = React.useCallback(() => {
+        if (page > 1) {
+            setPage(page - 1);
+        }
+    }, [page])
+
+    const items= React.useMemo(() => {
+        return data.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+    }, [data, page, rowsPerPage]);
+
+    const bottomContent = React.useMemo(() => {
+        return (
+            <div className="py-2 px-2 flex justify-between items-center">
+                <Pagination
+                    isCompact
+                    showControls
+                    showShadow
+                    color="primary"
+                    page={page}
+                    total={pages}
+                    onChange={setPage}
+                />
+                <div className="hidden sm:flex w-[30%] justify-end gap-2">
+                    <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onPreviousPage}>
+                        Previous
+                    </Button>
+                    <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onNextPage}>
+                        Next
+                    </Button>
+                </div>
+            </div>
+        );
+    }, [page, pages]);
+
 
 
     const renderCell = React.useCallback((item: TokenActivity, columnKey: React.Key) => {
@@ -130,13 +154,6 @@ export default function TransactionsTable() {
                         {parts[1]}::{parts[2]}
                     </Chip>
                 )
-            // case "value":
-            //     return (
-            //         <p
-            //         >
-            //             {numeral(item.value).format("0,0.00a")}
-            //         </p>
-            //     )
             default:
                 return <p className="w-full overflow-clip">{""}</p>;
         }
@@ -145,23 +162,16 @@ export default function TransactionsTable() {
     return (
         <Table
             isHeaderSticky
-            aria-label="Example table with infinite pagination"
-            baseRef={scrollerRef}
+            aria-label="Transactions table"
             fullWidth
-            bottomContent={
-                hasMore ? (
-                    <div className="flex w-full justify-center">
-                        <Spinner ref={loaderRef} color="primary" />
-                    </div>
-                ) : null
-            }
+            bottomContent={bottomContent}
             classNames={{
                 base: "max-h-[520px] overflow-scroll bg-transparent text-foreground-900",
                 table: "min-h-[400px]",
                 wrapper: "w-full bg-foreground-100",
             }}
-            onSortChange={(sortDescriptor) => list.sort(sortDescriptor)}
-            sortDescriptor={list.sortDescriptor}
+            onSortChange={setSortDescriptor}
+            sortDescriptor={sortDescriptor}
         >
             <TableHeader columns={columns} className="bg-transparent">
                 {(column) => (
@@ -175,8 +185,8 @@ export default function TransactionsTable() {
             </TableHeader>
             <TableBody
                 isLoading={isLoading}
-                items={list.items}
-                loadingContent={<Spinner color="white" />}
+                items={items}
+                loadingContent={<Spinner color="primary" />}
                 emptyContent="No data found"
             >
                 {(item: TokenActivity) => (

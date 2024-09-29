@@ -92,13 +92,15 @@ export async function getCollections(limit: number = 10, offset: number = 0) {
     }
 }
 
-export async function getCollectionActivities(collectionId: string) {
+export async function getCollectionActivities(collectionId: string, limit: number = 10, offset: number = 0) {
     try {
         if (!collectionId) throw new Error('Invalid collection id')
         const query = `
-        query MyQuery($id: String = "") {
+        query MyQuery($id: String = "", $limit: Int = 10, $offset: Int = 0) {
             token_activities_v2(
                     where: {current_token_data: {collection_id: {_eq: $id}}}
+                    limit: $limit
+                    offset: $offset
             ) {
                 after_value
                 before_value
@@ -123,7 +125,9 @@ export async function getCollectionActivities(collectionId: string) {
             query: {
                 query,
                 variables: {
-                    id: collectionId
+                    id: collectionId,
+                    limit,
+                    offset
                 }
             }
         })
