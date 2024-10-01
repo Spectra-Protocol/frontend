@@ -67,7 +67,6 @@ export default function TransactionsTable() {
 
         switch (columnKey) {
             case "version":
-
                 return (
                     <p className="text-sm w-fit text-nowrap">
                         {cellValue}

@@ -1,8 +1,10 @@
 "use client";
-import { Area, AreaHeader, AreaMain } from "@/app/(dashboard)/components/area";
+
 import { Skeleton } from "@nextui-org/react";
 import { TransactionIcon} from "hugeicons-react";
 import dynamic from "next/dynamic";
+
+import { Area, AreaHeader, AreaMain } from "@/app/(dashboard)/components/area";
 
 const TransactionsTable = dynamic(() => import("./TransactionsTable"), { ssr: false });
 

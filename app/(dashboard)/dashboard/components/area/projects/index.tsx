@@ -1,4 +1,4 @@
-import { ReponsiveGridContainer } from "@/components/dashboard/ui/container";
+import { ReponsiveGridContainer } from "@/components/ui/container";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import { Cards02Icon } from "hugeicons-react";

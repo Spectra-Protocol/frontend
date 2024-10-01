@@ -1,9 +1,12 @@
+"use client";
+
 import { getPopularColor } from "@/lib";
 import { User } from "@nextui-org/react";
 import React from "react";
 import TagCard from "../tag";
 import { ProfilerTagType } from "@/types";
 import clsx from "clsx";
+import { useViewSwitch } from "../view-switch";
 
 interface ShortcutCardProps extends React.HTMLAttributes<HTMLElement> {
     name?: React.ReactNode;
@@ -21,6 +24,7 @@ export function SkeletonShortcutCard(props: SkeletonShortcutCardProps) {
     )
 }
 export default function ShortcutCard(props: ShortcutCardProps) {
+    const { view } = useViewSwitch();
     const [color, setColor] = React.useState<string | null>(null);
 
     React.useEffect(() => {
@@ -37,9 +41,9 @@ export default function ShortcutCard(props: ShortcutCardProps) {
     return (
         <div
             className={clsx(
-                "w-full h-fit p-3 rounded-[14px] bg-foreground-100 flex flex-row gap-4 items-center cursor-pointer",
+                "w-full h-fit p-3 rounded-[14px] flex flex-row gap-4 items-center cursor-pointer",
                 "hover:scale-[1.02] transition-transform duration-300 ease-in-out",
-                "shadow"
+                view === "grid" && "bg-foreground-100 shadow",
             )}
             role="a"
             {...props}

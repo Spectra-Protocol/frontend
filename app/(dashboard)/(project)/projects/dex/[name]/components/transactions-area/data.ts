@@ -5,7 +5,7 @@ type Column = {
 }
 export const columns: Column[] = [
     {
-        name: "Time",
+        name: "Version",
         uid: "version",
         sortable: true,
     },

@@ -103,8 +103,10 @@ export async function getPopularColor(imageUrl: string): Promise<string> {
 // Metadata Helper
 export async function getMetadata(url: string): Promise<any> {
   try {
+    if(url.startsWith('ipfs://')) {
+      url = url.replace('ipfs://', 'https://gateway.pinata.cloud/ipfs/');
+    }
     const res = await axios.get(url);
-
     return res.data;
   } catch (error) {
     console.error(error);

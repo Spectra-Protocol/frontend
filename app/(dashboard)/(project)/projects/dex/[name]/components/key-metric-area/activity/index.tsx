@@ -45,7 +45,7 @@ export default function ActivityMetric() {
     ]
     return (
         <MetricCard
-            name="Activity"
+            title="Activity"
             description="User engagement and trading activity"
             classNames={{
                 wrapper: "p-6 rounded-3xl bg-foreground-100"
@@ -59,7 +59,7 @@ export default function ActivityMetric() {
                             index % 2 === 0 ? "items-start" : "items-end",
                         )}
                         useTooltip={!!item.description}
-                        name={item.title}
+                        title={item.title}
                         description={item.description}
                         value={item.value}
                         icon={item.icon}
@@ -71,7 +71,7 @@ export default function ActivityMetric() {
                     <MetricField02
                         key={index}
                         className="bg-foreground-100 p-6 rounded-3xl shadow"
-                        name={item.title}
+                        title={item.title}
                         value={item.value}
                     />
                 ))}

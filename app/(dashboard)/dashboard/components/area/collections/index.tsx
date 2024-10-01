@@ -1,4 +1,5 @@
-import { ReponsiveGridContainer } from "@/components/dashboard/ui/container";
+"use client";
+import { DynamicContainer, LinearContainer, ReponsiveGridContainer } from "@/components/ui/container";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import { Cards02Icon } from "hugeicons-react";
@@ -11,6 +12,7 @@ import { Collection, ProfilerTagType } from "@/types";
 import { Area, AreaHeader, AreaMain } from "@/app/(dashboard)/components/area";
 import ShortcutCard, { SkeletonShortcutCard } from "@/components/dashboard/cards/ShortcutCard";
 import { useSearchParam } from "@/components/dashboard/search/context";
+import { useViewSwitch } from "@/components/dashboard/view-switch";
 
 interface CollectionsContainerProps extends React.HTMLAttributes<HTMLElement> {
 }
@@ -18,7 +20,8 @@ interface CollectionsContainerProps extends React.HTMLAttributes<HTMLElement> {
 export default function CollectionsContainerArea(props: CollectionsContainerProps) {
     const router = useRouter();
     const { ref, inView } = useInView();
-    const {searchTerm} = useSearchParam(); 
+    const { searchTerm } = useSearchParam();
+    const { view } = useViewSwitch();
 
     const {
         data,
@@ -48,15 +51,17 @@ export default function CollectionsContainerArea(props: CollectionsContainerProp
         }
     }, [inView, hasNextPage, fetchNextPage]);
 
+
     return (
         <Area>
             <AreaHeader title="Collections" icon={<Cards02Icon size={24} />} />
             <AreaMain>
-                <ReponsiveGridContainer
+                <DynamicContainer
                     className={clsx(
                         "w-full overflow-y-auto no-scrollbar",
                         props.className,
                     )}
+                    variant={view as any}
                 >
                     {
                         isLoading ?
@@ -79,7 +84,7 @@ export default function CollectionsContainerArea(props: CollectionsContainerProp
                         <SkeletonShortcutCard key={`skeleton-${index}`} />
                     ))}
                     <div ref={ref} />
-                </ReponsiveGridContainer>
+                </DynamicContainer>
             </AreaMain>
         </Area>
     );

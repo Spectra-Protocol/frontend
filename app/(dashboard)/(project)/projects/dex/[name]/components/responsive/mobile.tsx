@@ -9,7 +9,14 @@ const KeyMetricsArea = dynamic(() => import("../../components/key-metric-area"),
 export default function Mobile() {
     return (
         <div className="lg:hidden flex flex-col">
-            <Tabs variant="light">
+            <Tabs
+                variant="light"
+                classNames={{
+                    cursor: "group-data-[selected=true]:bg-foreground-100 group-data-[selected=true]:text-foreground-900 border-none",
+                    tabContent: "group-data-[selected=true]:text-foreground-900",
+                    panel: "w-full",
+                }}
+            >
                 <Tab key={"transactions"} title="Transactions">
                     <TransactionArea />
                 </Tab>

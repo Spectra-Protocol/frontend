@@ -30,7 +30,7 @@ export default function DetailsArea() {
     
     return (
         <Area>
-            <AreaHeader name="Details" />
+            <AreaHeader title="Details" />
             <AreaMain>
                 <MetricCard
                     name="Description"

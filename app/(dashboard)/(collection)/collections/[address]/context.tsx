@@ -1,3 +1,5 @@
+"use client";
+
 import { Collection } from "@/types";
 import React from "react";
 

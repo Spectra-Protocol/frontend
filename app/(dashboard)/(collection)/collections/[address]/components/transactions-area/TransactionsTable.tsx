@@ -68,15 +68,21 @@ export default function TransactionsTable() {
                     showControls
                     showShadow
                     color="primary"
+                    classNames={{
+                        base: "text-foreground-500",
+                        item: "text-foreground-500",
+                        next: "text-foreground-500",
+                        prev: "text-foreground-500",
+                    }}
                     page={page}
                     total={pages}
                     onChange={setPage}
                 />
                 <div className="hidden sm:flex w-[30%] justify-end gap-2">
-                    <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onPreviousPage}>
+                    <Button isDisabled={pages === 1} size="sm" onPress={onPreviousPage}>
                         Previous
                     </Button>
-                    <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onNextPage}>
+                    <Button isDisabled={pages === 1} size="sm"  onPress={onNextPage}>
                         Next
                     </Button>
                 </div>

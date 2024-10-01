@@ -54,7 +54,7 @@ export default function ProfileHeader() {
         }
     ]
     return (
-        <header className="w-full flex flex-col lg:flex-row gap-6 my-4">
+        <header className="w-full h-fit flex flex-col lg:flex-row gap-6 my-4">
             <Profile
                 name={collection.collection_name}
                 avatar={metadata?.image}

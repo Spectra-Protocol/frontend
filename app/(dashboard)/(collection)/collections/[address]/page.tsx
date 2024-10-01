@@ -1,11 +1,11 @@
-import { getCollection } from "@/fetch-functions/collection";
-import ProfileHeader from "./components/profile";
-import { mockCollection } from "@/mock";
-import Providers from "./providers";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 
+import { mockCollection } from "@/mock";
+import { getCollection } from "@/fetch-functions/collection";
+import ProfileHeader from "./components/profile";
+import Providers from "./providers";
 import { USING_MOCK } from "@/config";
-import dynamic from "next/dynamic";
 
 const Desktop = dynamic(() => import("./components/responsive/desktop"), { ssr: false });
 
@@ -28,8 +28,8 @@ export default async function Page({ params: { address } }: PageProps) {
 
     return (
         <Providers collection={collection}>
-            <div className="grid grid-cols-1 lg:grid-cols-3 row-auto gap-6">
-                <div className="row-start-1 col-span-full">
+            <div className="grid grid-cols-1 lg:grid-cols-3 auto-rows-min gap-6 h-full overflow-auto">
+                <div className="row-start-1 row-span-1 col-span-full">
                     <ProfileHeader />
                 </div>
                 <Desktop/>

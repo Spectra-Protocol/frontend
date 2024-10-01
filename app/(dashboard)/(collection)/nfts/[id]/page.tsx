@@ -10,6 +10,7 @@ import Profile from "./components/profile";
 import DetailsArea from "./components/details-area";
 import { Token } from '@/types';
 import { USING_MOCK } from "@/config";
+import { LinearContainer } from "@/components/ui/container";
 
 interface PageProps {
     params: {
@@ -61,12 +62,12 @@ export default async function Page(props: PageProps) {
     return (
         <Providers nft={nft}>
             <div className="w-full h-full grid grid-col-1 lg:grid-cols-3 row-auto gap-6 overflow-y-auto">
-                <div className="w-full h-full col-span-2 flex flex-col gap-6">
+                <LinearContainer className="w-full h-full col-span-2" space="lg" direction="column">
                     <ImageArea />
                     <Profile />
                     <DetailsArea />
                     <TransactionArea />
-                </div>
+                </LinearContainer>
                 <div className="w-full h-full col-span-1">
                 </div>
             </div>

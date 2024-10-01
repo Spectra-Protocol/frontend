@@ -39,12 +39,28 @@ export async function getToken(tokenId: string): Promise<Token> {
     }
 }
 
-export async function getTokenActivities(tokenId: string) {
+export async function getTokenActivities(tokenId: string, limit: number = 10, offset: number = 0): Promise<TokenActivity[]> {
     try {
         if (!tokenId) throw new Error('Invalid token id')
         const query = `
-            query MyQuery($_eq: String = "") {
-                token_activities_v2(where: {current_token_data: {token_data_id: {_eq: $_eq}}}) {
+            query MyQuery($_eq: String = "", $limit: Int = 10, $offset: Int = 0) {
+                token_activities_v2(
+                    where: {current_token_data: {token_data_id: {_eq: $_eq}}}
+                    limit: $limit
+                    offset: $offset
+                ) {
+                    after_value
+                    before_value
+                    entry_function_id_str
+                    from_address
+                    to_address
+                    is_fungible_v2
+                    to_address
+                    transaction_timestamp
+                    transaction_version
+                    token_amount
+                }
+                ) {
                     after_value
                     before_value
                     entry_function_id_str
@@ -64,7 +80,9 @@ export async function getTokenActivities(tokenId: string) {
             query: {
                 query,
                 variables: {
-                    _eq: tokenId
+                    _eq: tokenId,
+                    limit,
+                    offset
                 }
             }
         })
@@ -75,12 +93,22 @@ export async function getTokenActivities(tokenId: string) {
     }
 }
 
-export async function getTokensByCollection(collectionId: string) {
+export async function getTokensByCollection(collectionId: string, limit: number = 10, offset: number = 0, keyword: string = ''): Promise<Token[]> {
     try {
         if (!collectionId) throw new Error('Invalid collection id')
         const query = `
-        query MyQuery($_eq: String = "") {
-            current_token_datas_v2(where: {collection_id: {_eq: $_eq}}) {
+        query MyQuery($_eq: String = "", $limit: Int = 10, $offset: Int = 0, $keyword: String = "") {
+                current_token_datas_v2(
+                where: {
+                    collection_id: {_eq: $_eq}
+                    _or: [
+                        {token_name: {_ilike: $keyword}},
+                        {token_data_id: {_ilike: $keyword}}
+                    ]
+                }
+                limit: $limit
+                offset: $offset
+            ) {
                 collection_id
                 cdn_asset_uris {
                 cdn_image_uri
@@ -88,6 +116,7 @@ export async function getTokensByCollection(collectionId: string) {
                 token_name
                 token_data_id
                 token_uri
+                token_properties
                 description
                 decimals
                 last_transaction_timestamp
@@ -101,7 +130,10 @@ export async function getTokensByCollection(collectionId: string) {
             query: {
                 query,
                 variables: {
-                    _eq: collectionId
+                    _eq: collectionId,
+                    limit,
+                    offset,
+                    keyword: `%${keyword}%`
                 }
             }
         })

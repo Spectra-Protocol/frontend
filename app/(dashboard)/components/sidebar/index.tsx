@@ -64,7 +64,7 @@ export default function Sidebar({ className, ...props }: SidebarProps) {
                             href={item.href}
                             className={clsx(
                                 "rounded-[8px] text-sm text-default-500 hover:bg-foreground-100 data-[hover=true]:bg-foreground-100 data-[hover=true]:text-foreground-900 data-[hover=true]:font-bold",
-                                pathname.startsWith(item.href) && "bg-foreground-100"
+                                pathname.startsWith(item.href) && "bg-foreground-100 shadow-sm"
                             )}
                             classNames={{
                                 title: clsx(

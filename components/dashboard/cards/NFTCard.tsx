@@ -11,6 +11,16 @@ interface NFTCardProps extends React.HTMLAttributes<HTMLDivElement> {
     nft: Token;
 }
 
+
+export function SkeletonNFTCard(props: React.HTMLAttributes<HTMLDivElement>) {
+    return (
+        <div className="w-full h-full bg-foreground-100 rounded-[16px] shadow p-4 flex flex-col gap-4" {...props}>
+            <div className="w-full h-[270px] bg-foreground-200 rounded-[16px] animate-pulse" />
+            <div className="w-full h-4 bg-foreground-200 rounded-[16px] animate-pulse" />
+            <div className="w-full h-4 bg-foreground-200 rounded-[16px] animate-pulse" />
+        </div>
+    );
+}
 export function NFTCard(props: NFTCardProps) {
     const router = useRouter();
 
@@ -40,16 +50,17 @@ export function NFTCard(props: NFTCardProps) {
             className={clsx(
                 "w-full h-full bg-foreground-100 rounded-[16px] shadow p-4 flex flex-col gap-4",
                 "hover:scale-[1.02] transition-transform duration-300 ease-in-out",
+                "cursor-pointer",
                 props.className
             )}
             role="a"
-            onClick={() => router.push(`../nft/${nft.token_data_id}`)}
+            onClick={() => router.push(`../nfts/${nft.token_data_id}`)}
                 
             {...props}
         >
             <Image
                 ref={ref}
-                src={inView ? metadata?.image : ""}
+                src={inView ? nft.cdn_asset_uris?.cdn_image_uri : ""}
                 alt={nft.token_name}
                 width={"100%"}
                 height={"auto"}

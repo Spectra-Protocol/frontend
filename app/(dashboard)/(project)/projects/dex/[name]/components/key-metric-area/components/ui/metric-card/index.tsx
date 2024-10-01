@@ -1,6 +1,7 @@
 import clsx from "clsx";
 
 interface MetricCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    title?: string;
     description?: string;
     classNames?: {
         wrapper?: string;
@@ -15,7 +16,7 @@ export function MetricCard({ ...props }: MetricCardProps) {
             )}
         >
             <div className="w-fit h-fit">
-                {props.name ? <h6 className="text-lg text-foreground-900 font-semibold">{props.name}</h6> : null}
+                {props.title ? <h6 className="text-lg text-foreground-900 font-semibold">{props.title}</h6> : null}
                 <p className="text-sm text-foreground-500">{props.description}</p>
             </div>
             <div
