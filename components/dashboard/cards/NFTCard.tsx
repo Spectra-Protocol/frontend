@@ -2,6 +2,7 @@ import { formatTime, getMetadata } from "@/lib";
 import { Token } from "@/types";
 import { Image } from "@nextui-org/react";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 import numeral from "numeral";
 import React from "react";
 import { useInView } from "react-intersection-observer";
@@ -11,6 +12,8 @@ interface NFTCardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function NFTCard(props: NFTCardProps) {
+    const router = useRouter();
+
     const { nft } = props;
     const [metadata, setMetadata] = React.useState<any>(null);
     const fetchMetadata = React.useCallback(async () => {
@@ -39,6 +42,9 @@ export function NFTCard(props: NFTCardProps) {
                 "hover:scale-[1.02] transition-transform duration-300 ease-in-out",
                 props.className
             )}
+            role="a"
+            onClick={() => router.push(`../nft/${nft.token_data_id}`)}
+                
             {...props}
         >
             <Image

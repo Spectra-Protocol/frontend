@@ -5,9 +5,9 @@ import { USING_MOCK } from "@/config";
 import { getAccount } from "@/fetch-functions/profile";
 import { notFound } from "next/navigation";
 import TransactionArea from "../../components/TransactionsArea";
+import ProfileHeader from "../../components/Profile";
+import PortfolioArea from "../../components/PortfolioArea";
 
-const ProfileHeader = dynamic(() => import("../../components/Profile"), { ssr: false });
-const PortfolioArea = dynamic(() => import("../../components/PortfolioArea"), { ssr: false });
 
 const getProfile = async (address: string) => {
     if (USING_MOCK) {
@@ -39,7 +39,7 @@ export default async function Page({ params: { address } }: PageProps) {
 
     return (
         <Providers profile={profiler}>
-            <div className="w-full flex flex-col gap-8">
+            <div className="w-full h-full flex flex-col gap-6 overflow-y-auto">
                 <ProfileHeader />
                 <PortfolioArea />
                 <TransactionArea />

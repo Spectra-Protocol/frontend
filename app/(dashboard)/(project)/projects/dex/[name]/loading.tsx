@@ -4,7 +4,7 @@ import { LoadingTransactionArea } from "./components/transactions-area";
 
 export default function Loading() {
     return (
-        <div className="w-full flex flex-col gap-8">
+        <div className="w-full flex flex-col gap-6">
             <LoadingProfileHeader />
             <div className="flex flex-row gap-4 w-full">
                 <div className="flex-grow-[3] h-full">

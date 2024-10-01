@@ -13,7 +13,7 @@ import { getMetadata } from "@/lib";
 
 export function LoadingProfileHeader() {
     return (
-        <header className="w-full flex flex-col md:flex-row gap-8 my-4">
+        <header className="w-full flex flex-col md:flex-row gap-6 my-4">
             <Skeleton className="h-24 flex-grow-[2] rounded-3xl" />
             <Skeleton className="h-24  flex-grow-[1] rounded-3xl" />
         </header>
@@ -54,7 +54,7 @@ export default function ProfileHeader() {
         }
     ]
     return (
-        <header className="w-full flex flex-col lg:flex-row gap-8 my-4">
+        <header className="w-full flex flex-col lg:flex-row gap-6 my-4">
             <Profile
                 name={collection.collection_name}
                 avatar={metadata?.image}

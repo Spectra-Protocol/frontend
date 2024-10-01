@@ -2,8 +2,8 @@ import { siteConfig } from "@/config/site";
 import { Metadata } from "next";
 
 import { Providers } from "./providers";
-import BottomNavbar from "./components/bottom-navbar/bottom-navbar";
-import Sidebar from "./components/sidebar/sidebar";
+import BottomNavbar from "./components/bottom-navbar";
+import Sidebar from "./components/sidebar";
 
 
 interface LayoutProps {
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
 export default function DashboardLayout({ children }: LayoutProps) {
     return (
         <Providers>
-            <div className="max-h-screen w-screen h-screen flex flex-col md:flex-row p-4 lg:overflow-hidden">
+            <div className="max-h-screen w-screen h-screen flex flex-col md:flex-row p-4 gap-6 lg:overflow-hidden">
                 <Sidebar className="hidden md:flex" />
-                <main className="flex-1 w-full pb-32">{children}</main>
+                <main className="flex-1 w-full pb-32 lg:py-4">{children}</main>
                 <div className="md:hidden overflow-visible z-10">
                     <BottomNavbar />
                 </div>

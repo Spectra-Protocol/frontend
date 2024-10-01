@@ -5,27 +5,27 @@ export async function getCollection(id: string) {
     try {
         if (!id) throw new Error('Invalid collection id')
         const query = `
-        query MyQuery($id: String = "") {
-            current_collections_v2(where: {collection_id: {_eq: $id}}) {
-                collection_properties
-                max_supply
-                mutable_description
-                mutable_uri
-                table_handle_v1
-                total_minted_v2
-                description
-                current_supply
-                creator_address
-                collection_name
-                collection_id,
-                uri
-                cdn_asset_uris {
-                    cdn_image_uri
-                    asset_uri
-                } 
-                
+            query MyQuery($id: String = "") {
+                current_collections_v2(where: {collection_id: {_eq: $id}}) {
+                    collection_properties
+                    max_supply
+                    mutable_description
+                    mutable_uri
+                    table_handle_v1
+                    total_minted_v2
+                    description
+                    current_supply
+                    creator_address
+                    collection_name
+                    collection_id,
+                    uri
+                    cdn_asset_uris {
+                        cdn_image_uri
+                        asset_uri
+                    } 
+                    
+                }
             }
-        }
             `
         const res = await aptosClient().queryIndexer<{
             current_collections_v2: Collection[]
@@ -47,29 +47,32 @@ export async function getCollection(id: string) {
     }
 }
 
-export async function getCollections(limit: number = 10, offset: number = 0) {
+export async function getCollections(limit: number = 10, offset: number = 0, keyword: string) {
     try {
         const query = `
-        query MyQuery($limit: Int = 10, $offset: Int = 10) {
-            current_collections_v2(limit: $limit, offset: $offset) {
-                collection_properties
-                max_supply
-                mutable_description
-                mutable_uri
-                table_handle_v1
-                total_minted_v2
-                description
-                current_supply
-                creator_address
-                collection_name
-                collection_id,
-                uri
-                cdn_asset_uris {
-                    cdn_image_uri
-                    asset_uri
-                }               
+            query MyQuery($limit: Int = 10, $offset: Int = 10, $keyword: String = "") {
+                current_collections_v2(
+                limit: $limit, offset: $offset
+                where: {collection_name: {_ilike: $keyword}}
+                ) {
+                    collection_properties
+                    max_supply
+                    mutable_description
+                    mutable_uri
+                    table_handle_v1
+                    total_minted_v2
+                    description
+                    current_supply
+                    creator_address
+                    collection_name
+                    collection_id
+                    uri
+                    cdn_asset_uris {
+                        cdn_image_uri
+                        asset_uri
+                    }               
+                }
             }
-        }
             `
         const res = await aptosClient().queryIndexer<{
             current_collections_v2: Collection[]
@@ -78,7 +81,8 @@ export async function getCollections(limit: number = 10, offset: number = 0) {
                 query,
                 variables: {
                     limit,
-                    offset
+                    offset,
+                    keyword: `%${keyword}%`
                 }
             }
         })
@@ -136,4 +140,8 @@ export async function getCollectionActivities(collectionId: string, limit: numbe
         console.error(error)
         throw new Error('Error fetching token activities')
     }
+}
+
+export async function getCollectionsOnSui() {
+
 }

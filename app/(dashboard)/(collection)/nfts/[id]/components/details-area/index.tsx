@@ -30,7 +30,7 @@ export function TraitsArea() {
     return (
         <div>
             <Area>
-                <AreaHeader title="Traits" icon={<LabelIcon size={16} />} />
+                <AreaHeader name="Traits" icon={<LabelIcon size={16} />} />
                 <AreaMain className="flex flex-row gap-4 flex-wrap">
                     {traits && traits.map((trait: any, index: any) => (
                         <TraitCard key={index} keyName={trait.trait_type} value={trait.value} />

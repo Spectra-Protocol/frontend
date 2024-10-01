@@ -2,7 +2,7 @@
 
 import { Chip } from "@nextui-org/react";
 import { Tag } from "./type";
-import { AnonymousIcon, BitcoinGraphIcon, Building06Icon } from "hugeicons-react";
+import { AiImageIcon, AnonymousIcon, BitcoinGraphIcon, Building06Icon, Cards01Icon } from "hugeicons-react";
 import { GiWhaleTail } from "react-icons/gi";
 
 
@@ -26,19 +26,37 @@ const getTagStyle = (tag: Tag): TagStyle | null => {
             return {
                 color: "#0A0A0A",
                 backgroundColor: "#0C7DFF",
-                icon: <GiWhaleTail color="0057BC" size={16} />
+                icon: <GiWhaleTail color="#0057BC" size={16} />
             };
         case ProfilerTagType.Fund.toString():
             return {
                 color: "#0E793C",
                 backgroundColor: "#17C964",
-                icon: <Building06Icon color="18974F" size={16} />
+                icon: <Building06Icon color="#18974F" size={16} />
             };
         case ProfilerTagType.Anonymous.toString():
             return {
                 color: "#F4F4F5",
                 backgroundColor: "#18181B",
-                icon: <AnonymousIcon color="A4A4A4" size={16} />
+                icon: <AnonymousIcon color="#A4A4A4" size={16} />
+            };
+        case ProfilerTagType.Dex.toString():
+            return {
+                color: "#F4F4F5",
+                backgroundColor: "#18181B",
+                icon: <BitcoinGraphIcon color="#F5A524" size={16} />
+            };
+        case ProfilerTagType.NFT.toString():
+            return {
+                color: "#F4F4F5",
+                backgroundColor: "#18181B",
+                icon: <AiImageIcon color="#F5A524" size={16} />
+            };
+        case ProfilerTagType.Collection.toString():
+            return {
+                color: "#F4F4F5",
+                backgroundColor: "#18181B",
+                icon: <Cards01Icon color="#87E91D" size={16} />
             };
         default:
             return null;
@@ -57,7 +75,7 @@ export default function TagCard({ tag }: TagCardProps) {
             className={clsx(
                 "capitalize",
                 "shadow-[inset_0px_-2px_1px_0px_rgba(0,0,0,0.1),0px_2px_2px_0px_rgba(0,0,0,0.1)]",
-                "bg-foreground-50 text-foreground-800",
+                "bg-foreground-100 text-foreground-800",
                 "p-2 h-fit rounded-xl"
             )}
             classNames={{

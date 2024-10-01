@@ -20,7 +20,7 @@ export function DetailCard(props: DetailCardProps) {
 
     return (
         <div className={clsx(
-            "w-fit h-fit py-3 px-4 rounded-[16px] bg-foreground-50 shadow flex flex-row gap-2",
+            "w-fit h-fit py-3 px-4 rounded-[16px] bg-foreground-100 shadow flex flex-row gap-2",
             props.classNames?.wrapper
         )}>
             <div className="w-fit flex flex-col">

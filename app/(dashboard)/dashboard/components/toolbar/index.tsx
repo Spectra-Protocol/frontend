@@ -10,9 +10,9 @@ interface ToolbarProps extends React.HTMLAttributes<HTMLElement> {
 
 export default function Toolbar(props: ToolbarProps) {
     return (
-       <div className='w-full flex flex-col lg:flex-row items-start justify-between gap-8'>
-            <TabsEngine />
+       <div className='w-full flex flex-col items-start gap-4 overflow-y-auto'>
             <SearchEngine />
+            <TabsEngine />
        </div>
     )
 }

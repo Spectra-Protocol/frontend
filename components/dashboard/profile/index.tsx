@@ -45,7 +45,7 @@ export const Profile: React.FC<ProfileProps> = (props) => {
                         <Chip
                             radius="sm"
                             className={clsx(
-                                "bg-foreground-50 text-foreground-500 font-medium shadow-sm",
+                                "bg-foreground-100 text-foreground-500 font-medium shadow-sm",
                                 "hover:scale-110 transition-transform cursor-pointer",
                                 "hover:text-foreground-800"
                             )}

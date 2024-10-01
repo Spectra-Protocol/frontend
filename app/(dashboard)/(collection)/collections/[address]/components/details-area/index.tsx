@@ -30,10 +30,10 @@ export default function DetailsArea() {
     
     return (
         <Area>
-            <AreaHeader title="Details" />
+            <AreaHeader name="Details" />
             <AreaMain>
                 <MetricCard
-                    title="Description"
+                    name="Description"
                     classNames={{
                         wrapper: "p-6 rounded-3xl bg-foreground-100 w-full"
                     }}

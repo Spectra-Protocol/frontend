@@ -11,7 +11,7 @@ export default function HeroSection() {
             id="hero"
             className="w-full flex flex-row items-center justify-between h-full"
         >
-            <div className="flex flex-col gap-8 items-start justify-center sm:max-w-screen-sm h-full">
+            <div className="flex flex-col gap-6 items-start justify-center sm:max-w-screen-sm h-full">
                 <div>
                     <Chip color="default" variant="bordered">
                         <span className="text-primary font-semibold">Spectra</span> | On the Aptos Blockchain

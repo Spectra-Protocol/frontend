@@ -138,6 +138,7 @@ export default function TransactionsTable() {
                 base: "max-h-[520px] overflow-scroll bg-transparent text-foreground-900",
                 table: "min-h-[400px]",
                 wrapper: "w-full bg-foreground-100",
+                tbody: "scrollbar"
             }}
             onSortChange={(sortDescriptor) => list.sort(sortDescriptor)}
             sortDescriptor={list.sortDescriptor}

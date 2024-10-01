@@ -42,7 +42,7 @@ function Time() {
 } 
 export default function Header() {
     return(
-        <header className="w-full flex flex-row gap-8 items-center justify-between">
+        <header className="w-full flex flex-row gap-6 items-center justify-between">
             <div className="flex flex-col items-start">
                 <h1 className="text-base text-foreground ">Welcom to Spectra</h1>
                 <p className="text-2xl font-semibold text-primary">Dashboard</p>

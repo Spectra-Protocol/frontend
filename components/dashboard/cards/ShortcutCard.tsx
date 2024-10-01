@@ -11,6 +11,15 @@ interface ShortcutCardProps extends React.HTMLAttributes<HTMLElement> {
     avatar?: string;
     tag?: ProfilerTagType;
 }
+interface SkeletonShortcutCardProps extends React.HTMLAttributes<HTMLElement> { }
+export function SkeletonShortcutCard(props: SkeletonShortcutCardProps) {
+    return (
+        <div className="w-full h-fit p-3 rounded-[14px] bg-foreground-100 flex flex-row gap-4 items-center cursor-pointer animate-pulse shadow" {...props}>
+            <div className="w-14 h-14 rounded-md bg-foreground-200"></div>
+            <div className="w-36 h-4 bg-foreground-200 rounded-md"></div>
+        </div>
+    )
+}
 export default function ShortcutCard(props: ShortcutCardProps) {
     const [color, setColor] = React.useState<string | null>(null);
 
@@ -26,13 +35,25 @@ export default function ShortcutCard(props: ShortcutCardProps) {
     }, [props.avatar])
 
     return (
-        <div className={clsx(
-            "w-fit h-fit p-3 rounded-[14px] bg-foreground-100 flex flex-row gap-4 items-center cursor-pointer",
-            "hover:scale-[1.02] transition-transform duration-300 ease-in-out",
-        )}>
+        <div
+            className={clsx(
+                "w-full h-fit p-3 rounded-[14px] bg-foreground-100 flex flex-row gap-4 items-center cursor-pointer",
+                "hover:scale-[1.02] transition-transform duration-300 ease-in-out",
+                "shadow"
+            )}
+            role="a"
+            {...props}
+        >
             <User
                 name={props.name}
-                description={props.description}
+                description={
+                    <TagCard
+                        tag={props.tag as ProfilerTagType}
+                    />
+                }
+                classNames={{
+                    name: "truncate"
+                }}
                 avatarProps={{
                     src: props.avatar,
                     style: {
@@ -42,9 +63,7 @@ export default function ShortcutCard(props: ShortcutCardProps) {
                     radius: "md",
                 }}
             />
-            <TagCard
-                tag={props.tag as ProfilerTagType}
-            />
+
         </div>
     )
 }

@@ -1,16 +1,22 @@
 "use client";
 
 import { FC } from "react";
-import { SwitchProps, useSwitch, Switch } from "@nextui-org/switch";
 import { useTheme } from "next-themes";
 import { useIsSSR } from "@react-aria/ssr";
 import { Moon01Icon, Sun01Icon } from "hugeicons-react";
 import dynamic from "next/dynamic";
+import { Button, ButtonProps } from "@nextui-org/react";
+import { twMerge } from "tailwind-merge";
 
 
-export interface ThemeSwitchProps {
-  className?: string;
-  classNames?: SwitchProps["classNames"];
+export interface ThemeSwitchProps extends ButtonProps {
+  classNames?: {
+    wrapper?: string;
+    header?: string;
+    main?: string;
+    avatar?: string;
+    title?: string;
+  };
 }
 
 const ThemeSwitch: FC<ThemeSwitchProps> = ({
@@ -24,23 +30,26 @@ const ThemeSwitch: FC<ThemeSwitchProps> = ({
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
 
-  const {
-  } = useSwitch({
-    isSelected: theme === "light" || isSSR,
-    "aria-label": `Switch to ${theme === "light" || isSSR ? "dark" : "light"} mode`,
-    onChange,
-  });
 
   return (
-    <Switch
-      defaultChecked={theme === "dark"}
-      isSelected={theme === "dark"}
-      color="primary"
-      thumbIcon={theme === "dark" ? <Moon01Icon size={20} /> : <Sun01Icon size={20} />}
-      onChange={onChange}
-      className={className}
-      classNames={classNames}
-    />
+    <Button
+      className={
+        twMerge(
+          "bg-foreground-100 text-foreground-900 lg:shadow-sm",
+          className
+        )
+      }
+      size="sm"
+      isIconOnly
+      onClick={onChange}
+      {...classNames}
+    >
+      {theme === "light" ? (
+        <Sun01Icon size={20} />
+      ) : (
+        <Moon01Icon size={20} />
+      )}
+    </Button>
   );
 };
 

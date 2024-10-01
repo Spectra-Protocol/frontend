@@ -7,11 +7,11 @@ import './toaster.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 const contextClass = {
-    success: "bg-gradient-to-r from-success/25 to-default/40",
-    error: "bg-gradient-to-r from-danger/25 to-default/40",
-    info: "bg-default-50",
-    warning: "bg-gradient-to-r from-warning/25 to-default/40",
-    default: "bg-gradient-to-r from-default/25 to-default/40",
+    success: "bg-forground-100 shadow-lg shadow-success",
+    error: "bg-foreground-100 shadow-lg shadow-danger",
+    info: "bg-forground-100 shadow-lg",
+    warning: "bg-foreground-100 shadow-lg shadow-warning",
+    default: "bg-foreground-100 shadow-lg",
     dark: "bg-gray-600",
 };
 
@@ -38,7 +38,7 @@ export function Toaster() {
             toastClassName={(context) =>
                 contextClass[context?.type || "default"] +
                 clsx(
-                    "relative flex p-4 rounded-2xl justify-between items-center overflow-hidden cursor-pointer",
+                    "relative flex p-4 rounded-2xl justify-between items-center overflow-hidden cursor-pointer text-foreground-700",
                     "backdrop-blur-lg"
                 )
             }

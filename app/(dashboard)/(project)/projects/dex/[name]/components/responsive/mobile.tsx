@@ -8,8 +8,8 @@ const KeyMetricsArea = dynamic(() => import("../../components/key-metric-area"),
 
 export default function Mobile() {
     return (
-        <div className="flex flex-col">
-            <Tabs variant="light" fullWidth>
+        <div className="lg:hidden flex flex-col">
+            <Tabs variant="light">
                 <Tab key={"transactions"} title="Transactions">
                     <TransactionArea />
                 </Tab>

@@ -8,7 +8,7 @@ export default function PerformanceMetric() {
 
     return (
         <MetricCard
-            title="Performance"
+            name="Performance"
             description="Historical price performance metrics"
             classNames={{
                 wrapper: "p-6 rounded-3xl bg-foreground-100"
@@ -16,14 +16,14 @@ export default function PerformanceMetric() {
             className="grid grid-cols-2 grid-rows-2 justify-between items-start gap-6"
         >
             <MetricField01
-                title="ATH"
+                name="ATH"
                 description="All Time High"
                 useTooltip
                 icon={<ArrowUpRight01Icon size={16} className="text-success" />}
                 value={project.ath}
             />
             <MetricField01
-                title="ATH"
+                name="ATH"
                 description="All Time High"
                 useTooltip
                 icon={<ArrowDownRight01Icon size={16} className="text-warning" />}
@@ -31,14 +31,14 @@ export default function PerformanceMetric() {
                 className="items-end"
             />
             <MetricField01
-                title="ARPU"
+                name="ARPU"
                 useTooltip
                 description="Average Revenue per User"
                 icon={<BitcoinWithdrawIcon size={16} />}
                 value={project.arpu}
             />
             <MetricField01
-                title="AFPU"
+                name="AFPU"
                 useTooltip
                 description="Average Fee per User"
                 icon={<Wallet02Icon size={16} />}

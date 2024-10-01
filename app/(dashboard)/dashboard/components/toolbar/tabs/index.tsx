@@ -26,6 +26,7 @@ export default function TabsEngine(props: ToolbarProps) {
         },
         [searchParams]
     )
+
     return (
         <div className="w-full">
             <Tabs
@@ -53,7 +54,6 @@ export default function TabsEngine(props: ToolbarProps) {
                                 </p>
                             </span>
                         }
-                        
                     >
                         {item.component}
                     </Tab>

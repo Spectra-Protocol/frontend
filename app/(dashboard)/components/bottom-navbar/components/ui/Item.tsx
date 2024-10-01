@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
     icon?: React.ReactNode;
-    title?: string;
+    name?: string;
     description?: string;
     value?: any;
 }
@@ -19,7 +19,7 @@ export default function Item({ ...props }: ItemProps) {
                 {props.icon}
             </div>
             <div className="flex flex-col gap-0">
-                <h6 className="text-sm text-foreground-900 font-medium">{props.title}</h6>
+                <h6 className="text-sm text-foreground-900 font-medium">{props.name}</h6>
                 <p className="text-xs text-foreground-900">{props.description}</p>
             </div>
             <p className="text-lg text-foreground-900 font-semibold">{props.value}</p>

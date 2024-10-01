@@ -27,12 +27,12 @@ export default function ProfileAccordition() {
     if (!connected) return <WalletSelector />
 
     return (
-        <div className='flex flex-row gap-2 items-center w-full h-fit rounded-[16px] px-4 py-3 bg-foreground-50'>
+        <div className='flex flex-row gap-2 items-center w-full h-fit py-3'>
             <Avatar
                 src={wallet?.icon}
                 size="lg"
                 alt="Profile"
-                radius='full'
+                radius='sm'
                 classNames={{
                     base: 'h-full aspect-square',
                 }}
@@ -41,15 +41,6 @@ export default function ProfileAccordition() {
                 <h4 className='text-sm font-semibold w-full break-words text-foreground-900'>
                     {truncateAddress(account?.address)}
                 </h4>
-                <Chip
-                    startContent={<Coins01Icon size={16} />}
-                    radius='full'
-                    className='text-default-500'
-                    variant='light'
-                    size='sm'
-                >
-                    {account?.ansName || '-'}
-                </Chip>
             </div>
             <div>
                 <Button

@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
 import { mockToken } from "@/mock";
 import ImageArea from "./components/image-area";
@@ -16,32 +17,32 @@ interface PageProps {
     };
 }
 
-// const getToken = async (id: string): Promise<Token> => {
-//     if (USING_MOCK) {
-//         return mockToken;
-//     }
+const getToken = async (id: string): Promise<Token> => {
+    if (USING_MOCK) {
+        
+    }
 
-//     try {
-//         const nft = await fetchToken(id);
-//         return nft;
-//     } catch (error) {
-//         throw error;
-//     }
-// };
+    try {
+        const nft = await fetchToken(id);
+        return nft;
+    } catch (error) {
+        throw error;
+    }
+};
 
-// export async function generateMetadata({ params }: PageProps) {
-//     const { id } = params;
-//     let nft = null;
+export async function generateMetadata({ params }: PageProps) {
+    const { id } = params;
+    let nft = null;
 
-//     try {
-//         nft = await getToken(id);
-//         return {
-//             title: nft.name.replace(/\b\w/g, l => l.toUpperCase()),
-//         } satisfies Metadata;
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+    try {
+        nft = await getToken(id);
+        return {
+            title: nft.token_name,
+        } satisfies Metadata;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 export default async function Page(props: PageProps) {
     const { id } = props.params;
@@ -59,14 +60,14 @@ export default async function Page(props: PageProps) {
 
     return (
         <Providers nft={nft}>
-            <div className="w-full h-full grid grid-col-1 lg:grid-cols-3 row-auto gap-8 overflow-x-visible">
-                <div className="w-full h-full col-span-2 flex flex-col gap-8">
+            <div className="w-full h-full grid grid-col-1 lg:grid-cols-3 row-auto gap-6 overflow-y-auto">
+                <div className="w-full h-full col-span-2 flex flex-col gap-6">
                     <ImageArea />
                     <Profile />
                     <DetailsArea />
+                    <TransactionArea />
                 </div>
                 <div className="w-full h-full col-span-1">
-                    <TransactionArea />
                 </div>
             </div>
         </Providers>

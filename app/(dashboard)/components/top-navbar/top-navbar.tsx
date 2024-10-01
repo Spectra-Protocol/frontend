@@ -31,7 +31,7 @@ export default function TopNavbar({ className }: TopNavbarProps) {
                 <ThemeSwitch />
             </div>
             <AreaWrapper>
-                <AreaHeader title='Wallet' subtitle={''} icon={undefined} />
+                <AreaHeader name='Wallet' subtitle={''} icon={undefined} />
                 <ProfileAccorditionCard />
             </AreaWrapper>
         </header>

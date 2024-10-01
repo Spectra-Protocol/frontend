@@ -53,7 +53,7 @@ export default function FinancialsMetric() {
 
     return(
         <MetricCard
-            title="Financials"
+            name="Financials"
             description="Revenue and expense metrics"
             classNames={{
                 wrapper: "p-6 rounded-3xl bg-foreground-100"
@@ -63,7 +63,7 @@ export default function FinancialsMetric() {
             {itemsToShow.map((item, index) => (
                 <MetricField02
                     key={index}
-                    title={item.title}
+                    name={item.title}
                     description={item.description}
                     value={item.value}
                 />

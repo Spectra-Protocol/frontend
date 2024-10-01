@@ -6,32 +6,49 @@ import { useRouter } from "next/navigation";
 import React, { useRef } from "react";
 import { useInView } from "react-intersection-observer";
 
-import { getCollections } from "@/fetch-functions/collection";
-import { Collection, ProfilerTagType } from "@/types";
+import { Collection, ProfilerTagType, Project } from "@/types";
 import { Area, AreaHeader, AreaMain } from "@/app/(dashboard)/components/area";
 import ShortcutCard, { SkeletonShortcutCard } from "@/components/dashboard/cards/ShortcutCard";
 import { useSearchParam } from "@/components/dashboard/search/context";
+import { getProject } from "@/fetch-functions/project";
+import SkeletonContainer from "../components/SkeletonContainer";
+import { toast } from "react-toastify";
+import EmptyContent from "@/components/empty";
 
-interface CollectionsContainerProps extends React.HTMLAttributes<HTMLElement> {
+interface ProjectsContainerProps extends React.HTMLAttributes<HTMLElement> {
 }
 
-export default function CollectionsContainerArea(props: CollectionsContainerProps) {
+export default function ProjectsContainerArea(props: ProjectsContainerProps) {
     const router = useRouter();
     const { ref, inView } = useInView();
-    const {searchTerm} = useSearchParam(); 
+    const { searchTerm } = useSearchParam();
+
+    const [mockProject, setMockProject] = React.useState<Project | null>(null);
+
+    React.useEffect(() => {
+        const fetchMockProject = async () => {
+            try {
+                const project = await getProject("1");
+                setMockProject(project);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchMockProject();
+    }, []);
 
     const {
         data,
         isLoading,
         fetchNextPage,
         hasNextPage,
-        isFetchingNextPage
+        isFetchingNextPage,
+        error
     } = useInfiniteQuery({
         initialPageParam: 0,
-        queryKey: ["collections", searchTerm],
+        queryKey: ["projects", searchTerm],
         queryFn: async ({ pageParam = 0 }) => {
-            const collections = await getCollections(10, pageParam, searchTerm);
-            return collections;
+            return mockProject ? [mockProject] : [];
         },
         getNextPageParam: (lastPage, pages) => {
             if (lastPage.length === 10) {
@@ -48,9 +65,15 @@ export default function CollectionsContainerArea(props: CollectionsContainerProp
         }
     }, [inView, hasNextPage, fetchNextPage]);
 
+    React.useEffect(() => {
+        if (error) {
+            toast.error("Failed to fetch projects");
+        }
+    }, [error]);
+
     return (
         <Area>
-            <AreaHeader title="Collections" icon={<Cards02Icon size={24} />} />
+            <AreaHeader title="Projects" icon={<Cards02Icon size={24} />} />
             <AreaMain>
                 <ReponsiveGridContainer
                     className={clsx(
@@ -60,24 +83,22 @@ export default function CollectionsContainerArea(props: CollectionsContainerProp
                 >
                     {
                         isLoading ?
-                            Array.from({ length: 32 }).map((_, index) => (
-                                <SkeletonShortcutCard key={index} />
-                            )) :
+                            <SkeletonContainer />
+                            :
                             data?.pages.map((page, pageIndex) => (
-                                page.map((collection: Collection, index: any) => (
+                                page.map((project: Project, index: any) => (
                                     <ShortcutCard
                                         key={`${pageIndex}-${index}`}
-                                        name={collection.collection_name}
-                                        tag={ProfilerTagType.Collection}
-                                        avatar={collection.cdn_asset_uris?.cdn_image_uri}
-                                        onClick={() => router.push(`/collections/${collection.collection_id}`)}
+                                        name={project.name}
+                                        tag={project.category as ProfilerTagType}
+                                        avatar={project.avatar_url}
+                                        onClick={() => router.push(`/projects/${project.id}`)}
                                     />
                                 ))
                             ))
                     }
-                    {isFetchingNextPage && Array.from({ length: 32 }).map((_, index) => (
-                        <SkeletonShortcutCard key={`skeleton-${index}`} />
-                    ))}
+                    {data?.pages.length === 0 && <EmptyContent content="No projects found" />}
+                    {isFetchingNextPage && <SkeletonContainer />}
                     <div ref={ref} />
                 </ReponsiveGridContainer>
             </AreaMain>

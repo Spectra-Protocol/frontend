@@ -35,7 +35,7 @@ export default async function Page({ params: { id } }: PageProps) {
 
     return (
         <Providers project={project}>
-            <div className="w-full flex flex-col gap-8">
+            <div className="w-full flex flex-col gap-6">
                 <Profile />
                 <TransactionsArea />
                 <MetricChartArea />

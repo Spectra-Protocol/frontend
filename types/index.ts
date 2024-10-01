@@ -41,7 +41,10 @@ export interface Project extends BasicProjectResponse {
 export enum ProfilerTagType {
   Whale = "Whale",
   Fund = "Fund",
-  Anonymous = "Anonymous"
+  Anonymous = "Anonymous",
+  Collection = "Collection",
+  NFT = "NFT",
+  Dex = "Dex",
 }
 export type Portifolio = {
   id: string | number;

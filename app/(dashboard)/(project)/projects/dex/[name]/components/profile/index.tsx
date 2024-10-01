@@ -10,7 +10,7 @@ import { Skeleton } from "@nextui-org/react";
 
 export function LoadingProfileHeader() {
     return (
-        <header className="w-full flex flex-col md:flex-row gap-8 my-4">
+        <header className="w-full flex flex-col md:flex-row gap-6 my-4">
             <Skeleton className="h-24 flex-grow-[2] rounded-3xl" />
             <Skeleton className="h-24  flex-grow-[1] rounded-3xl" />
         </header>
@@ -21,7 +21,7 @@ export default function ProfileHeader() {
 
 
     return (
-        <header className="w-full flex flex-col lg:flex-row gap-8 my-4">
+        <header className="w-full flex flex-col lg:flex-row gap-6 my-4">
             <Profile
                 name={project.name}
                 avatar={project.avatar_url}
