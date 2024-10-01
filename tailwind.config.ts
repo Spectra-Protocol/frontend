@@ -28,7 +28,7 @@ const config: Config = {
       light: {
         extend: "light",
         colors:{
-          background: '#EAEEF3',
+          background: '#F0EFED',
           foreground: {
             "50" :"#FFFFFF",
             "100": "#F4F5F7",
