@@ -1,7 +1,7 @@
 "use client";
 
 import { Area, AreaHeader, AreaMain } from "@/app/(dashboard)/components/area";
-import { ReponsiveGridContainer } from "@/components/dashboard/ui/container";
+import { ReponsiveGridContainer } from "@/components/ui/container";
 import { useCollection } from "../../context";
 import { NFTCard } from "@/components/dashboard/cards/NFTCard";
 import { CollectionsBookmarkIcon } from "hugeicons-react";
