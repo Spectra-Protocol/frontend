@@ -1,8 +1,8 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Unexpexted | Decentralized Data",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Spectra",
+  description: "Collect, analyze and aggregate data",
   navItems: [
     {
       label: "About",
@@ -56,23 +56,4 @@ export const siteConfig = {
       href: "/logout",
     },
   ],
-  links: {
-    github: "https://github.com/nextui-org/nextui",
-    twitter: "https://twitter.com/getnextui",
-    docs: "https://nextui.org",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
-  },
-  dashboard: {
-    navItems: [
-      {
-        label: "Interface",
-        href: "/dashboard/interface",
-      },
-      {
-        label: "Notifications",
-        href: "/dashboard/notifications",
-      }
-    ],
-  },
 };

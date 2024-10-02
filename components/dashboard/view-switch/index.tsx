@@ -36,7 +36,7 @@ export default function ViewSwitch({ ...props }: ViewSwitchProps) {
                     "w-fit h-fit",
                 ),
                 tabContent: "group-data-[selected=true]:text-foreground-800",
-                cursor: "bg-foreground-100",
+                cursor: "bg-foreground-100 dark:bg-foreground-100",
                 tabList: "shadow-sm bg-foreground-200"
             }}
             {...props}

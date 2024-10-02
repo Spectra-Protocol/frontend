@@ -11,10 +11,7 @@ interface LayoutProps {
 }
 
 export const metadata: Metadata = {
-    title: {
-        default: 'Dashboard',
-        template: `%s - ${siteConfig.name}`,
-    },
+    title: "Dashboard",
     description: siteConfig.description,
     icons: {
         icon: "/favicon.ico",
