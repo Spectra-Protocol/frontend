@@ -94,7 +94,7 @@ export default function TransactionsTable() {
                     </Chip>
                 )
             case "token":
-                const convertedToken = cellValue as Token;
+                const convertedToken = cellValue;
 
                 return (
                     <Chip
@@ -179,7 +179,7 @@ export default function TransactionsTable() {
                 emptyContent="No data found"
             >
                 {(item: Transaction) => (
-                    <TableRow key={item.id} className="w-full">
+                    <TableRow key={item.timestamp} className="w-full">
                         {(columnKey) =>
                             <TableCell>
                                 {renderCell(item, columnKey)}

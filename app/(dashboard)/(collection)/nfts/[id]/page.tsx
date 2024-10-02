@@ -68,8 +68,7 @@ export default async function Page(props: PageProps) {
                     <DetailsArea />
                     <TransactionArea />
                 </LinearContainer>
-                <div className="w-full h-full col-span-1">
-                </div>
+                <div className="w-full h-full col-span-1" />
             </div>
         </Providers>
     )

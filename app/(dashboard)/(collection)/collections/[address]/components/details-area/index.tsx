@@ -33,7 +33,7 @@ export default function DetailsArea() {
             <AreaHeader title="Details" />
             <AreaMain>
                 <MetricCard
-                    name="Description"
+                    title="Description"
                     classNames={{
                         wrapper: "p-6 rounded-3xl bg-foreground-100 w-full"
                     }}

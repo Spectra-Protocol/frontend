@@ -83,6 +83,7 @@ export interface Token {
   token_properties: Record<string, unknown>;
   last_transaction_version: number;
   last_transaction_timestamp: Date;
+  description?: string;
 }
 export interface TokenActivity {
   transaction_version: number;

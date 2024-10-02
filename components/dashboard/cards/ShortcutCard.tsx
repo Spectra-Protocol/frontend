@@ -18,8 +18,8 @@ interface SkeletonShortcutCardProps extends React.HTMLAttributes<HTMLElement> { 
 export function SkeletonShortcutCard(props: SkeletonShortcutCardProps) {
     return (
         <div className="w-full h-fit p-3 rounded-[14px] bg-foreground-100 flex flex-row gap-4 items-center cursor-pointer animate-pulse shadow" {...props}>
-            <div className="w-14 h-14 rounded-md bg-foreground-200"></div>
-            <div className="w-36 h-4 bg-foreground-200 rounded-md"></div>
+            <div className="w-14 h-14 rounded-md bg-foreground-200" />
+            <div className="w-36 h-4 bg-foreground-200 rounded-md" />
         </div>
     )
 }
@@ -45,7 +45,7 @@ export default function ShortcutCard(props: ShortcutCardProps) {
                 "hover:scale-[1.02] transition-transform duration-300 ease-in-out",
                 view === "grid" && "bg-foreground-100 shadow",
             )}
-            role="a"
+            role="button"
             {...props}
         >
             <User

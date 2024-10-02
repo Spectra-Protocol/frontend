@@ -53,7 +53,7 @@ export function NFTCard(props: NFTCardProps) {
                 "cursor-pointer",
                 props.className
             )}
-            role="a"
+            role="button"
             onClick={() => router.push(`../nfts/${nft.token_data_id}`)}
                 
             {...props}
