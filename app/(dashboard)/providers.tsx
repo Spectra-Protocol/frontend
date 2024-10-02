@@ -5,18 +5,21 @@ import {
 } from '@tanstack/react-query'
 import { WalletProvider } from "./components/wallet/WalletProvider";
 import { SearchParamProvider } from '@/components/dashboard/search/context';
+import { Suspense } from 'react';
 
 
 const queryClient = new QueryClient()
 
 export function Providers({ children }: React.PropsWithChildren) {
   return (
-    <WalletProvider>
-      <QueryClientProvider client={queryClient}>
-        <SearchParamProvider>
-          {children}
-        </SearchParamProvider>
-      </QueryClientProvider>
-    </WalletProvider>
+    <Suspense fallback={<div>Loading...</div>}>
+      <WalletProvider>
+        <QueryClientProvider client={queryClient}>
+          <SearchParamProvider>
+            {children}
+          </SearchParamProvider>
+        </QueryClientProvider>
+      </WalletProvider>
+    </Suspense>
   );
 }

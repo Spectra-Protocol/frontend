@@ -4,6 +4,7 @@ import { notFound, useRouter } from "next/navigation";
 
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import EmptyContent from "@/components/empty";
+import { Suspense } from "react";
 
 export default function Page() {
     const { account, } = useWallet();
@@ -13,10 +14,12 @@ export default function Page() {
         router.push("../profiles/" + account.address);
     }
     return (
-        <div className="h-screen w-full">
-            <EmptyContent
-                description="Please connect to view profile!"
-            />
-        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+            <div className="h-screen w-full">
+                <EmptyContent
+                    description="Please connect to view profile!"
+                />
+            </div>
+        </Suspense>
     )
 };
