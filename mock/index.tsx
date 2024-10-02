@@ -202,12 +202,12 @@ export const mockProfiler = {
             symbol: faker.finance.currencySymbol(),
             address: faker.finance.ethereumAddress(),
             image: faker.image.url(),
-        } satisfies Token,
+        } satisfies any,
         price: faker.finance.amount(),
         holding: faker.finance.amount(),
         value: faker.finance.amount(),
-    } satisfies Portifolio)),
-} satisfies Profiler;
+    } satisfies any)),
+} satisfies any;
 
 export const generateMockToken = () => ({
     id: faker.string.uuid(),
@@ -235,8 +235,8 @@ export const generateMockToken = () => ({
             id: faker.string.uuid(),
             name: faker.finance.currencyName(),
         },
-    }) satisfies TokenEventTransaction),
-}) satisfies Token;
+    }) satisfies any),
+}) satisfies any;
 export const mockTokens = Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, generateMockToken);
 export const mockToken = generateMockToken();
 

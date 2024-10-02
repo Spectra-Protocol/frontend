@@ -1,11 +1,15 @@
 import dynamic from "next/dynamic";
+import Showcase3d from "./components/showcase-3d";
+import HeroSection from "./components/hero_section/HeroSection";
+import PosterSection from "./components/poster-section";
 
-const HeroSection = dynamic(() => import("./components/hero_section/HeroSection"));
 
 export default function Home() {
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <HeroSection />
+      <Showcase3d />
+      <PosterSection />
     </div>
   );
 }
