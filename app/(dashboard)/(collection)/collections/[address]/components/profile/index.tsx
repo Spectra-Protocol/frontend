@@ -14,8 +14,8 @@ import { getMetadata } from "@/lib";
 export function LoadingProfileHeader() {
     return (
         <header className="w-full flex flex-col md:flex-row gap-6 my-4">
-            <div className="h-24 flex-grow-[2] rounded-2xl bg-primary-100"></div>
-            <div className="h-24  flex-grow-[1] rounded-2xl bg-primary-100"></div>
+            <div className="h-24 flex-grow-[2] rounded-2xl bg-primary-100" />
+            <div className="h-24  flex-grow-[1] rounded-2xl bg-primary-100" />
         </header>
     )
 }
