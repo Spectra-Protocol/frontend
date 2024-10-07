@@ -25,18 +25,6 @@ export function SkeletonShortcutCard(props: SkeletonShortcutCardProps) {
 }
 export default function ShortcutCard(props: ShortcutCardProps) {
     const { view } = useViewSwitch();
-    const [color, setColor] = React.useState<string | null>(null);
-
-    React.useEffect(() => {
-        getPopularColor(props.avatar as string)
-            .then((color) => {
-                // decrease the opacity of the color
-                color = color.replace("rgb", "rgba").replace(")", ", 0.5)");
-                setColor(color);
-            }, (error) => {
-                console.error("Failed to get popular color", error);
-            })
-    }, [props.avatar])
 
     return (
         <div
@@ -49,20 +37,20 @@ export default function ShortcutCard(props: ShortcutCardProps) {
             {...props}
         >
             <User
-                name={props.name}
+                name={
+                    <p className="truncate max-w-[20ch] font-semibold">
+                        {props.name}
+                    </p>
+                }
                 description={
                     <TagCard
                         tag={props.tag as ProfilerTagType}
                     />
                 }
-                classNames={{
-                    name: "truncate"
-                }}
                 avatarProps={{
+                    showFallback: true,
                     src: props.avatar,
-                    style: {
-                        boxShadow: `0 0 16px -2px ${color}`,
-                    },
+                    className: "bg-transparent",
                     size: "lg",
                     radius: "md",
                 }}

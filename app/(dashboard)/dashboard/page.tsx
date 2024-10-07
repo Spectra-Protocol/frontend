@@ -8,9 +8,7 @@ import Providers from './providers';
 export default function Home() {
     return (
         <Providers>
-            <LinearContainer direction='column' space="lg" className='w-full h-full overflow-y-scroll no-scrollbar'>
-                <Header />
-                <Toolbar />
+            <LinearContainer direction='column' space="lg" className='w-full h-full no-scrollbar'>
                 <TabsEngine />
             </LinearContainer>
         </Providers>

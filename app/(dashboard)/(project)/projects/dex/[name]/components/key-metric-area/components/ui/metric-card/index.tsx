@@ -1,7 +1,6 @@
 import clsx from "clsx";
 
 interface MetricCardProps extends React.HTMLAttributes<HTMLDivElement> {
-    title?: string;
     description?: string;
     classNames?: {
         wrapper?: string;

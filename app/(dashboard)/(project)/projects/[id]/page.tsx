@@ -1,15 +1,16 @@
-import dynamic from "next/dynamic";
 import Providers from "./providers";
 import React from "react";
 import { getProject } from "@/fetch-functions/project";
 import { notFound, redirect } from "next/navigation";
-import { USING_MOCK } from "@/config";
-import { mockProject } from "@/mock";
-import { Project } from "@/types";
 
-const Profile = dynamic(() => import("./components/Profile"), { ssr: false });
-const TransactionsArea = dynamic(() => import("./components/TransactionsArea"), { ssr: false });
-const MetricChartArea = dynamic(() => import("./components/MetricChartArea"), { ssr: false });
+import { mockDexProjects, mockProject } from "@/mock";
+import { Project } from "@/types";
+import MetricChartArea from "./components/MetricChartArea";
+import Profile from "./components/Profile";
+import TransactionsArea from "./components/TransactionsArea";
+
+
+const USING_MOCK = true;
 
 interface PageProps {
     params: {
@@ -21,9 +22,12 @@ export default async function Page({ params: { id } }: PageProps) {
     let project: Project | null = null;
 
     try {
-        false ? project = mockProject : project = await getProject(id);
+        project = await getProject(id);
 
     } catch (error) {
+        if (USING_MOCK) {
+            project = mockDexProjects[id as any] || null;
+        }
         console.error(error);
     } finally {
         if (!project) return notFound();

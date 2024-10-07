@@ -1,16 +1,16 @@
 'use client';
 
-import { Input } from "@nextui-org/input";
 import { Listbox, ListboxItem } from "@nextui-org/listbox";
-import dynamic from "next/dynamic";
 import clsx from "clsx";
 import ThemeSwitch from "@/components/theme-switch";
 import { usePathname } from "next/navigation";
 import { Cards01Icon, CursorInfo02Icon, DashboardCircleIcon, KeyboardIcon, UserCircleIcon } from "hugeicons-react";
 import Tips from "./Tips";
 
-const ProfileAccordition = dynamic(() => import("./ProfileAccordition"));
-const CopyRight = dynamic(() => import("./Copyright"));
+import CopyRight from "./Copyright";
+import ProfileAccordition from "./ProfileAccordition";
+
+
 
 interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
 }
@@ -42,7 +42,7 @@ export default function Sidebar({ className, ...props }: SidebarProps) {
 
     return (
         <aside className={clsx(
-            "relative flex h-full max-w-64 flex-1 flex-col gap-6 items-center",
+            "relative flex h-full w-64 flex-1 flex-col gap-6 items-center",
             "ftransition-transform -translate-x-full sm:translate-x-0",
             className
 

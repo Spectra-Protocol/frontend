@@ -5,6 +5,7 @@ import { NextUIProvider } from "@nextui-org/system";
 import { useRouter } from "next/navigation";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
+import { ViewSwitchProvider } from "@/components/dashboard/view-switch";
 
 
 export interface ProvidersProps {
@@ -16,8 +17,12 @@ export function Providers({ children, themeProps }: ProvidersProps) {
   const router = useRouter();
 
   return (
-      <NextUIProvider navigate={router.push}>
-        <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
-      </NextUIProvider>
+    <NextUIProvider navigate={router.push}>
+      <NextThemesProvider {...themeProps}>
+        <ViewSwitchProvider>
+          {children}
+        </ViewSwitchProvider>
+      </NextThemesProvider>
+    </NextUIProvider>
   );
 }

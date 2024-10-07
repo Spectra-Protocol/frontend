@@ -74,7 +74,7 @@ export default function TagCard({ tag }: TagCardProps) {
             radius="sm"
             className={clsx(
                 "capitalize",
-                "shadow-[inset_0px_-2px_1px_0px_rgba(0,0,0,0.1),0px_2px_2px_0px_rgba(0,0,0,0.1)]",
+                "shadow-[0px_2px_2px_0px_rgba(0,0,0,0.1)]",
                 "bg-foreground-100 text-foreground-800",
                 "p-2 h-fit rounded-xl"
             )}

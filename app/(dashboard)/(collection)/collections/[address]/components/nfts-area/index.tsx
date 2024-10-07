@@ -10,17 +10,20 @@ import { Token } from "@/types";
 import React from "react";
 import { getTokensByCollection } from "@/fetch-functions/token";
 import { Spinner } from "@nextui-org/react";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import loading from "@/app/(landing)/loading";
 import { useSearchParam } from "@/components/dashboard/search/context";
-import clsx from "clsx";
 import { useViewSwitch } from "@/components/dashboard/view-switch";
+import { getCollections } from "@/fetch-functions/collection";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
+import clsx from "clsx";
 
 export default function NFTsArea() {
     const collection = useCollection();
+
+    const { ref, inView } = useInView();
     const { searchTerm } = useSearchParam();
     const { view } = useViewSwitch();
-    const { ref, inView } = useInView();
 
     const {
         data,
@@ -30,10 +33,10 @@ export default function NFTsArea() {
         isFetchingNextPage
     } = useInfiniteQuery({
         initialPageParam: 0,
-        queryKey: ["nfts", searchTerm],
+        queryKey: ["collections", searchTerm],
         queryFn: async ({ pageParam = 0 }) => {
-            const nfts = await getTokensByCollection(collection.collection_id, 10, pageParam, searchTerm);
-            return nfts;
+            const collections = await getTokensByCollection(collection.collection_id, 10, pageParam, searchTerm);
+            return collections;
         },
         getNextPageParam: (lastPage, pages) => {
             if (lastPage.length === 10) {
@@ -52,41 +55,43 @@ export default function NFTsArea() {
 
     return (
         <Area classNames={{
-            wrapper: "h-full"
+            wrapper: "h-full w-full"
         }}>
             <AreaHeader title="All NFTs" icon={<CollectionsBookmarkIcon />} />
             <AreaMain>
                 <DynamicContainer
                     className={clsx(
-                        "w-full overflow-y-auto no-scrollbar",
+                        "w-full h-full overflow-y-auto no-scrollbar",
                     )}
+                    space="md"
                     variant={view as any}
                 >
                     {
                         isLoading ?
-                            Array.from({ length: 32 }).map((_, index) => (
-                                <SkeletonNFTCard key={index} />
-                            )) :
-                            data?.pages.map((page, pageIndex) => (
-                                page.map((nft: Token, index: any) => (
-                                    <NFTCard
-                                        key={`${pageIndex}-${index}`}
-                                        nft={nft}
-                                    />
-                                ))
-                            ))
-                    }
-                    {isFetchingNextPage && Array.from({ length: 32 }).map((_, index) => (
-                        <SkeletonNFTCard key={`skeleton-${index}`} />
-                    ))}
-                    <div ref={ref} />
-                    {
-                        !isLoading && data?.pages.length === 0 && (
-                            <EmptyContent
-                                title="No NFTs found"
-                                description="No NFTs found for the current search term."
-                            />
-                        )
+                            <div className="h-full w-full flex items-center justify-center">
+                                <Spinner color="primary" />
+                            </div>
+                            :
+                            <>
+                                {
+                                    isLoading ?
+                                        Array.from({ length: 32 }).map((_, index) => (
+                                            <SkeletonNFTCard key={`skeleton-${index}`} />
+                                        )) :
+                                        data?.pages.map((page, pageIndex) => (
+                                            page.map((token: any, index: any) => (
+                                                <NFTCard
+                                                    key={`${pageIndex}-${index}`}
+                                                    nft={token}
+                                                />
+                                            ))
+                                        ))
+                                }
+                                {isFetchingNextPage && Array.from({ length: 32 }).map((_, index) => (
+                                    <SkeletonNFTCard key={`skeleton-${index}`} />
+                                ))}
+                                <div ref={ref} />
+                            </>
                     }
                 </DynamicContainer>
             </AreaMain>

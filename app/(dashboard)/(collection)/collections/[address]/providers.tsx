@@ -11,9 +11,7 @@ interface ProvidersProps extends React.PropsWithChildren<{}> {
 export default function Providers({ children, collection }: ProvidersProps) {
     return (
         <CollectionProvider value={collection}>
-            <ViewSwitchProvider>
-                {children}
-            </ViewSwitchProvider>
+            {children}
         </CollectionProvider>
     );
 }

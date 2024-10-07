@@ -4,6 +4,8 @@ import { Metadata } from "next";
 import { Providers } from "./providers";
 import BottomNavbar from "./components/bottom-navbar";
 import Sidebar from "./components/sidebar";
+import TopNavbar from "./components/top-navbar";
+import { LinearContainer } from "@/components/ui/container";
 
 
 interface LayoutProps {
@@ -21,13 +23,14 @@ export const metadata: Metadata = {
 export default function DashboardLayout({ children }: LayoutProps) {
     return (
         <Providers>
-            <div className="max-h-screen w-screen h-screen flex flex-col md:flex-row p-4 gap-6 lg:overflow-hidden">
-                <Sidebar className="hidden md:flex" />
-                <main className="flex-1 w-full pb-32 lg:py-4">{children}</main>
-                <div className="md:hidden overflow-visible z-10">
-                    <BottomNavbar />
-                </div>
-            </div>
+            <LinearContainer className="w-screen h-screen flex flex-col lg:grid lg:grid-cols-[min-content_auto] p-4 lg:overflow-hidden" space="lg">
+                <Sidebar className="hidden lg:flex lg:col-start-1" />
+                <BottomNavbar className="md:hidden overflow-visible z-10" />
+                <LinearContainer direction="column" className="w-full lg:col-start-2 h-full overflow-auto">
+                    <TopNavbar />
+                    <main className="flex-1 w-full h-full pb-32 lg:py-4 overflow-y-auto">{children}</main>
+                </LinearContainer>
+            </LinearContainer>
         </Providers>
     );
 }

@@ -53,7 +53,10 @@ export async function getCollections(limit: number = 10, offset: number = 0, key
             query MyQuery($limit: Int = 10, $offset: Int = 10, $keyword: String = "") {
                 current_collections_v2(
                 limit: $limit, offset: $offset
-                where: {collection_name: {_ilike: $keyword}}
+                where: {
+                    collection_name: {_ilike: $keyword},
+                    cdn_asset_uris: {cdn_image_uri: {_is_null: false}}
+                }
                 ) {
                     collection_properties
                     max_supply

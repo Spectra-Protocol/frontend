@@ -1,7 +1,6 @@
 "use client";
 
 import { TabsProps } from "@nextui-org/react";
-import TabsEngine from "./tabs";
 import SearchEngine from "./search";
 import ViewSwitch from "@/components/dashboard/view-switch";
 

@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { USING_MOCK } from "@/config";
-import { mockDexDataResponse } from "@/mock";
+import { mockDexDataResponse, mockDexProjects } from "@/mock";
 import { getDexDataReponse } from "@/fetch-functions/project";
 import { notFound } from "next/navigation";
 import Providers from "./providers";
@@ -23,6 +23,7 @@ export default async function Page({ params: { name } }: PageProps) {
             :
             project = await getDexDataReponse(name);
     } catch (error) {
+        project = mockDexProjects.find((project) => project.name === name) || null;
         console.error(error);
     }
     if (!project) return notFound();

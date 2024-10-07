@@ -3,8 +3,8 @@ import { Area, AreaHeader, AreaMain } from "@/app/(dashboard)/components/area";
 import { Skeleton } from "@nextui-org/react";
 import { TransactionIcon} from "hugeicons-react";
 import dynamic from "next/dynamic";
+import TransactionsTable from "./TransactionsTable";
 
-const TransactionsTable = dynamic(() => import("./TransactionsTable"), { ssr: false });
 
 export function LoadingTransactionArea() {
     return (
@@ -18,7 +18,9 @@ export function LoadingTransactionArea() {
 }
 export default function TransactionArea() {
     return (
-        <Area>
+        <Area classNames={{
+            wrapper: "h-full"
+        }}>
             <AreaHeader title="Transactions" icon={<TransactionIcon size={24} />} subtitle="All transaction with details"/>
             <AreaMain>
                 <TransactionsTable />

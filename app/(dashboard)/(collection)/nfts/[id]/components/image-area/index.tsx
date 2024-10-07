@@ -1,8 +1,9 @@
 "use client";
 
 import { Image } from "@nextui-org/react";
-import { useNFT } from "../../context";
 import React from "react";
+
+import { useNFT } from "../../context";
 import { getPopularColor } from "./utils";
 
 export default function ImageArea() {
@@ -10,16 +11,18 @@ export default function ImageArea() {
     const [color, setColor] = React.useState<string | null>(null);
 
     React.useEffect(() => {
-        getPopularColor(nft.cdn_asset_uris.cdn_image_uri || "")
-            .then((color) => {
-                // decrease the opacity of the color
-                color = color.replace("rgb", "rgba").replace(")", ", 0.5)");
-                console.log("color", color);
-                setColor(color);
-            }, (error) => {
-                console.error("Failed to get popular color", error);
-            })
-    }, [nft.cdn_asset_uris.cdn_image_uri]);
+        if (nft.cdn_asset_uris.cdn_image_uri) {
+            getPopularColor(nft.cdn_asset_uris.cdn_image_uri || "")
+                .then((color) => {
+                    // decrease the opacity of the color
+                    color = color.replace("rgb", "rgba").replace(")", ", 0.5)");
+                    console.log("color", color);
+                    setColor(color);
+                }, (error) => {
+                    console.error("Failed to get popular color", error);
+                })
+        }
+    }, [nft]);
 
     return (
         <Image

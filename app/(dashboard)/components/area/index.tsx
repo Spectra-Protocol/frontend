@@ -41,7 +41,7 @@ export const AreaMain: React.FC<AreaMainProps> = ({ ...props }) => {
         <div
             {...props}
             className={clsx(
-                "w-full",
+                "w-full h-full",
                 props.className
             )}
         >

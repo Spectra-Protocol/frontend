@@ -5,7 +5,7 @@ import { ArrowTurnBackwardIcon } from "hugeicons-react";
 
 export default function Loading() {
     return (
-        <div className="w-screen h-screen">
+        <div className="w-full h-full">
             <div className="flex flex-col items-center justify-center mx-auto my-auto h-full w-full">
                 <div className="flex flex-row items-center justify-center gap-4">
                     <Favicon size={32} />

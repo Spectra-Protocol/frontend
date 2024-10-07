@@ -1,15 +1,18 @@
 
-export async function getPopularColor(imageUrl: string): Promise<string> {
+export async function getPopularColor(src: string): Promise<string> {
     return new Promise((resolve, reject) => {
         const img = new Image();
-        img.crossOrigin = 'Anonymous'; // To avoid CORS issues
-        img.src = imageUrl;
+
+        img.crossOrigin = "Anonymous"; // This is necessary if the image is from a different origin
+        img.src = src;
+
         img.onload = () => {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+
             if (!ctx) {
-                console.error('Canvas context is not available');
-                reject(new Error('Canvas context is not available'));
+                reject("Failed to get canvas context");
+
                 return;
             }
 
@@ -22,23 +25,36 @@ export async function getPopularColor(imageUrl: string): Promise<string> {
 
             const colorCount: { [key: string]: number } = {};
             let maxCount = 0;
-            let popularColor = '';
+            let primaryColor = "";
 
             for (let i = 0; i < data.length; i += 4) {
                 const r = data[i];
                 const g = data[i + 1];
                 const b = data[i + 2];
-                const color = `rgb(${r}, ${g}, ${b})`;
+                const a = data[i + 3];
 
-                colorCount[color] = (colorCount[color] || 0) + 1;
+                // Ignore fully transparent pixels
+                if (a === 0) continue;
+
+                const color = `${r},${g},${b}`;
+
+                if (colorCount[color]) {
+                    colorCount[color]++;
+                } else {
+                    colorCount[color] = 1;
+                }
 
                 if (colorCount[color] > maxCount) {
                     maxCount = colorCount[color];
-                    popularColor = color;
+                    primaryColor = color;
                 }
             }
-            resolve(popularColor);
+
+            resolve(`rgb(${primaryColor})`);
         };
-        img.onerror = (error) => reject(error);
+
+        img.onerror = () => {
+            reject("Failed to load image");
+        };
     });
 }

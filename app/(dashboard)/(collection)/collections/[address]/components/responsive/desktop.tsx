@@ -3,11 +3,11 @@
 import { Tab, Tabs } from "@nextui-org/react";
 import React from "react";
 
+import { LinearContainer } from "@/components/ui/container";
+
 import DetailsArea from "../../components/details-area";
 import NFTsArea from "../../components/nfts-area";
 import TransactionArea from "../../components/transactions-area";
-import SearchEngine from "@/components/dashboard/search";
-import { LinearContainer } from "@/components/ui/container";
 
 
 export default function Desktop() {
@@ -29,7 +29,6 @@ export default function Desktop() {
             <DetailsArea />
         </div>
         <LinearContainer direction="column" space="lg" className="lg:row-start-2 lg:col-start-1 col-span-2 overflow-y-auto h-full">
-            <SearchEngine />
             <Tabs
                 aria-label="Collection page tabs"
                 variant="light"

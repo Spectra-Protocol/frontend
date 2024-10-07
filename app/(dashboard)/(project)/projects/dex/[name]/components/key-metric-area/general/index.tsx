@@ -27,12 +27,12 @@ export default function GeneralMetric() {
         },
         {
             title: "Token Supply",
-            value: numeral(project.token_supply).format("0,0")
+            value: numeral(project.token_supply).format("0,0a")
         },
         {
             title: "NOTH",
             description: "Number of Token Holders",
-            value: numeral(project.num_token_holders).format("0,0")
+            value: numeral(project.num_token_holders).format("0,0a")
         }
     ];
     return (

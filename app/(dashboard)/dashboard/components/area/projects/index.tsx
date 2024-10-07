@@ -1,19 +1,22 @@
-import { ReponsiveGridContainer } from "@/components/ui/container";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import { Cards02Icon } from "hugeicons-react";
 import { useRouter } from "next/navigation";
-import React, { useRef } from "react";
+import React from "react";
 import { useInView } from "react-intersection-observer";
+import { toast } from "react-toastify";
 
-import { Collection, ProfilerTagType, Project } from "@/types";
+import { DynamicContainer, ReponsiveGridContainer } from "@/components/ui/container";
+import { ProfilerTagType, Project } from "@/types";
 import { Area, AreaHeader, AreaMain } from "@/app/(dashboard)/components/area";
 import ShortcutCard, { SkeletonShortcutCard } from "@/components/dashboard/cards/ShortcutCard";
 import { useSearchParam } from "@/components/dashboard/search/context";
-import { getProject } from "@/fetch-functions/project";
 import SkeletonContainer from "../components/SkeletonContainer";
-import { toast } from "react-toastify";
 import EmptyContent from "@/components/empty";
+import { mockProjects } from "@/mock";
+import { useViewSwitch } from "@/components/dashboard/view-switch";
+
+const USING_MOCK = true;
 
 interface ProjectsContainerProps extends React.HTMLAttributes<HTMLElement> {
 }
@@ -22,20 +25,7 @@ export default function ProjectsContainerArea(props: ProjectsContainerProps) {
     const router = useRouter();
     const { ref, inView } = useInView();
     const { searchTerm } = useSearchParam();
-
-    const [mockProject, setMockProject] = React.useState<Project | null>(null);
-
-    React.useEffect(() => {
-        const fetchMockProject = async () => {
-            try {
-                const project = await getProject("1");
-                setMockProject(project);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchMockProject();
-    }, []);
+    const {view} = useViewSwitch();
 
     const {
         data,
@@ -48,7 +38,12 @@ export default function ProjectsContainerArea(props: ProjectsContainerProps) {
         initialPageParam: 0,
         queryKey: ["projects", searchTerm],
         queryFn: async ({ pageParam = 0 }) => {
-            return mockProject ? [mockProject] : [];
+            if (USING_MOCK) {
+                return mockProjects;
+            }
+
+            // todo: implement fetch function for projects
+            return [];
         },
         getNextPageParam: (lastPage, pages) => {
             if (lastPage.length === 10) {
@@ -75,32 +70,35 @@ export default function ProjectsContainerArea(props: ProjectsContainerProps) {
         <Area>
             <AreaHeader title="Projects" icon={<Cards02Icon size={24} />} />
             <AreaMain>
-                <ReponsiveGridContainer
+                <DynamicContainer
                     className={clsx(
                         "w-full overflow-y-auto no-scrollbar",
                         props.className,
                     )}
+                    variant={view as any}
                 >
                     {
                         isLoading ?
                             <SkeletonContainer />
                             :
                             data?.pages.map((page, pageIndex) => (
-                                page.map((project: Project, index: any) => (
-                                    <ShortcutCard
-                                        key={`${pageIndex}-${index}`}
-                                        name={project.name}
-                                        tag={project.category as ProfilerTagType}
-                                        avatar={project.avatar_url}
-                                        onClick={() => router.push(`/projects/${project.id}`)}
-                                    />
-                                ))
+                                page
+                                    .filter((project: Project) => project.name.toLowerCase().includes(searchTerm.toLowerCase()))
+                                    .map((project: Project, index: any) => (
+                                        <ShortcutCard
+                                            key={`${pageIndex}-${index}`}
+                                            name={project.name}
+                                            tag={project.category as ProfilerTagType}
+                                            avatar={project.avatar_url}
+                                            onClick={() => router.push(`/projects/${project.id}`)}
+                                        />
+                                    ))
                             ))
                     }
                     {data?.pages.length === 0 && <EmptyContent content="No projects found" />}
                     {isFetchingNextPage && <SkeletonContainer />}
                     <div ref={ref} />
-                </ReponsiveGridContainer>
+                </DynamicContainer>
             </AreaMain>
         </Area>
     );

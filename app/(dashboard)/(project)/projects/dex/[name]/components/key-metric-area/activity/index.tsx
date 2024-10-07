@@ -30,17 +30,17 @@ export default function ActivityMetric() {
         {
             title: "Daily Active Users",
             description: "Number of daily active users",
-            value: numeral(project.daily_active_users).format("0,0"),
+            value: numeral(project.daily_active_users).format("0,0.00a"),
         },
         {
             title: "Weekly Active Users",
             description: "Number of weekly active users",
-            value: numeral(project.weekly_active_users).format("0,0"),
+            value: numeral(project.weekly_active_users).format("0,0.00a"),
         },
         {
             title: "Monthly Active Users",
             description: "Number of monthly active users",
-            value: numeral(project.monthly_active_users).format("0,0"),
+            value: numeral(project.monthly_active_users).format("0,0.00a"),
         }
     ]
     return (

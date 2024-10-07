@@ -48,7 +48,7 @@ function BottomNavbarWrapper({ children, className }: PropsWithChildren<BottomNa
     )
 }
 
-function BottomNavbar({ className, ...props }: BottomNavbarProps) {
+export default function BottomNavbar({ className, ...props }: BottomNavbarProps) {
     const pathname = usePathname();
     const [isExpanded, setIsExpanded] = React.useState(false);
     const [currentComponent, setCurrentComponent] = React.useState<React.ReactNode | null>(null);
@@ -142,7 +142,3 @@ function BottomNavbar({ className, ...props }: BottomNavbarProps) {
         </BottomNavbarWrapper>
     )
 }
-
-export default dynamic(() => Promise.resolve(BottomNavbar), {
-    ssr: false,
-});
