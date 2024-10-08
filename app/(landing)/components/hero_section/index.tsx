@@ -16,7 +16,7 @@ export default function HeroSection() {
     return (
         <section
             id="hero"
-            className="w-full flex flex-col gap-6 items-center justify-between h-full z-10"
+            className="w-full flex flex-col gap-6 items-center h-fit z-10"
         >
             <div
                 className="p-[2px] rounded-full bg-gradient-to-b from-[#FAFAFA] via-[#9D9D9D] to-[#FFFFFF] shadow-2xl"
