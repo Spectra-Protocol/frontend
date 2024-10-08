@@ -12,6 +12,8 @@ export function capitalizeAllWords(input: string): string {
 
 // Time Helper
 export function formatTime(inputTime: Date): string {
+  if(!inputTime) return '';
+  
   const now = new Date();
   const diffInMinutes = differenceInMinutes(now, inputTime);
   const diffInHours = differenceInHours(now, inputTime);

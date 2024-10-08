@@ -19,7 +19,10 @@ export function SkeletonShortcutCard(props: SkeletonShortcutCardProps) {
     return (
         <div className="w-full h-fit p-3 rounded-[14px] bg-foreground-100 flex flex-row gap-4 items-center cursor-pointer animate-pulse shadow" {...props}>
             <div className="w-14 h-14 rounded-md bg-foreground-200" />
-            <div className="w-36 h-4 bg-foreground-200 rounded-md" />
+            <div className="flex flex-col gap-2 w-full">
+                <div className="w-3/4 h-4 bg-foreground-200 rounded-md" />
+                <div className="w-1/2 h-4 bg-foreground-200 rounded-md" />
+            </div>
         </div>
     )
 }
@@ -38,7 +41,7 @@ export default function ShortcutCard(props: ShortcutCardProps) {
         >
             <User
                 name={
-                    <p className="truncate max-w-[20ch] font-semibold">
+                    <p className="truncate max-w-[20ch] font-medium">
                         {props.name}
                     </p>
                 }

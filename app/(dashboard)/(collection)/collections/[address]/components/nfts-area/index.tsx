@@ -61,9 +61,8 @@ export default function NFTsArea() {
             <AreaMain>
                 <DynamicContainer
                     className={clsx(
-                        "w-full h-full overflow-y-auto no-scrollbar",
+                        "w-full h-full overflow-y-auto no-scrollbar xl:grid-cols-3",
                     )}
-                    space="md"
                     variant={view as any}
                 >
                     {

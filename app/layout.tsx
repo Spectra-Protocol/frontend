@@ -11,7 +11,7 @@ import {Toaster} from "@/components/toaster";
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
-    template: `${siteConfig.name} - %s`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   icons: {

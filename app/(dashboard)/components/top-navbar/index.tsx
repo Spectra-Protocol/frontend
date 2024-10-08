@@ -13,20 +13,18 @@ import CustomBreadcrumbs from "./breadcrumbs";
 interface TopNavbarProps extends React.HTMLAttributes<HTMLElement> {
 }
 export default function TopNavbar({ className, ...props }: TopNavbarProps) {
-    const [currentPath, setCurrentPath] = React.useState<React.Key>("");
-    const paths = dashboardData.paths;
 
     return (
         <header
             className={twMerge(
-                "w-full flex flex-row items-center justify-between gap-4",
+                "w-full flex flex-col items-start lg:flex-row lg:items-center justify-between gap-4",
                 className
             )}
             {...props}
         >
             <CustomBreadcrumbs />
             <SearchEngine />
-            <LinearContainer direction="row" space="sm" className="w-fit">
+            <LinearContainer direction="row" space="sm" className="w-fill justify-between lg:justify-end lg:w-fit">
                 <ViewSwitch />
                 <Clock />
             </LinearContainer>

@@ -2,6 +2,7 @@ import { TabItemProps } from "@nextui-org/react";
 import { Cards01Icon, KeyboardIcon } from "hugeicons-react";
 import dynamic from "next/dynamic";
 import React from "react";
+
 const CollectionsContainer = dynamic(() => import("../area/collections"));
 const ProjectsContainer = dynamic(() => import("../area/projects"));
 const All = dynamic(() => import("../area/all"));

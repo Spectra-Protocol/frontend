@@ -26,7 +26,7 @@ export default function DashboardLayout({ children }: LayoutProps) {
             <LinearContainer className="w-screen h-screen flex flex-col lg:grid lg:grid-cols-[min-content_auto] p-4 lg:overflow-hidden" space="lg">
                 <Sidebar className="hidden lg:flex lg:col-start-1" />
                 <BottomNavbar className="md:hidden overflow-visible z-10" />
-                <LinearContainer direction="column" className="w-full lg:col-start-2 h-full overflow-auto">
+                <LinearContainer direction="column" className="w-full lg:col-start-2 h-full overflow-auto" space="lg">
                     <TopNavbar />
                     <main className="flex-1 w-full h-full pb-32 lg:py-4 overflow-y-auto">{children}</main>
                 </LinearContainer>
