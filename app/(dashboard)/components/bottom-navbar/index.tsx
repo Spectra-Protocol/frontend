@@ -124,6 +124,9 @@ export default function BottomNavbar({ className, ...props }: BottomNavbarProps)
                                         setSelectedItem(item);
                                     }
 
+                                    if (selectedItem.label === item.label) {
+                                        setIsExpanded(!isExpanded);
+                                    }
                                 }}
                             >
                                 <span className={clsx(

@@ -61,14 +61,13 @@ export default async function Page(props: PageProps) {
 
     return (
         <Providers nft={nft}>
-            <div className="w-full h-full grid grid-col-1 lg:grid-cols-3 row-auto gap-6 overflow-y-auto">
+            <div className="w-full h-full flex flex-col lg:grid lg:grid-cols-3 row-auto gap-6 overflow-y-auto">
                 <LinearContainer className="w-full h-full col-span-2" space="lg" direction="column">
                     <ImageArea />
                     <Profile />
                     <DetailsArea />
                     <TransactionArea />
                 </LinearContainer>
-                <div className="w-full h-full col-span-1" />
             </div>
         </Providers>
     )
