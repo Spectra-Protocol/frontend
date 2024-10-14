@@ -29,7 +29,7 @@ interface CustomBarChartWrapperProps extends React.HTMLAttributes<HTMLDivElement
 export const CustomBarChartWrapper: React.FC<CustomBarChartWrapperProps> = (props) => {
     return (
         <div {...props} className={clsx(
-            "bg-foreground-50 rounded-[24px] shadow-lg p-8 space-y-8",
+            "bg-foreground-100 rounded-[24px] shadow-lg p-8 space-y-8",
             props.className
         )}>
             {props.children}
