@@ -346,3 +346,8 @@ export interface Coin {
   symbol: string;
   amount: number;
 }
+
+export interface CoinPriceResponse {
+  decimals: number,
+  price: number,
+}
